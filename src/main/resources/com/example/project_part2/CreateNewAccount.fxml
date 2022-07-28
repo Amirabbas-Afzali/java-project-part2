@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatAccount">
+   <children>
+      <ImageView fitHeight="873.0" fitWidth="1318.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@polish-sea-baltic-53-big.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameF" alignment="CENTER" layoutX="693.0" layoutY="180.0" prefHeight="43.0" prefWidth="280.0" promptText="User Name">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passF" alignment="CENTER" layoutX="696.0" layoutY="349.0" prefHeight="44.0" prefWidth="277.0" promptText="Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <PasswordField fx:id="repassF" alignment="CENTER" layoutX="696.0" layoutY="429.0" prefHeight="44.0" prefWidth="278.0" promptText="Re-enter your Password">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <ImageView fx:id="prof" fitHeight="248.0" fitWidth="282.0" layoutX="178.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@person.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="237.0" layoutY="438.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="1034.0" layoutY="619.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="878.0" layoutY="621.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </Button>
+      <Label fx:id="label" alignment="CENTER" layoutX="47.0" layoutY="28.0" prefHeight="62.0" prefWidth="1214.0" text="Enter your information :" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="27.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateB" layoutX="697.0" layoutY="254.0" prefHeight="55.0" prefWidth="274.0" promptText="Birthday" />
+      <ChoiceBox fx:id="bus" layoutX="228.0" layoutY="561.0" prefHeight="31.0" prefWidth="210.0" />
+      <Label alignment="CENTER" layoutX="360.0" layoutY="562.0" prefHeight="31.0" prefWidth="47.0" text="Field">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="ord" layoutX="229.0" layoutY="611.0" prefHeight="31.0" prefWidth="208.0" />
+      <Label alignment="CENTER" layoutX="354.0" layoutY="612.0" prefHeight="31.0" prefWidth="57.0" text="Privacy">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="buschoice" layoutX="79.0" layoutY="564.0" mnemonicParsing="false" onAction="#busfill" prefHeight="31.0" prefWidth="126.0" text="Business user" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="ordchoice" layoutX="80.0" layoutY="611.0" mnemonicParsing="false" onAction="#ordfill" prefHeight="31.0" prefWidth="126.0" text="Ordinary user" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </CheckBox>
+   </children>
+</Pane>
