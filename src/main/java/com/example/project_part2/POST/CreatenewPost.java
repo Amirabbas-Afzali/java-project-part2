@@ -29,7 +29,7 @@ public class CreatenewPost {
                     description = Main.scanner.nextLine();
                     if (text.length() > 0 && description.length() > 0) {
                         String str1=createpostcode();
-                        BusinessPost businessPost = new BusinessPost(str1, text, description, (BusinessUser) user, new Date());
+                       BusinessPost businessPost = new BusinessPost(str1, text, description, (BusinessUser) user, new Date(),"0");
                         PostTableDBC.postTableDBC.setPost(businessPost);
                         MAINInformation.mainInformation.posts.put(str1,businessPost);
                         user.posts.add(businessPost);
@@ -41,7 +41,7 @@ public class CreatenewPost {
                     text = Main.scanner.nextLine();
                     if (text.length() > 0 ) {
                         String str11=createpostcode();
-                        OrdinaryPost ordinaryPost = new OrdinaryPost(str11, text, (OrdinaryUser) user, new Date(),((OrdinaryUser) user).Private);
+                        OrdinaryPost ordinaryPost = new OrdinaryPost(str11, text, (OrdinaryUser) user, new Date(),((OrdinaryUser) user).Private,"0");
                         PostTableDBC.postTableDBC.setPost(ordinaryPost);
                         MAINInformation.mainInformation.posts.put(str11,ordinaryPost);
                         user.posts.add(ordinaryPost);

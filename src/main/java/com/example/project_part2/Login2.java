@@ -84,6 +84,7 @@ public class Login2 implements Initializable {
         label.setText("Enter your information :");
         createcaptcha();
     }
+
     public void Back() throws IOException {
         Main.main1.start(mainstage);
     }
@@ -92,15 +93,17 @@ public class Login2 implements Initializable {
     public void createcaptcha(){
         cap=craetecaptchacode(7);
         captcha.setText(cap);
+        System.out.println(cap);
     }
 
     public void login() throws IOException {
-        createcaptcha();
         if(usernameF.getText().length()>0&&passF.getText().length()>0&&passF1.getText().length()>0){
             if(existuser(usernameF.getText()).equals("This user exists")) {
                 if(checkpass(searchuser(usernameF.getText()),passF.getText()).equals("Welcome")){
                     if(passF1.getText().equals(cap)){
-                        System.out.println("00000000000000");
+                        PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
+                       PersonalHomepage.USER=MAINInformation.mainInformation.users.get(usernameF.getText());
+                        Main.personalpageSTART();
                     }
                     else {
                         label.setText("Cpatcha Code was entered incorrectly !");
@@ -111,5 +114,6 @@ public class Login2 implements Initializable {
         else {
             label.setText(" Enter your information correctly ");
         }
+        createcaptcha();
     }
 }

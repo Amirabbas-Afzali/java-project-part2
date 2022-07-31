@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewORDPost">
+   <children>
+      <ImageView fitHeight="871.0" fitWidth="1400.0" layoutX="-4.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="cap" layoutX="732.0" layoutY="181.0" prefHeight="264.0" prefWidth="418.0" promptText="Hello guys ...">
+         <font>
+            <Font name="Gabriola" size="28.0" />
+         </font>
+      </TextArea>
+      <Button layoutX="1054.0" layoutY="639.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="898.0" layoutY="641.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back">
+         <font>
+            <Font name="System Italic" size="19.0" />
+         </font>
+      </Button>
+      <Button layoutX="274.0" layoutY="477.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="photo" fitHeight="267.0" fitWidth="384.0" layoutX="156.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="label" alignment="CENTER" layoutX="67.0" layoutY="48.0" prefHeight="91.0" prefWidth="536.0" text="Create Ordinary Post" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="41.0" />
+         </font>
+      </Label>
+      <Label fx:id="label1" alignment="CENTER" layoutX="669.0" layoutY="119.0" prefHeight="46.0" prefWidth="306.0" text="Post caption :" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="27.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

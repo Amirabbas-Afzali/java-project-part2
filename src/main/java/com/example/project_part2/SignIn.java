@@ -135,8 +135,8 @@ public class SignIn   {
     public void recoveryfunc() throws IOException {
         Main.passwordrecovSTART();
     }
-    public void exitfunc(){
-mainstage.close();
+    public void exitfunc() throws IOException {
+ mainstage.close();
     }
 
 }

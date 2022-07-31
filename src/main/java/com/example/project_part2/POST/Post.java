@@ -11,6 +11,7 @@ import com.example.project_part2.DataBaseController.*;
 public class Post {
     static List<String> PostsCodesList1=new ArrayList<>();
     public String PostCode="";
+    public String photopath;
     public static Integer PostCodeStatic;
     public String PosterName="";
     public List<String> RepostersList=new ArrayList<>();
@@ -23,6 +24,12 @@ public class Post {
     public String Caption;
     //List<Massage> Comments=new ArrayList<>();
     public List<String>CommentsCodesList=new ArrayList<>();
+
+    public void addcomment(User user,String text) throws SQLException {
+        String code= Massage.NewMassage(user.UserName,text);
+        this.addComment(code);
+    }
+
     public void ShowPost(User user) throws SQLException {
 
         String input="";
@@ -96,7 +103,7 @@ public class Post {
                 }
             }
             if (input.equals("5")){
-                System.out.println("Inter text");
+                System.out.println("Enter text");
                 String text=Main.scanner.nextLine();
                 String code= Massage.NewMassage(user.UserName,text);
                 this.addComment(code);

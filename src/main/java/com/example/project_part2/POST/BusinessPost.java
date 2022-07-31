@@ -17,9 +17,10 @@ public class BusinessPost extends Post{
     public int buisnessTypeINT;
     public String description;
     public BusinessPost(){}
-    BusinessPost(String postcode, String text,String describe, BusinessUser user, Date time1) throws SQLException {
+    public BusinessPost(String postcode, String text, String describe, BusinessUser user, Date time1,String path) throws SQLException {
         this.userposter=user;
         this.Kind=true;
+        this.photopath=path;
         this.PostCode=postcode;
         this.Caption=text;
         this.description=describe;

@@ -8,6 +8,7 @@ import com.example.project_part2.USER.*;
 import com.example.project_part2.DataBaseController.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BusinessUser extends User{
@@ -23,6 +24,23 @@ public class BusinessUser extends User{
         this.UserName=username;
         this.PassWord=passWord;
         this.Birthdatestr=birthdate;
+        this.profilepicpath=profpath;
+        this.setBirthdate();
+        this.age=this.calculateAGE();
+        this.setBuisnessType(type);
+        this.buisnessTypeINT=setBuisnessTypeINT(this.buisnessType);
+        this.Kind=true;
+        this.Blocked=0;
+        this.ProfileViews=0;
+        this.AgeSumOfViewers=0;
+        User.UserNamesList.add(this.UserName);
+        MAINInformation.mainInformation.users.put(this.UserName,this);
+    }
+
+    public BusinessUser(String username, String passWord, Date birthdate, String type, String profpath){
+        this.UserName=username;
+        this.PassWord=passWord;
+        this.Birthdate=birthdate;
         this.profilepicpath=profpath;
         this.setBirthdate();
         this.age=this.calculateAGE();

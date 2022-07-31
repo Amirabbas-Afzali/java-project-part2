@@ -48,6 +48,30 @@ public class Main extends Application {
         // mainstage.show();
     }
 
+    public static void CreateBUSpostSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("createbuspost.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("Create Post");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void CreateORDpostSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("createordpost.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("Create Post");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void personalpageSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("personalpage.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("OWL");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
     public static void main(String[] args)throws SQLException {
         MAINInformation.mainInformation.UpdateMainInfo();
        //SignIn.signIn.start();

@@ -26,6 +26,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -78,7 +80,7 @@ public class CreatAccount implements Initializable {
                     }
                 }
                 if(temp.equals("a")){
-                    PersonalHomepage.personalHomepage.user=searchuser(usename);
+                    PersonalHomepage.personalHomepage.USER=searchuser(usename);
                     PersonalHomepage.personalHomepage.start(searchuser(usename));}
             }
             else if (str.equals("2")) {
@@ -118,7 +120,7 @@ public class CreatAccount implements Initializable {
                     }
                 }
                 if(temp.equals("a")){
-                    PersonalHomepage.personalHomepage.user=searchuser(usename);
+                    PersonalHomepage.personalHomepage.USER=searchuser(usename);
                     PersonalHomepage.personalHomepage.start(searchuser(usename));}
             }
             else if (str.equals("3")) {
@@ -168,9 +170,6 @@ public class CreatAccount implements Initializable {
         return false;
     }
 
-    public void test(){
-        System.out.println("111111111111");
-    }
 @FXML
 ImageView prof;
     @FXML
@@ -214,12 +213,12 @@ ImageView prof;
         File file = fileChooser.showOpenDialog(mainstage);
         if (file != null) {
             Image image = new Image(new FileInputStream(file.getPath()));
-            prof.setImage(getRoundedImage(image,87));
+            prof.setImage(getRoundedImage(image,200));
             profpath=file.getPath();
         }
     }
 
-    public Image getRoundedImage(Image image, double radius) {
+    public static Image getRoundedImage(Image image, double radius) {
         Circle clip = new Circle(image.getWidth() / 2, image.getHeight() / 2, radius);
         ImageView imageView = new ImageView(image);
         imageView.setClip(clip);
@@ -254,7 +253,7 @@ ImageView prof;
                       MAINInformation.mainInformation.users.put(usernam,ordinaryUser);
                   }
                   else {
-                     OrdinaryUser ordinaryUser=new OrdinaryUser(usernam,pass1,dateB.getValue().toString(),false,profpath);
+                     OrdinaryUser ordinaryUser=new OrdinaryUser(usernam,pass1,LocalToDate(dateB.getValue()),false,profpath);
                       UserTableDBC.userTableDBC.setUser(ordinaryUser);
                       MAINInformation.mainInformation.users.put(usernam,ordinaryUser);
                   }
@@ -262,7 +261,7 @@ ImageView prof;
               else {
                   String ch= "a";
                   if(bus.getValue()!=null){   ch=(String) bus.getValue();}
-                  BusinessUser businessUser=new BusinessUser(usernam,pass1,dateB.getValue().toString(),findtype(ch),profpath);
+                  BusinessUser businessUser=new BusinessUser(usernam,pass1,LocalToDate(dateB.getValue()),findtype(ch),profpath);
                   UserTableDBC.userTableDBC.setUser(businessUser);
                   MAINInformation.mainInformation.users.put(usernam,businessUser);
               }
@@ -277,6 +276,12 @@ ImageView prof;
 label.setText(" Enter your information correctly ");
         }
 
+    }
+
+    public static Date LocalToDate(LocalDate input){
+        ZoneId zoneId=ZoneId.systemDefault();
+        Date result=Date.from(input.atStartOfDay(zoneId).toInstant());
+        return result;
     }
 
     public String findtype(String str){

@@ -9,8 +9,9 @@ import java.util.Date;
 public class OrdinaryPost extends Post{
     public boolean isprivate;
     public OrdinaryPost(){}
-    OrdinaryPost(String postcode, String text, OrdinaryUser user, Date time1, boolean Isprivate) throws SQLException {
+    public OrdinaryPost(String postcode, String text, OrdinaryUser user, Date time1, boolean Isprivate, String path) throws SQLException {
         this.Kind=false;
+        this.photopath=path;
         this.userposter=user;
         this.PostCode=postcode;
         this.Caption=text;

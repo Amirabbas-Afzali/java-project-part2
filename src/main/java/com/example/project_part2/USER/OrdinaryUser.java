@@ -13,6 +13,7 @@ public class OrdinaryUser extends User{
     static  OrdinaryUser ordinaryUser=new OrdinaryUser();
     public boolean Private;
     public OrdinaryUser(){}
+
     public OrdinaryUser(String username, String passWord, String birthdate, boolean Isprivate,String profpath){
         this.UserName=username;
         this.PassWord=passWord;
@@ -27,6 +28,7 @@ public class OrdinaryUser extends User{
         User.UserNamesList.add(this.UserName);
         MAINInformation.mainInformation.users.put(this.UserName,this);
     }
+
     public OrdinaryUser(String username, String passWord, Date birthdate, boolean Isprivate,String profpath){
         this.UserName=username;
         this.PassWord=passWord;

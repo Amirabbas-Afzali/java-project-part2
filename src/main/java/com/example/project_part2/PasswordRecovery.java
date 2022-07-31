@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import static com.example.project_part2.CreatAccount.LocalToDate;
 import static com.example.project_part2.Main.mainstage;
 
 public class PasswordRecovery implements Initializable {
@@ -53,7 +54,7 @@ public class PasswordRecovery implements Initializable {
 
         }
     }
-    public boolean checkinfo(User user, String city, String country/*, Date birth*/){
+    public boolean checkinfo(User user, String city, String country, Date birth){
         if (user.City==null){
             System.out.println("You don't have enough info for recovery");
             return false;
@@ -86,7 +87,7 @@ public class PasswordRecovery implements Initializable {
     public void Next(){
   if(usernameF.getText().length()>0&&cityF.getText().length()>0&&countryF.getText().length()>0&&dateB.getValue()!=null){
       if(SignIn.signIn.existuser(usernameF.getText()).equals("This user exists")){
-          if(checkinfo(SignIn.signIn.searchuser(usernameF.getText()),cityF.getText(),countryF.getText()/*,dateB.getValue()*/)){
+          if(checkinfo(SignIn.signIn.searchuser(usernameF.getText()),cityF.getText(),countryF.getText(),  LocalToDate(dateB.getValue()))){
               labelpass.setText("Your password is  :  "+SignIn.signIn.searchuser(usernameF.getText()).PassWord);
           }
           else{
