@@ -72,6 +72,22 @@ public class Main extends Application {
         // mainstage.show();
     }
 
+    public static void MyinfoSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("completeMyinfo.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("Complete/Edit information");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void AddStorySTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("createStory.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("Add new story");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
     public static void main(String[] args)throws SQLException {
         MAINInformation.mainInformation.UpdateMainInfo();
        //SignIn.signIn.start();

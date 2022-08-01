@@ -38,6 +38,7 @@ public class StoryTableDBC {
 
             businessPost=new  Story();
             businessPost.StoryCode=resultSet.getString("Code");
+            businessPost.picturepath=resultSet.getString("picpath");
             businessPost.text=resultSet.getString("text");
             businessPost.date=resultSet.getTime("date");
             businessPost.viewersnameList=getPostCode(resultSet.getString("ViewersList"));
@@ -45,17 +46,16 @@ public class StoryTableDBC {
             businessPost.usernamestory=resultSet.getString("Username");
             businessPost.Private=resultSet.getBoolean("Isprivate");
             businessPost.IsClose=resultSet.getBoolean("IsClose");
+
         }
         statement.close();
         return businessPost;
     }
 
     public void setStory(Story post) throws SQLException {
-        //  java.sql.Date date=new java.sql.Date(post.date.getTime());
-        //  Time time=new Time(post.date.getTime());
         PreparedStatement statement= connection.prepareStatement("" +
                 "INSERT INTO storytable (Code,Username,date," +
-                "Isprivate,text,ViewersList,LikerList,IsClose) VALUES (?,?,?,?,?,?,?,?)");
+                "Isprivate,text,ViewersList,LikerList,IsClose,picpath) VALUES (?,?,?,?,?,?,?,?,?)");
         statement.setString(1,post.StoryCode);
         statement.setString(2,post.usernamestory);
         statement.setTime(3, post.date);
@@ -64,6 +64,7 @@ public class StoryTableDBC {
         statement.setString(6,generatePostCodeString(post.viewersnameList));
         statement.setString(7,generatePostCodeString(post.likersnameList));
         statement.setBoolean(8,post.IsClose);
+        statement.setString(9,post.picturepath);
 
         statement.executeUpdate();
         statement.close();

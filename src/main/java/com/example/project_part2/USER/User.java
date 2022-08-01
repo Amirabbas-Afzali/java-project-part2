@@ -83,6 +83,11 @@ public class User {
         UserTableDBC.userTableDBC.EditorDeleteUser(this,false);
     }
 
+    public void setProfilepicpath(String path) throws SQLException {
+        profilepicpath = path;
+        UserTableDBC.userTableDBC.EditorDeleteUser(this,false);
+    }
+
     public  void setUnFollow(User user) throws SQLException {
         this.FollowingMap.remove(user.UserName,user);
         this.FollowingsList.remove(user.UserName);

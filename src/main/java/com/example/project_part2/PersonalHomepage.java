@@ -2,13 +2,15 @@ package com.example.project_part2;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import com.example.project_part2.DataBaseController.PostTableDBC;
+import com.example.project_part2.DataBaseController.StoryTableDBC;
+import com.example.project_part2.DataBaseController.UserTableDBC;
 import com.example.project_part2.POST.*;
 import com.example.project_part2.USER.*;
-import com.example.project_part2.DataBaseController.*;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
 public class PersonalHomepage implements Initializable {
@@ -28,6 +32,9 @@ public class PersonalHomepage implements Initializable {
     public static User USER;
     public static List<Post> timelineposts;
 
+    public static List<User> ShowstoriesUsers;
+    public static List<Story>   Allstoreis;
+///                            set TimelinePOSTS
     public static  Button[] buttons;
     public static  Button[] buttonslike;
     public static  Button[] buttonsinfo;
@@ -37,13 +44,15 @@ public class PersonalHomepage implements Initializable {
     public static Button send;
     public static Button cancel;
     boolean com=false;
+    public static  Button[] buttonsStory;
+    public static     ImageView []Sotryuserprof;
 
     @FXML
     ImageView img;
     @FXML
     TextField t1;
     @FXML
-    AnchorPane tallpane;
+    AnchorPane tallpane,stories;
     @FXML
     Pane PANE;
     @FXML
@@ -55,10 +64,16 @@ public class PersonalHomepage implements Initializable {
     Image info=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\information.png");
     Image like=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\like.png");
     Image dislike=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\dislike.png");
+         Image black=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\black.png");
+     Image LikeStory=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\download-icon-facebook+heart+love+icon-1320166592899480291_256.png");
+        Image close=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\Close.png");
+    Image next=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\next.png");
+    Image back=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\back.png");
 
     Image prof;
     ImageView proffield;
-
+    public Circle circle;
+    Color dotcolor = Color.FORESTGREEN;
 
     public void start(User usertemp) throws SQLException {
         boolean flag=true;
@@ -136,6 +151,49 @@ public class PersonalHomepage implements Initializable {
         }
     }
 
+public void FillStatics(){
+        if (USER.FollowingMap!=null){
+        List<User> userstory=new ArrayList<>();
+        List<Story>   allstory=new ArrayList<>();
+
+        for(User user:USER.FollowingMap.values()){
+            if(user.StoryCodeList.size()>0) {
+                boolean exist = false;
+                if (!user.CloseFriendList.contains(USER.UserName)) {
+                    for (String str : user.StoryCodeList) {
+                        if (!MAINInformation.mainInformation.stories.get(str).IsClose) {
+                            allstory.add(MAINInformation.mainInformation.stories.get(str));
+                            exist = true;
+                        }
+                    }
+                }
+                else {
+                    for (String str : user.StoryCodeList) {
+                            allstory.add(MAINInformation.mainInformation.stories.get(str));
+                            exist = true;
+                    }
+                }
+               if(exist){userstory.add(user);
+
+               }
+            }
+        }
+        PersonalHomepage.Allstoreis=allstory;
+        PersonalHomepage.ShowstoriesUsers=userstory;
+
+}}
+
+    public boolean checkisClose(User user){
+        if (user.CloseFriendList.contains(USER.UserName)) {
+            for (String str : user.StoryCodeList) {
+                if (MAINInformation.mainInformation.stories.get(str).IsClose) {
+                   return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void addcomment(Post post){
         com=true;
          commentfield=new TextArea();
@@ -188,10 +246,9 @@ public class PersonalHomepage implements Initializable {
         System.out.println("oooooooo");
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+                      FillStatics();
         label1.setText(USER.UserName);
         prof=new Image(USER.profilepicpath);
         proffield=new ImageView(CreatAccount.getRoundedImage(prof,200));
@@ -201,9 +258,13 @@ public class PersonalHomepage implements Initializable {
         buttons=new Button[timelineposts.size()];
         buttonslike=new Button[timelineposts.size()];
        buttonsinfo=new Button[timelineposts.size()];
+       buttonsStory=new Button[ShowstoriesUsers.size()];
+        Sotryuserprof =new ImageView[ShowstoriesUsers.size()];
          labels =new Label[timelineposts.size()];
         imageViews =new ImageView[timelineposts.size()];
                setscrollpane(USER.posts);
+               setscrollpaneStory(ShowstoriesUsers);
+
     }
 
     public void refresh(List<Post> posts){
@@ -240,7 +301,7 @@ public class PersonalHomepage implements Initializable {
         }
     }
 
-        public void setscrollpane(List<Post> posts){
+    public void setscrollpane(List<Post> posts){
         int a=posts.size();
         tallpane.setPrefHeight(510*a);
         int i=0;
@@ -325,8 +386,22 @@ public class PersonalHomepage implements Initializable {
                 {
                     System.out.println(i);
                     if(!posts.get(i).LikedList.contains(USER.UserName)){
-                  posts.get(i).LikedList.add(USER.UserName);}
-                    else {posts.get(i).LikedList.remove(USER.UserName);}
+                  posts.get(i).LikedList.add(USER.UserName);
+                    USER.LikedPostCodes.add(posts.get(i).PostCode);
+                        try {
+                            UserTableDBC.userTableDBC.EditorDeleteUser(USER,false);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i),false);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    else {posts.get(i).LikedList.remove(USER.UserName);
+                        USER.LikedPostCodes.add(posts.get(i).PostCode);
+                    }
                              refresh(posts);
                 }
                 }
@@ -344,6 +419,248 @@ public class PersonalHomepage implements Initializable {
         }
     }
 
+    public void setscrollpaneStory(List<User> users){
+        int a=users.size();
+        stories.setPrefWidth(50*a);
+        int i=0;
+        for (User user:users){
+           if(checkisClose(user)) {
+                circle = new Circle();
+                circle.setRadius(40);
+                circle.setCenterX(95 * i + 57);
+                circle.setCenterY(50);
+                circle.setFill(dotcolor);
+            }
+            buttonsStory[i]=new Button();
+            buttonsStory[i].setPrefHeight(70);
+            buttonsStory[i].setPrefWidth(70);
+            buttonsStory[i].setLayoutX(95*i+22);
+            buttonsStory[i].setLayoutY(15);
+            buttonsStory[i].setOpacity(0);
+
+           Image image=new Image(user.profilepicpath);
+            Sotryuserprof[i]=new ImageView(CreatAccount.getRoundedImage(image,200));
+            Sotryuserprof[i].setFitWidth(70);
+            Sotryuserprof[i].setFitHeight(70);
+            Sotryuserprof[i].setX(95*i+22);
+            Sotryuserprof[i].setY(15);
+            if(checkisClose(user)) {
+                stories.getChildren().add(circle);
+            }
+            stories.getChildren().add(Sotryuserprof[i]);
+            stories.getChildren().add(buttonsStory[i]);
+                    i++;
+        }
+
+
+        EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // TODO Auto-generated method stub
+                for(int i=0;i<a;i++){
+                    if(event.getSource()==buttonsStory[i])
+                    {
+                                storypic(users.get(i));
+                    }
+                }
+                event.consume();
+            }
+
+        };
+        for(int j=0;j<a;j++){
+            buttonsStory[j].setOnMouseClicked(handler);
+        }
+    }
+
+    public List<Story> createStorylist(User user1){
+        List<Story> ss=new ArrayList<>();
+        if(user1.CloseFriendList.contains(USER.UserName)){
+            for(Story story:user1.MyStories){
+                ss.add(story);
+            }
+        }
+        else {
+            for(Story story:user1.MyStories){
+              if(!story.IsClose){  ss.add(story);}
+            }
+        }
+        return ss;
+    }
+    boolean ord=false;
+public int index=0;
+public Label label3=null;
+
+public void storypic(User user1){
+               List<Story> userstories=createStorylist(user1);
+
+        Button butClose=new Button();
+        butClose.setPrefWidth(60);
+    butClose.setPrefHeight(60);
+    butClose.setLayoutX(920);
+    butClose.setLayoutY(50);
+    butClose.setOpacity(0);
+    //=============================
+    Button butLike=new Button();
+    butLike.setPrefWidth(50);
+    butLike.setPrefHeight(45);
+    butLike.setLayoutX(930);
+    butLike.setLayoutY(610);
+   butLike.setOpacity(0);
+    //=========================
+    Button butnext=new Button();
+    butnext.setPrefWidth(60);
+    butnext.setPrefHeight(60);
+    butnext.setLayoutX(1020);
+    butnext.setLayoutY(320);
+    butnext.setOpacity(0);
+    //=========================
+  Button butback=new Button();
+    butback.setPrefWidth(60);
+    butback.setPrefHeight(60);
+    butback.setLayoutX(220);
+    butback.setLayoutY(320);
+    butback.setOpacity(0);
+    //=========================
+ImageView imageView =new ImageView(black);
+imageView.setFitWidth(1300);
+    imageView.setFitHeight(750);
+    imageView.setX(0);
+    imageView.setY(0);
+    imageView.setOpacity(0.8);
+//=========================================
+    ImageView imageView1 =new ImageView(black);
+    imageView1.setFitWidth(700);
+    imageView1.setFitHeight(750);
+    imageView1.setX(300);
+    imageView1.setY(0);
+    imageView1.setOpacity(0);
+//=========================================
+    Image image=new Image(user1.profilepicpath);
+   ImageView tempprof=new ImageView(CreatAccount.getRoundedImage(image,200));
+    tempprof.setFitWidth(120);
+    tempprof.setFitHeight(120);
+    tempprof.setX(110);
+    tempprof.setY(70);
+      //=========================================
+    ImageView closebut=new ImageView(close);
+    closebut.setFitWidth(60);
+    closebut.setFitHeight(60);
+    closebut.setX(920);
+    closebut.setY(50);
+    //=========================================
+    ImageView nextbut=new ImageView(next);
+    nextbut.setFitWidth(60);
+    nextbut.setFitHeight(60);
+    nextbut.setX(1020);
+    nextbut.setY(320);
+    //=========================================
+    ImageView backbut=new ImageView(back);
+    backbut.setFitWidth(60);
+    backbut.setFitHeight(60);
+    backbut.setX(220);
+    backbut.setY(320);
+    //=========================================
+    ImageView LIKE=new ImageView(LikeStory);
+    LIKE.setFitHeight(110);
+    LIKE.setFitWidth(110);
+    LIKE.setX(900);
+    LIKE.setY(580);
+    //=========================================
+    Image storypic=new Image(userstories.get(index).picturepath);
+    ImageView photo=new ImageView(storypic);
+    photo.setFitHeight(450);
+    photo.setFitWidth(700);
+    photo.setX(300);
+    photo.setY(130);
+    //==========================
+    if(user1.CloseFriendList.contains(USER.UserName)){
+        if(userstories.get(index).IsClose){
+             label3=new Label("(Close friends)");
+             label3.setLayoutX(400);
+            label3.setLayoutY(60);
+            label3.setFont(Font.font("Footlight MT Light",30));
+            label3.setTextFill(dotcolor);
+            label1.setWrapText(true);
+            ord=true;
+        }
+        else {ord=false;}
+    }
+    else {ord=false;}
+    //==========================
+    if(!userstories.get(index).viewersnameList.contains(USER.UserName)){
+        userstories.get(index).viewersnameList.add(USER.UserName);
+        try {
+            StoryTableDBC.storyTableDBC.DeleteStory( userstories.get(index),false);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+//=============================
+    PANE.getChildren().add(imageView);
+    PANE.getChildren().add(imageView1);
+    PANE.getChildren().add(tempprof);
+    PANE.getChildren().add(closebut);
+    PANE.getChildren().add(backbut);
+    PANE.getChildren().add(nextbut);
+    PANE.getChildren().add(photo);
+    PANE.getChildren().add(LIKE);
+    PANE.getChildren().addAll(butLike,butClose,butnext,butback);
+    if(ord&&label3!=null){PANE.getChildren().add(label3);}
+
+    EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+
+            if(event.getSource()==butClose){
+                index=0;
+                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+
+            }
+
+          if(event.getSource()==butLike){
+              if(!userstories.get(index).likersnameList.contains(USER.UserName)){
+                    userstories.get(index).likersnameList.add(USER.UserName);
+                  try {
+                        StoryTableDBC.storyTableDBC.DeleteStory( userstories.get(index),false);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+            if(event.getSource()==butnext){
+                if(index<=userstories.size()-2){
+                index++;
+                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                    if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+                    storypic(user1);
+            }
+            }
+
+            if(event.getSource()==butback){
+                if(index>0){
+                    index--;
+                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                    if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+                    storypic(user1);
+                }
+            }
+
+            event.consume();
+        }
+
+    };
+
+        butClose.setOnMouseClicked(handler);
+         butLike.setOnMouseClicked(handler);
+    butnext.setOnMouseClicked(handler);
+    butback.setOnMouseClicked(handler);
+
+
+}
+
     public void newpost() throws IOException {
           if(  USER.Kind){
                           CreatenewBUSPost.user=USER;
@@ -352,9 +669,14 @@ public class PersonalHomepage implements Initializable {
                           CreatenewORDPost.user=USER;
                           Main.CreateORDpostSTART();}
     }
-
-    public void myinfo(){}
-    public void newstory(){}
+    public void myinfo() throws IOException {
+        CompletePersonalInformation.user=USER;
+        Main.MyinfoSTART();
+    }
+    public void newstory() throws IOException {
+        CreatenewStory.user=USER;
+        Main.AddStorySTART();
+    }
     public void sugg(){}
     public void contact(){}
     public void direct(){}

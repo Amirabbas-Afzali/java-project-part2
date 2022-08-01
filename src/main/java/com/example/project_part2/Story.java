@@ -11,6 +11,7 @@ public class Story {
     public Story(){}
     public static Integer StoryCodeStatic;
 
+    public String picturepath="";
     public String StoryCode="";
     public String usernamestory="";
     public User user;
@@ -21,13 +22,14 @@ public class Story {
     public List<String> viewersnameList=new ArrayList<>();
     public List<String> likersnameList=new ArrayList<>();
 
-    public  Story(String code, String txt, User user1, Time date1, boolean isClose){
+    public  Story(String code, String txt, User user1, Time date1, boolean isClose,String path){
         this.StoryCode=code;
         this.text=txt;
         this.user=user1;
         this.usernamestory=user1.UserName;
         this.date=date1;
         this.IsClose=isClose;
+        this.picturepath=path;
 
         if(user1.Kind){this.Private=false;}
         else {OrdinaryUser ordinaryUser=(OrdinaryUser) user1;

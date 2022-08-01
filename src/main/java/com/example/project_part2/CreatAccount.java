@@ -199,9 +199,7 @@ ImageView prof;
 //\n1.Tech\n2.Cloth\n3.AD\n4.Artist\n5.Sport"
     }
 
-    public void busfill(){
-        ordchoice.setSelected(false);
-    }
+    public void busfill(){ordchoice.setSelected(false);}
     public void ordfill(){
         buschoice.setSelected(false);
     }

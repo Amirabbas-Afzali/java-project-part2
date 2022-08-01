@@ -2,14 +2,34 @@ package com.example.project_part2;
 
 import com.example.project_part2.USER.*;
 import com.example.project_part2.DataBaseController.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.Date;
+import java.util.ResourceBundle;
 
-public class CreatenewStory {
+import static com.example.project_part2.Main.mainstage;
+
+public class CreatenewStory implements Initializable {
     static CreatenewStory createnewStory = new CreatenewStory();
 
-    User user;
+    public static User user;
+    public String profpath;
+    @FXML
+    ImageView photo;
+    @FXML
+    Label label;
 
     public void start() throws SQLException {
         boolean flag = true, flag2 = true;
@@ -28,7 +48,7 @@ public class CreatenewStory {
                 Close = Main.scanner.nextLine();
                 if (text.length() > 0&&(Close.equals("1")||Close.equals("2"))) {
                     String str1=createstorycode();
-                    Story story = new Story(str1, text ,  user, new Time((new Date()).getTime()),isClose(Close));
+                  Story story = new Story(str1, text ,  user, new Time((new Date()).getTime()),isClose(Close),"");
                     StoryTableDBC.storyTableDBC.setStory(story);
                     MAINInformation.mainInformation.stories.put(str1,story);
                     user.MyStories.add(story);
@@ -78,15 +98,64 @@ public class CreatenewStory {
             else {System.out.println("Invalid command!");}
         }
     }
+
     public String createstorycode() throws SQLException {
         String result=String.valueOf(Story.StoryCodeStatic);
         Story.StoryCodeStatic++;
         StaticTableDBC.staticTableDBC.SetCodeNumber("Story",Story.StoryCodeStatic);
         return result;
     }
+
     public boolean isClose(String strr){
         if(strr.equals("1")){return  false;}
         return true;
+    }
+
+    public void Back() throws IOException {
+        Main.personalpageSTART();
+    }
+
+    public void Add() throws SQLException, IOException {
+       if(profpath!=null){
+           String str1=createstorycode();
+           Story story = new Story(str1, "null" ,  user, new Time((new Date()).getTime()),false,profpath);
+           StoryTableDBC.storyTableDBC.setStory(story);
+           MAINInformation.mainInformation.stories.put(str1,story);
+           user.MyStories.add(story);
+           user.StoryCodeList.add(story.StoryCode);
+           UserTableDBC.userTableDBC.EditorDeleteUser(user,false);
+           Main.personalpageSTART();
+       }
+       else {label.setText("Error !");}
+    }
+
+    public void Close() throws SQLException, IOException {
+        if(profpath!=null){
+            String str1=createstorycode();
+            Story story = new Story(str1, "null" ,  user, new Time((new Date()).getTime()),true,profpath);
+            StoryTableDBC.storyTableDBC.setStory(story);
+            MAINInformation.mainInformation.stories.put(str1,story);
+            user.MyStories.add(story);
+            user.StoryCodeList.add(story.StoryCode);
+            UserTableDBC.userTableDBC.EditorDeleteUser(user,false);
+            Main.personalpageSTART();
+        }
+        else {label.setText("Error !");}
+    }
+
+    public void addprof() throws FileNotFoundException {
+        final FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(mainstage);
+        if (file != null) {
+            Image image = new Image(new FileInputStream(file.getPath()));
+            photo.setImage(image);
+            profpath=file.getPath();
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+label.setText("Add Story");
     }
 }
 

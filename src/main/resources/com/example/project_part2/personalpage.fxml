@@ -69,5 +69,10 @@
       <Button fx:id="sugg" layoutX="88.0" layoutY="452.0" mnemonicParsing="false" onAction="#sugg" opacity="0.0" prefHeight="51.0" prefWidth="81.0" text="Button" />
       <Button fx:id="contact" layoutX="86.0" layoutY="560.0" mnemonicParsing="false" onAction="#contact" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="Button" />
       <Button fx:id="direct" layoutX="86.0" layoutY="644.0" mnemonicParsing="false" onAction="#direct" opacity="0.0" prefHeight="65.0" prefWidth="81.0" text="Button" />
+      <ScrollPane layoutX="367.0" layoutY="44.0" prefHeight="100.0" prefWidth="676.0">
+        <content>
+          <AnchorPane fx:id="stories" minHeight="0.0" minWidth="0.0" prefHeight="84.0" prefWidth="754.0" />
+        </content>
+      </ScrollPane>
    </children>
 </Pane>
