@@ -29,6 +29,7 @@ public class PostTableDBC {
             e.printStackTrace();
         }
     }
+
     public <T extends Post>T getPost(String postCode) throws SQLException {
         String quary="SELECT * FROM posttable WHERE PostCode="+"'"+postCode+"'";
         Statement statement=connection.createStatement();

@@ -35,12 +35,15 @@
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="264.0" layoutY="467.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+      <Button layoutX="224.0" layoutY="467.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="photo" fitHeight="267.0" fitWidth="384.0" layoutX="146.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="photo" fitHeight="267.0" fitWidth="384.0" layoutX="146.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon/download-icon-upload+export+upload+upload+to+cloud+icon-1320165659391053645_256.png" />
+         </image></ImageView>
       <Label fx:id="label" alignment="CENTER" layoutX="57.0" layoutY="38.0" prefHeight="91.0" prefWidth="536.0" text="Create Business Post" textFill="WHITE">
          <font>
             <Font name="Footlight MT Light" size="41.0" />

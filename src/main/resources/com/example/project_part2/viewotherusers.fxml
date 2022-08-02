@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="PANE" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ViewOtherUsers">
+    <children>
+        <ImageView fitHeight="982.0" fitWidth="1372.0" layoutX="-2.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@31189.jpg" />
+            </image>
+        </ImageView>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="166.0" layoutX="227.0" layoutY="14.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="402.0" />
+        <ScrollPane layoutX="28.0" layoutY="205.0" prefHeight="523.0" prefWidth="757.0">
+            <content>
+                <AnchorPane fx:id="tallpane" minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="742.0" />
+            </content>
+        </ScrollPane>
+        <Label fx:id="ordorbus" alignment="CENTER" layoutX="-19.0" layoutY="154.0" prefHeight="55.0" prefWidth="219.0" text="Posts" textFill="WHITE">
+            <font>
+                <Font name="Footlight MT Light" size="31.0" />
+            </font>
+        </Label>
+        <ScrollPane layoutX="814.0" layoutY="129.0" prefHeight="501.0" prefWidth="214.0">
+            <content>
+                <AnchorPane fx:id="tallpanfollowers" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="194.0" />
+            </content>
+        </ScrollPane>
+        <ScrollPane layoutX="1059.0" layoutY="131.0" prefHeight="501.0" prefWidth="214.0">
+            <content>
+                <AnchorPane fx:id="tallpanfollowings" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="194.0" />
+            </content>
+        </ScrollPane>
+        <Label fx:id="ordorbus1" alignment="CENTER" layoutX="807.0" layoutY="83.0" prefHeight="55.0" prefWidth="219.0" text="Followers" textFill="WHITE">
+            <font>
+                <Font name="Footlight MT Light" size="31.0" />
+            </font>
+        </Label>
+        <Label fx:id="ordorbus11" alignment="CENTER" layoutX="1048.0" layoutY="82.0" prefHeight="55.0" prefWidth="219.0" text="Followings" textFill="WHITE">
+            <font>
+                <Font name="Footlight MT Light" size="31.0" />
+            </font>
+        </Label>
+        <Label fx:id="intro" layoutX="249.0" layoutY="17.0" prefHeight="167.0" prefWidth="386.0" textFill="WHITE">
+            <font>
+                <Font name="Footlight MT Light" size="26.0" />
+            </font>
+        </Label>
+        <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="1219.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@icon/download-icon-left+back+backwards+left+left+arrow+long+arrow+previous+icon-1320085925301623010_256.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="1224.0" layoutY="654.0" mnemonicParsing="false" onAction="#home" opacity="0.0" prefHeight="48.0" prefWidth="49.0" text="Button" />
+        <ImageView fx:id="proffield" fitHeight="118.0" fitWidth="128.0" layoutX="32.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="52.0" layoutY="30.0" mnemonicParsing="false" onAction="#viewStory" opacity="0.0" prefHeight="106.0" prefWidth="130.0" text="Button" />
+      <Button fx:id="massag" layoutX="899.0" layoutY="19.0" mnemonicParsing="false" onAction="#massage" prefHeight="26.0" prefWidth="110.0" text="Massage">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="addblockbut" layoutX="1024.0" layoutY="19.0" mnemonicParsing="false" onAction="#addblock" prefHeight="26.0" prefWidth="110.0" text="Block">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="addClosebut" layoutX="738.0" layoutY="18.0" mnemonicParsing="false" onAction="#addclose" prefHeight="30.0" prefWidth="147.0" text="Add to CloseList" />
+      <Label fx:id="answer" alignment="CENTER" layoutX="802.0" layoutY="653.0" prefHeight="55.0" prefWidth="406.0" text="Followers" textFill="WHITE">
+         <font>
+            <Font name="High Tower Text" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="addfollowbut" layoutX="1150.0" layoutY="19.0" mnemonicParsing="false" onAction="#followuser" prefHeight="26.0" prefWidth="110.0" text="Follow">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+    </children>
+</AnchorPane>

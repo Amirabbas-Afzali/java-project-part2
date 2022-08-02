@@ -5,6 +5,7 @@ import com.example.project_part2.DataBaseController.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,10 +21,21 @@ public class Main extends Application {
         mainstage=stage;
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
-        stage.setTitle("Hello!");
+        stage.setTitle("OWL");
+        stage.getIcons().add(new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\AppIcon.png"));
         stage.setScene(scene);
         stage.show();
     }
+
+    public static void introSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("intro.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("OWL Messenger");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+
     public static void createaccountSTART() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CreateNewAccount.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
@@ -72,6 +84,14 @@ public class Main extends Application {
         // mainstage.show();
     }
 
+    public static void suggestSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("suggestion.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle("OWL");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
     public static void MyinfoSTART() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("completeMyinfo.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
@@ -84,6 +104,22 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("createStory.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
         mainstage.setTitle("Add new story");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void ViewuserSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("viewuser.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle(PersonalHomepage.USER.UserName);
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void ViewOtheruserSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("viewotherusers.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle(ViewOtherUsers.ThisUser.UserName);
         mainstage.setScene(scene);
         // mainstage.show();
     }

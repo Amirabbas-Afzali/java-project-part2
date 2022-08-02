@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -30,11 +31,10 @@ import javafx.scene.text.Font;
 public class PersonalHomepage implements Initializable {
     public static PersonalHomepage personalHomepage=new PersonalHomepage();
     public static User USER;
-    public static List<Post> timelineposts;
 
+    public static List<Post> timelineposts;
     public static List<User> ShowstoriesUsers;
-    public static List<Story>   Allstoreis;
-///                            set TimelinePOSTS
+    //public static List<Story>   Allstoreis;
     public static  Button[] buttons;
     public static  Button[] buttonslike;
     public static  Button[] buttonsinfo;
@@ -71,9 +71,13 @@ public class PersonalHomepage implements Initializable {
     Image back=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\back.png");
 
     Image prof;
+    Button viewuser;
+    @FXML
     ImageView proffield;
+
     public Circle circle;
     Color dotcolor = Color.FORESTGREEN;
+    Color dotcolor1 = Color.WHITE;
 
     public void start(User usertemp) throws SQLException {
         boolean flag=true;
@@ -178,7 +182,7 @@ public void FillStatics(){
                }
             }
         }
-        PersonalHomepage.Allstoreis=allstory;
+      //  PersonalHomepage.Allstoreis=allstory;
         PersonalHomepage.ShowstoriesUsers=userstory;
 
 }}
@@ -251,10 +255,12 @@ public void FillStatics(){
                       FillStatics();
         label1.setText(USER.UserName);
         prof=new Image(USER.profilepicpath);
-        proffield=new ImageView(CreatAccount.getRoundedImage(prof,200));
-        proffield.setX(1140);proffield.setY(30);
-        proffield.setFitHeight(100);proffield.setFitWidth(100);
-        PANE.getChildren().add(proffield);
+        proffield.setImage(CreatAccount.getRoundedImage(prof,200));
+      //  proffield.setX(1140);proffield.setY(30);
+     //   proffield.setFitHeight(100);proffield.setFitWidth(100);
+        //PANE.getChildren().add(proffield);
+
+
         buttons=new Button[timelineposts.size()];
         buttonslike=new Button[timelineposts.size()];
        buttonsinfo=new Button[timelineposts.size()];
@@ -262,7 +268,7 @@ public void FillStatics(){
         Sotryuserprof =new ImageView[ShowstoriesUsers.size()];
          labels =new Label[timelineposts.size()];
         imageViews =new ImageView[timelineposts.size()];
-               setscrollpane(USER.posts);
+               setscrollpane(timelineposts);
                setscrollpaneStory(ShowstoriesUsers);
 
     }
@@ -346,6 +352,14 @@ public void FillStatics(){
             tallpane.getChildren().add(imageViews[i]);
             tallpane.getChildren().add(buttonslike[i]);
             //====================
+               Image sender=new Image(MAINInformation.mainInformation.users.get(posttemp.PosterName).profilepicpath);
+               ImageView prof=new ImageView(CreatAccount.getRoundedImage(sender,200));
+               prof.setFitWidth(46);
+            prof.setFitHeight(46);
+            prof.setX(15);
+            prof.setY(500*(i)+340);
+            tallpane.getChildren().add(prof);
+            //====================
             ImageView imageViewinfo = new ImageView(info);
             imageViewinfo.setFitWidth(35);
             imageViewinfo.setFitHeight(35);
@@ -400,7 +414,18 @@ public void FillStatics(){
                         }
                     }
                     else {posts.get(i).LikedList.remove(USER.UserName);
-                        USER.LikedPostCodes.add(posts.get(i).PostCode);
+                        USER.LikedPostCodes.remove(posts.get(i).PostCode);
+                        try {
+                            UserTableDBC.userTableDBC.EditorDeleteUser(USER,false);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                        try {
+                            PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i),false);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                              refresh(posts);
                 }
@@ -417,6 +442,10 @@ public void FillStatics(){
             buttonslike[j].setOnMouseClicked(handler);
             buttonsinfo[j].setOnMouseClicked(handler);
         }
+    }
+
+    public void intro() throws IOException {
+Main.introSTART();
     }
 
     public void setscrollpaneStory(List<User> users){
@@ -488,7 +517,7 @@ public void FillStatics(){
     }
     boolean ord=false;
 public int index=0;
-public Label label3=null;
+public Label label3=null,label4=null;
 
 public void storypic(User user1){
                List<Story> userstories=createStorylist(user1);
@@ -572,6 +601,14 @@ imageView.setFitWidth(1300);
     photo.setFitWidth(700);
     photo.setX(300);
     photo.setY(130);
+    //=========================
+    label4=new Label(new Date().getHours()-userstories.get(index).date.getHours()+" hours ago ");
+    label4.setLayoutX(400);
+    label4.setLayoutY(600);
+    label4.setFont(Font.font("Footlight MT Light",25));
+    label4.setTextFill(dotcolor1);
+    label4.setWrapText(true);
+
     //==========================
     if(user1.CloseFriendList.contains(USER.UserName)){
         if(userstories.get(index).IsClose){
@@ -580,7 +617,7 @@ imageView.setFitWidth(1300);
             label3.setLayoutY(60);
             label3.setFont(Font.font("Footlight MT Light",30));
             label3.setTextFill(dotcolor);
-            label1.setWrapText(true);
+            label3.setWrapText(true);
             ord=true;
         }
         else {ord=false;}
@@ -604,6 +641,7 @@ imageView.setFitWidth(1300);
     PANE.getChildren().add(nextbut);
     PANE.getChildren().add(photo);
     PANE.getChildren().add(LIKE);
+    PANE.getChildren().add(label4);
     PANE.getChildren().addAll(butLike,butClose,butnext,butback);
     if(ord&&label3!=null){PANE.getChildren().add(label3);}
 
@@ -613,7 +651,7 @@ imageView.setFitWidth(1300);
 
             if(event.getSource()==butClose){
                 index=0;
-                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
                 if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
 
             }
@@ -633,7 +671,7 @@ imageView.setFitWidth(1300);
             if(event.getSource()==butnext){
                 if(index<=userstories.size()-2){
                 index++;
-                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
                     if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
                     storypic(user1);
             }
@@ -642,7 +680,7 @@ imageView.setFitWidth(1300);
             if(event.getSource()==butback){
                 if(index>0){
                     index--;
-                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback);
+                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
                     if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
                     storypic(user1);
                 }
@@ -661,6 +699,18 @@ imageView.setFitWidth(1300);
 
 }
 
+public void exit(){
+    Main.mainstage.close();
+}
+    public  void BACKtologin() throws IOException {
+    Main.loginSTART();
+    }
+
+    public void viewLoginuser() throws IOException {
+    Viewuser.ThisUser=USER;
+    Main.ViewuserSTART();
+    }
+
     public void newpost() throws IOException {
           if(  USER.Kind){
                           CreatenewBUSPost.user=USER;
@@ -677,7 +727,17 @@ imageView.setFitWidth(1300);
         CreatenewStory.user=USER;
         Main.AddStorySTART();
     }
-    public void sugg(){}
+    public void sugg() throws IOException {
+
+     //   Suggestions.searchedposts = USER.posts;
+     /*   List<User> tem=new ArrayList<>();
+        for (User user : USER.FollowingMap.values()){
+            tem.add(user);
+    }*/
+        //Suggestions.syggestedUsers=tem;
+        Suggestions.USER=USER;
+        Main.suggestSTART();
+    }
     public void contact(){}
     public void direct(){}
 

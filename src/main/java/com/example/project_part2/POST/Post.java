@@ -35,7 +35,7 @@ public class Post {
         String input="";
         while ((!(input.equals("6")&&IsPrivate()))&&(!(input.equals("7")&&!IsPrivate()))){
             System.out.println("Post Code : "+PostCode+"  ,  "+"Poster : "+PosterName +
-                    "\n  Date:  "+ DateFormat.dateFormat.reportdate(date)+"   ,    Likes : "+LikedList.size()+"   ,  Comments :  " +CommentsCodesList.size()+
+                    "\n  Date:  "+DateFormat.dateFormat.reportdate(date)+"   ,    Likes : "+getNumberOfLikes()+"   ,  Comments :  " +CommentThreeNumber()+
                     "\n Caption :  " +Caption+"   ,    Repost : "+RepostersList.size());
             System.out.println("1:view comments\n 2:view Likes\n 3:view Reposters ");
             if (UserNameLiked(user.UserName)){
@@ -56,7 +56,7 @@ public class Post {
             else {
                 System.out.println("6:Back");
             }
-            input= Main.scanner.nextLine();
+            input=Main.scanner.nextLine();
             if (input.equals("1")){
                 for (String i:CommentsCodesList){
                     // System.out.println(i+"ewdeee");
@@ -64,10 +64,13 @@ public class Post {
                 }
                 String input2="";
                 while (!input2.equals("-2")){
-                    System.out.println("If you want to view a comment inter comment code\n -2:Back");
+                    System.out.println("If you want to view a comment inter comment code\n-1:if you want to view a commenter \n-2:Back");
                     input2=Main.scanner.nextLine();
                     if (this.CommentsCodesList.contains(input2)){
                         MAINInformation.mainInformation.massages.get(input2).ShowMassage(user);
+                    }
+                    if (input2.equals("-1")){
+                        ShowUser(user);
                     }
                 }
                 // TODO: 7/23/2022
@@ -77,15 +80,25 @@ public class Post {
                 for (String i:LikedList){
                     MAINInformation.mainInformation.likeHandleMap.get(i).ShowLikeHandle(false,new Date(),false,false);
                 }
+                System.out.println("If you want to view a liker Enter Yes ");
+                String Yes=Main.scanner.nextLine().trim();
+                if (Yes.equals("Yes")){
+                    ShowUser(user);
+                }
                 // TODO: 7/25/2022 View Users
             }
             if (input.equals("3")){
                 System.out.println(RepostersList.toString());
+                System.out.println("If you want to view a RePoster Enter Yes ");
+                String Yes=Main.scanner.nextLine().trim();
+                if (Yes.equals("Yes")){
+                    ShowUser(user);
+                }
                 // TODO: 8/25/2022 View Users
             }
             if (input.equals("4")){
                 if (!this.UserNameLiked(user.UserName)){
-                    String LikeCode= LikeHandle.NewLikeHandles(user.UserName,this.PostCode,false);
+                    String LikeCode=LikeHandle.NewLikeHandles(user.UserName,this.PostCode,false);
                     //user.addLikedPostCode(this.PostCode,true);
                     this.addLikeOrRemove(LikeCode,true);
                     System.out.println("Liked");
@@ -103,9 +116,9 @@ public class Post {
                 }
             }
             if (input.equals("5")){
-                System.out.println("Enter text");
+                System.out.println("Inter text");
                 String text=Main.scanner.nextLine();
-                String code= Massage.NewMassage(user.UserName,text);
+                String code=Massage.NewMassage(user.UserName,text);
                 this.addComment(code);
                 System.out.println("Comment Added");
             }
@@ -123,6 +136,7 @@ public class Post {
             }
         }
     }
+
     void RemoveOrAddRetweet(String UseName,boolean Add) throws SQLException {
         if (Add){
             this.RepostersList.add(UseName);
@@ -224,5 +238,21 @@ public class Post {
     }
     public  String getCaption(){
         return this.Caption;
+    }
+
+    public static void ShowUser(User Loginner){
+        String input="";
+        while (!input.equals("Back")){
+            System.out.println("Enter user name to view or Back " );
+            input=Main.scanner.nextLine().trim();
+            if (!input.equals("Back")){
+                try {
+                    User.ShowAuser(Loginner,MAINInformation.mainInformation.users.get(input));
+                }
+                catch (Exception e){
+                    System.out.println("invalid command");
+                }
+            }
+        }
     }
 }

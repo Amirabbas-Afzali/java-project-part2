@@ -230,7 +230,7 @@ ImageView prof;
 
     }
 
-    public void Create() throws SQLException {
+    public void Create() throws SQLException, IOException {
         String usernam,pass2,pass1;
 
         if(usernameF.getText().length()>0&&passF.getText().length()>0&&repassF.getText().length()>0
@@ -263,6 +263,7 @@ ImageView prof;
                   UserTableDBC.userTableDBC.setUser(businessUser);
                   MAINInformation.mainInformation.users.put(usernam,businessUser);
               }
+              Main.main1.start(mainstage);
               }
               else {label.setText("Re-enter the password correctly !");}
           }

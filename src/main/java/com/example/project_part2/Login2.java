@@ -101,9 +101,12 @@ public class Login2 implements Initializable {
             if(existuser(usernameF.getText()).equals("This user exists")) {
                 if(checkpass(searchuser(usernameF.getText()),passF.getText()).equals("Welcome")){
                     if(passF1.getText().equals(cap)){
-                        PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
-                     //   PersonalHomepage.Showstories=MAINInformation.mainInformation.users.get(usernameF.getText()).FollowingsList;
+
+                      //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,MAINInformation.mainInformation.users.get(usernameF.getText()));;
+                       PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
                        PersonalHomepage.USER=MAINInformation.mainInformation.users.get(usernameF.getText());
+                      //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,PersonalHomepage.USER);
+
                         Main.personalpageSTART();
                     }
                     else {

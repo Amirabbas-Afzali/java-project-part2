@@ -1,7 +1,11 @@
 package com.example.project_part2;
-import com.example.project_part2.POST.*;
-import com.example.project_part2.USER.*;
-import com.example.project_part2.DataBaseController.*;
+
+import com.example.project_part2.DirectMassage;
+import com.example.project_part2.Group;
+import com.example.project_part2.MAINInformation;
+import com.example.project_part2.Main;
+import com.example.project_part2.USER.User;
+
 import java.sql.SQLException;
 
 public class MychatsandPVs {
@@ -35,7 +39,8 @@ public class MychatsandPVs {
                     }
                     if (input2.equals("-1")){
                         // TODO: 7/24/2022
-                        System.out.println("Following");
+                        System.out.println("Followings:");
+                        System.out.println(user.FollowingsList.toString());
                         String input3=Main.scanner.nextLine();
                         if (MAINInformation.mainInformation.users.containsKey(input3)){
                             DirectMassage.NewDirectMassage(user.UserName,input3);
@@ -46,8 +51,8 @@ public class MychatsandPVs {
             }
             if (input.equals("1")){
                 String input4="";
-                // TODO: 7/24/2022 group work
-                while (!input4.equals("-2")){
+
+                while (!input4.equals("-3")){
                     for (String i:user.DirectMassageCodes){
                         try {
                             if (MAINInformation.mainInformation.directmassages.get(i).isGroup){
@@ -58,7 +63,7 @@ public class MychatsandPVs {
                             System.out.println("this"+i+"this is it  ");
                         }
                     }
-                    System.out.println("Enter Group ID to Open it\n-1:Create new group\n-2:Back");
+                    System.out.println("Enter Group ID to Open it\n-1:Create new group\n-2:search Group\n-3:Back");
                     input4=Main.scanner.nextLine();
                     if (MAINInformation.mainInformation.directmassages.containsKey(input4)){
                         if (MAINInformation.mainInformation.directmassages.get(input4).isGroup){
@@ -73,9 +78,33 @@ public class MychatsandPVs {
                         if (input4.equals("-1")){
                             Group.CreateNewGroup(user);
                         }
+                        if (input4.equals("-2")){
+                            SearchGroup(user);
+                        }
                     }
                 }
             }
         }
+    }
+    public void SearchGroup(User user) throws SQLException {
+        System.out.println("Enter Group ID");
+        String input= Main.scanner.nextLine();
+        if (!getCodeforID(input).equals("-1")){
+            ((Group) MAINInformation.mainInformation.directmassages.get(getCodeforID(input))).addMember(user.UserName);
+            System.out.println("You are added to the group");
+        }
+        else {
+            System.out.println("Group doesn't Exist");
+        }
+    }
+    String getCodeforID(String ID){
+        for (DirectMassage i:MAINInformation.mainInformation.directmassages.values()){
+            if (i.isGroup){
+                if (((Group)i).GroupID.equals(ID)&&!((Group)i).IsPrivate){
+                    return i.Code;
+                }
+            }
+        }
+        return "-1";
     }
 }

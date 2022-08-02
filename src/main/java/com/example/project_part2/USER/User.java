@@ -144,6 +144,14 @@ public class User {
             this.FollowingMap.remove(user);
             this.FollowingsList.remove(user.UserName);
         }
+        if(user.CloseFriendMap.containsValue(this)){
+            user.CloseFriendMap.remove(this);
+            user.CloseFriendList.remove(this.UserName);
+        }
+        if(this.CloseFriendMap.containsValue(user)){
+            this.CloseFriendMap.remove(user);
+            this.CloseFriendList.remove(user.UserName);
+        }
         this.BlockedMap.put(user.UserName,user);
         this.BlockedList.add(user.UserName);
         user.setBlocked(true);
@@ -467,7 +475,7 @@ public class User {
         UserTableDBC.userTableDBC.EditorDeleteUser(this,false);
     }
 
-    public  void ShowAuser(User Loginuser,User  mokhatab) throws SQLException {
+    public static void ShowAuser(User Loginuser, User mokhatab) throws SQLException {
         if(mokhatab.Kind){
             if(Loginuser.Kind){
                 BusinessUser businessUser=(BusinessUser)mokhatab;
