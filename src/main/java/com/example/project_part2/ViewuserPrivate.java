@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Viewuser implements Initializable {
+public class ViewuserPrivate implements Initializable {
     public static User ThisUser;
     public static List<Post> timelineposts;
 
@@ -60,11 +60,12 @@ public class Viewuser implements Initializable {
     @FXML
     AnchorPane tallpane,tallpanfollowers,tallpanfollowings,PANE;
     @FXML
-    Label intro,block,close;
+    Label intro,block,close,qq;
     @FXML
     ImageView proffield;
     @FXML
-    ChoiceBox Closelist,Blocklist;
+    ChoiceBox Closelist,Blocklist,requests;
+
 
 
     public void addcomment(Post post){
@@ -487,20 +488,39 @@ public class Viewuser implements Initializable {
         Main.personalpageSTART();
     }
 
-     public void viewStory(){
+    public void viewStory(){
         if(ThisUser.StoryCodeList.size()>0) {
             storypic(ThisUser);
         }
-}
+    }
+    String ch1,ch2,ch3;
+
+    public void searchlist(){
+        ch1=(String) requests.getValue();ch2=(String) Blocklist.getValue();ch3=(String) Closelist.getValue();
+        if(ch1.length()>0){System.out.println("1121");}
+        else if(ch2.length()>0){System.out.println("1121");}
+        else if(ch2.length()>0){System.out.println("1121");}
+
+    }
+
+    public void REQ(){
+        Closelist.setValue("");Blocklist.setValue("");
+    }
+    public void BLO(){
+        Closelist.setValue("");requests.setValue("");
+    }
+    public void CLO(){
+        requests.setValue("");Blocklist.setValue("");
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         if(!ThisUser.Kind){
             OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
             if(ordinaryUser.Private){
-        intro.setText("Username : "+ThisUser.UserName+"\nName : "+ThisUser.Name+"\nAge : "+ThisUser.age+"\nbio : "+
-                ThisUser.Bio+"\nOrdinaryUser (Private)");}
-        else {
+                intro.setText("Username : "+ThisUser.UserName+"\nName : "+ThisUser.Name+"\nAge : "+ThisUser.age+"\nbio : "+
+                        ThisUser.Bio+"\nOrdinaryUser (Private)");}
+            else {
                 intro.setText("Username : "+ThisUser.UserName+"\nName : "+ThisUser.Name+"\nAge : "+ThisUser.age+"\nbio : "+
                         ThisUser.Bio+"\nOrdinaryUser (Public)");
             }
@@ -508,7 +528,7 @@ public class Viewuser implements Initializable {
         else {
             BusinessUser bus=(BusinessUser) ThisUser;
             intro.setText("Username : "+ThisUser.UserName+"\nName : "+ThisUser.Name+"\nAge : "+ThisUser.age+"\nbio : "+
-                ThisUser.Bio+"\nBusinessUser ("+bus.buisnessType);}
+                    ThisUser.Bio+"\nBusinessUser ("+bus.buisnessType);}
         timelineposts=ThisUser.posts;
         prof=new Image(ThisUser.profilepicpath);
         proffield.setImage(CreatAccount.getRoundedImage(prof,200));
@@ -519,10 +539,10 @@ public class Viewuser implements Initializable {
         labels =new Label[timelineposts.size()];
         imageViews =new ImageView[timelineposts.size()];
 
-           List<User> wer=new ArrayList<>();
+        List<User> wer=new ArrayList<>();
         for (User user : ThisUser.FollowerMap.values()){
             wer.add(user);
-    }
+        }
         List<User> wing=new ArrayList<>();
         for (User user : ThisUser.FollowingMap.values()){
             wing.add(user);
@@ -532,14 +552,19 @@ public class Viewuser implements Initializable {
 //======================
         List<String> list=new ArrayList<>();
         for(User user:ThisUser.BlockedMap.values()){
-        list.add(user.UserName);}
+            list.add(user.UserName);}
         Blocklist.setItems(FXCollections.observableList(list));
+//======================
+        List<String> list1=new ArrayList<>();
+        for(User user:ThisUser.RequestMap.values()){
+            list1.add(user.UserName);}
+        requests.setItems(FXCollections.observableList(list1));
 //======================
         List<String> list2=new ArrayList<>();
         for(User user:ThisUser.CloseFriendMap.values()){
             list2.add(user.UserName);}
         Closelist.setItems(FXCollections.observableList(list2));
- //======================
+        //======================
 
         setscrollpane(timelineposts);
     }

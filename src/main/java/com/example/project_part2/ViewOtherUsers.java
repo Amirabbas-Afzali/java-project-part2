@@ -87,6 +87,19 @@ public class ViewOtherUsers implements Initializable {
             addfollowbut.setText("Follow");addfollowbut.setDisable(false);
             massag.setDisable(false);
         }
+
+        List<User> wer=new ArrayList<>();
+        for (User user : ThisUser.FollowerMap.values()){
+            wer.add(user);
+        }
+        List<User> wing=new ArrayList<>();
+        for (User user : ThisUser.FollowingMap.values()){
+            wing.add(user);
+        }
+        System.out.println(ThisUser.FollowersList);
+        System.out.println(ThisUser.FollowingsList);
+        setFollowers(wer);
+        setFollowings(wing);
     }
 
     public void addclose() throws SQLException {
@@ -113,6 +126,18 @@ public class ViewOtherUsers implements Initializable {
             answer.setText("Unfollowed");
             addfollowbut.setText("Follow");
         }
+
+        List<User> wer=new ArrayList<>();
+        for (User user : ThisUser.FollowerMap.values()){
+            wer.add(user);
+        }
+        List<User> wing=new ArrayList<>();
+        for (User user : ThisUser.FollowingMap.values()){
+            wing.add(user);
+        }
+        setFollowers(wer);
+        setFollowings(wing);
+
     }
 
 
@@ -165,6 +190,7 @@ public class ViewOtherUsers implements Initializable {
     }
 
     public void setscrollpane(List<Post> posts){
+        tallpane.getChildren().clear();
         int a=posts.size();
         tallpane.setPrefHeight(510*a);
         int i=0;
@@ -532,8 +558,20 @@ public class ViewOtherUsers implements Initializable {
 
 
     public void home() throws IOException {
-        Viewuser.ThisUser=PersonalHomepage.USER;
-        Main.ViewuserSTART();
+
+        if (PersonalHomepage.USER.Kind) {
+            Viewuser.ThisUser = PersonalHomepage.USER;
+            Main.ViewuserSTART();
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) PersonalHomepage.USER;
+            if (ordinaryUser.Private){
+                ViewuserPrivate.ThisUser = PersonalHomepage.USER;
+                Main.ViewuserPrivateSTART();
+            }
+            else {   Viewuser.ThisUser = PersonalHomepage.USER;
+                Main.ViewuserSTART();}
+        }
     }
 
     public void viewStory(){
@@ -610,6 +648,7 @@ public class ViewOtherUsers implements Initializable {
     }
 
     public void setFollowings(List<User> suguser) {
+        tallpanfollowings.getChildren().clear();
         if(suguser!=null){
             int i=0;
             tallpanfollowings.setPrefHeight(suguser.size()*70);
@@ -620,6 +659,7 @@ public class ViewOtherUsers implements Initializable {
     }
 
     public void setFollowers(List<User> suguser) {
+        tallpanfollowers.getChildren().clear();
         if(suguser!=null){
             int i=0;
             tallpanfollowers.setPrefHeight(suguser.size()*70);

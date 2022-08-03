@@ -340,7 +340,6 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
     public  void updateuser(){
         syggestedUsers=new ArrayList<>();
         if(user.getText()==null||"".equals(user.getText())){
-            System.out.println("0000");
         List<String> userss=ShowTimeline.showTimeline.getSuggestedUsers(USER,10);
         for (String str:userss) {
             syggestedUsers.add(MAINInformation.mainInformation.users.get(str));

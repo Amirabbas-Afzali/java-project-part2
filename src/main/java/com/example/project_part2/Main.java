@@ -27,14 +27,6 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void introSTART() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("intro.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
-        mainstage.setTitle("OWL Messenger");
-        mainstage.setScene(scene);
-        // mainstage.show();
-    }
-
 
     public static void createaccountSTART() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("CreateNewAccount.fxml"));
@@ -113,7 +105,13 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
         mainstage.setTitle(PersonalHomepage.USER.UserName);
         mainstage.setScene(scene);
-        // mainstage.show();
+    }
+
+    public static void ViewuserPrivateSTART() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("viewuserprivate.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
+        mainstage.setTitle(PersonalHomepage.USER.UserName);
+        mainstage.setScene(scene);
     }
 
     public static void ViewOtheruserSTART() throws IOException {

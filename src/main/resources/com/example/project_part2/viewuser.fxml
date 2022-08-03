@@ -48,8 +48,8 @@
             <Font name="Footlight MT Light" size="31.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="Blocklist" layoutX="964.0" layoutY="615.0" prefHeight="41.0" prefWidth="179.0" />
-      <ChoiceBox fx:id="Closelist" layoutX="965.0" layoutY="674.0" prefHeight="41.0" prefWidth="179.0" />
+      <ChoiceBox fx:id="Blocklist" layoutX="964.0" layoutY="621.0" prefHeight="34.0" prefWidth="179.0" />
+      <ChoiceBox fx:id="Closelist" layoutX="965.0" layoutY="676.0" prefHeight="33.0" prefWidth="179.0" />
       <Label fx:id="block" alignment="CENTER" layoutX="836.0" layoutY="616.0" prefHeight="39.0" prefWidth="119.0" text="Blocked Users:" textFill="WHITE">
          <font>
             <Font name="Calisto MT" size="18.0" />

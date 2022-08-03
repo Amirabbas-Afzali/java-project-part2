@@ -28,13 +28,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 
+import static com.example.project_part2.Main.mainstage;
+
 public class PersonalHomepage implements Initializable {
     public static PersonalHomepage personalHomepage=new PersonalHomepage();
     public static User USER;
 
     public static List<Post> timelineposts;
     public static List<User> ShowstoriesUsers;
-    //public static List<Story>   Allstoreis;
     public static  Button[] buttons;
     public static  Button[] buttonslike;
     public static  Button[] buttonsinfo;
@@ -57,8 +58,20 @@ public class PersonalHomepage implements Initializable {
     Pane PANE;
     @FXML
     Label label1;
+    Image prof;
     @FXML
-    Button but1;
+    ImageView proffield,but1func,but1func1;
+    @FXML
+    Button newpost,newstory;
+    public Circle circle;
+    Color dotcolor = Color.FORESTGREEN;
+    Color dotcolor1 = Color.WHITE;
+    Color dotcolor2 = Color.RED;
+    ImageView rep;
+    Label label22;
+    boolean ord=false;
+    public int index=0;
+    public Label label3=null,label4=null;
 
     Image comment=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\comment.png");
     Image info=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\information.png");
@@ -69,15 +82,7 @@ public class PersonalHomepage implements Initializable {
         Image close=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\Close.png");
     Image next=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\next.png");
     Image back=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\back.png");
-
-    Image prof;
-    Button viewuser;
-    @FXML
-    ImageView proffield;
-
-    public Circle circle;
-    Color dotcolor = Color.FORESTGREEN;
-    Color dotcolor1 = Color.WHITE;
+    Image report=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\report.png");
 
     public void start(User usertemp) throws SQLException {
         boolean flag=true;
@@ -182,7 +187,6 @@ public void FillStatics(){
                }
             }
         }
-      //  PersonalHomepage.Allstoreis=allstory;
         PersonalHomepage.ShowstoriesUsers=userstory;
 
 }}
@@ -246,20 +250,48 @@ public void FillStatics(){
 
     }
 
-    public void but1func(){
-        System.out.println("oooooooo");
+    public void checkreport (){
+        if(USER.isreport){
+            but1func.setOpacity(0.3);
+            but1func1.setOpacity(0.3);
+            newstory.setDisable(true);
+            newpost.setDisable(true);
+
+             rep = new ImageView(report);
+            rep.setFitWidth(100);
+            rep.setFitHeight(100);
+            rep.setX(1150);
+            rep.setY(200);
+
+             label22=new Label("Reported!");
+            label22.setFont(Font.font("Footlight MT Light",25));
+            label22.setLayoutX(1150);
+            label22.setLayoutY(300);
+            label22.setTextFill(dotcolor2);
+
+            PANE.getChildren().addAll(rep,label22);
+        }
+        else {
+            but1func.setOpacity(1);
+            but1func1.setOpacity(1);
+            newstory.setDisable(false);
+            newpost.setDisable(false);
+          if(PANE.getChildren().contains(rep)){  PANE.getChildren().remove(rep);}
+            if(PANE.getChildren().contains(label22)){  PANE.getChildren().remove(label22);}
+
+        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("wow");
+        tallpane.getChildren().clear();
+        stories.getChildren().clear();
                       FillStatics();
         label1.setText(USER.UserName);
         prof=new Image(USER.profilepicpath);
         proffield.setImage(CreatAccount.getRoundedImage(prof,200));
-      //  proffield.setX(1140);proffield.setY(30);
-     //   proffield.setFitHeight(100);proffield.setFitWidth(100);
-        //PANE.getChildren().add(proffield);
-
+       checkreport();
 
         buttons=new Button[timelineposts.size()];
         buttonslike=new Button[timelineposts.size()];
@@ -445,7 +477,8 @@ public void FillStatics(){
     }
 
     public void intro() throws IOException {
-Main.introSTART();
+//Main.introSTART();
+        introduction.introduction1.start(mainstage);
     }
 
     public void setscrollpaneStory(List<User> users){
@@ -515,9 +548,6 @@ Main.introSTART();
         }
         return ss;
     }
-    boolean ord=false;
-public int index=0;
-public Label label3=null,label4=null;
 
 public void storypic(User user1){
                List<Story> userstories=createStorylist(user1);
@@ -700,15 +730,27 @@ imageView.setFitWidth(1300);
 }
 
 public void exit(){
-    Main.mainstage.close();
+    mainstage.close();
 }
+
     public  void BACKtologin() throws IOException {
     Main.loginSTART();
     }
 
     public void viewLoginuser() throws IOException {
-    Viewuser.ThisUser=USER;
-    Main.ViewuserSTART();
+        if (USER.Kind) {
+            Viewuser.ThisUser = USER;
+            Main.ViewuserSTART();
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) USER;
+            if (ordinaryUser.Private){
+                ViewuserPrivate.ThisUser = USER;
+                Main.ViewuserPrivateSTART();
+            }
+            else {   Viewuser.ThisUser = USER;
+                Main.ViewuserSTART();}
+        }
     }
 
     public void newpost() throws IOException {

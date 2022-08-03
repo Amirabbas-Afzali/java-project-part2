@@ -133,23 +133,23 @@ public class User {
 
     public  void setBlockedUser(User user) throws SQLException {
         if(this.FollowerMap.containsValue(user)){
-            this.FollowerMap.remove(user);
+            this.FollowerMap.remove(user.UserName,user);
             this.FollowersList.remove(user.UserName);
-            user.FollowingMap.remove(this);
+            user.FollowingMap.remove(this.UserName,this);
             user.FollowingsList.remove(this.UserName);
         }
         if(this.FollowingMap.containsValue(user)) {
-            user.FollowerMap.remove(this);
+            user.FollowerMap.remove(this.UserName,this);
             user.FollowersList.remove(this.UserName);
-            this.FollowingMap.remove(user);
+            this.FollowingMap.remove(user.UserName,user);
             this.FollowingsList.remove(user.UserName);
         }
         if(user.CloseFriendMap.containsValue(this)){
-            user.CloseFriendMap.remove(this);
+            user.CloseFriendMap.remove(this.UserName,this);
             user.CloseFriendList.remove(this.UserName);
         }
         if(this.CloseFriendMap.containsValue(user)){
-            this.CloseFriendMap.remove(user);
+            this.CloseFriendMap.remove(user.UserName,user);
             this.CloseFriendList.remove(user.UserName);
         }
         this.BlockedMap.put(user.UserName,user);
