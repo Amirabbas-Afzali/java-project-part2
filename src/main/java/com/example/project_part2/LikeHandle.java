@@ -81,4 +81,37 @@ public class LikeHandle {
         }
         return 0;
     }
+    public boolean ShowLikeHandle2(boolean time,Date Start,Date End,boolean view,boolean JustCount){
+        if (time){
+            if (date.compareTo(Start)>=0&&date.compareTo(End)<=0){
+                if ((!this.PostCode.equals("-2"))&&!view){
+                    if (!JustCount)
+                        System.out.println("User :"+LikerUserName+" Liked at "+DateFormat.dateFormat.reportdate(date));
+                    return true;
+                }
+                else {
+                    if (this.PostCode.equals("-2")&&view){
+                        if (!JustCount)
+                            System.out.println("User :"+LikerUserName+" Viewed at "+DateFormat.dateFormat.reportdate(date));
+                        return true;
+                    }
+                }
+            }
+        }
+        else {
+            if ((!this.PostCode.equals("-2"))&&!view){
+                if (!JustCount)
+                    System.out.println("User :"+LikerUserName+" Liked at "+DateFormat.dateFormat.reportdate(date));
+                return true;
+            }
+            else {
+                if ((this.PostCode.equals("-2"))&&view){
+                    if (!JustCount)
+                        System.out.println("User :"+LikerUserName+" Viewed at "+DateFormat.dateFormat.reportdate(date));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

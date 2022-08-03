@@ -203,7 +203,7 @@ public class Post {
         Massage.sum=0;
         return integer;
     }
-    boolean UserNameLiked(String Viewer){
+    public boolean UserNameLiked(String Viewer){
         for (String i:LikedList){
             if (MAINInformation.mainInformation.likeHandleMap.get(i).LikerUserName.equals(Viewer)){
                 if (MAINInformation.mainInformation.likeHandleMap.get(i).isPost)

@@ -122,6 +122,26 @@ public class Main extends Application {
         // mainstage.show();
     }
 
+    public static void ShowPostFXMLStart(Post post,User user) throws IOException {
+        ShowPostFXML.post=post;
+        ShowPostFXML.Viewer=user;
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("showPostFXML.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
+        mainstage.setTitle("Show Post of : "+post.PosterName);
+
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
+    public static void ChatAndPvsStart(User user) throws IOException,SQLException{
+        ChatAndPvs.Viewer=user;
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chatAndPvs.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
+        mainstage.setTitle("Chat And Pvs");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+
     public static void main(String[] args)throws SQLException {
         MAINInformation.mainInformation.UpdateMainInfo();
        //SignIn.signIn.start();

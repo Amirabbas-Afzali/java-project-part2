@@ -15,6 +15,7 @@ public class Group extends DirectMassage{
     int NumberOfUsers;
     public String Owener="";
     public String bio="";
+    public String ProfilePath="";
     public Group(){}
     Group(String Owner, List<String> users,String ID,boolean isprivate) throws SQLException {
         this.Owener=Owner;

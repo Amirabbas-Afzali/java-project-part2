@@ -12,14 +12,19 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,6 +32,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import static javafx.scene.layout.CornerRadii.EMPTY;
+import static javafx.scene.paint.Color.BLUEVIOLET;
 
 public class Viewuser implements Initializable {
     public static User ThisUser;
@@ -52,7 +60,7 @@ public class Viewuser implements Initializable {
     boolean com=false;
     boolean ord=false;
     public int index=0;
-    public Label label3=null,label4=null;
+    public Label label3=null,label4=null,viewlabel=null,likelabel;
     Color dotcolor = Color.FORESTGREEN;
     Color dotcolor1 = Color.WHITE;
     Image prof;
@@ -66,6 +74,52 @@ public class Viewuser implements Initializable {
     @FXML
     ChoiceBox Closelist,Blocklist;
 
+    String ch2,ch3;
+    public void searchlist() throws SQLException {
+       ch2=(String) Blocklist.getValue();ch3=(String) Closelist.getValue();
+         if(ch2.length()>0){
+            int reply = JOptionPane.showConfirmDialog(null,  "Do you want to unblock this user?",
+                    ":/",JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                if(PersonalHomepage.USER.BlockedMap.containsValue(MAINInformation.mainInformation.users.get(ch2))){
+                    PersonalHomepage.USER.setUnBlockedUser(MAINInformation.mainInformation.users.get(ch2));
+                    JOptionPane.showMessageDialog(null, "Unblocked !");}
+            }
+            else if (reply == JOptionPane.NO_OPTION) {
+            }
+        }
+        else if(ch3.length()>0){
+            int reply = JOptionPane.showConfirmDialog(null,  "Do you want to remove this user from your close friend list?",
+                    ":/",JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                PersonalHomepage.USER.setRemoveCloseFriendUser(MAINInformation.mainInformation.users.get(ch3));
+                JOptionPane.showMessageDialog(null, "Removed !");
+            }
+            else if (reply == JOptionPane.NO_OPTION) {
+            }}
+        refreshLISTS();
+    }
+
+    public void BLO(){
+        Closelist.setValue("");
+    }
+    public void CLO(){
+        Blocklist.setValue("");
+    }
+
+    public void refreshLISTS(){
+        //======================
+        List<String> list=new ArrayList<>();
+        for(User user:ThisUser.BlockedMap.values()){
+            list.add(user.UserName);}
+        Blocklist.setItems(FXCollections.observableList(list));
+//======================
+        List<String> list2=new ArrayList<>();
+        for(User user:ThisUser.CloseFriendMap.values()){
+            list2.add(user.UserName);}
+        Closelist.setItems(FXCollections.observableList(list2));
+        //======================
+    }
 
     public void addcomment(Post post){
         com=true;
@@ -122,7 +176,7 @@ public class Viewuser implements Initializable {
         int i=0;
         boolean liked;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(PersonalHomepage.USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(PersonalHomepage.USER.UserName)){liked=true;}
             else {liked=false;}
             Image image=new Image(posttemp.photopath);
             ImageView imageView=new ImageView(image);
@@ -185,10 +239,10 @@ public class Viewuser implements Initializable {
             //============================
             labels[i] =new Label();
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
             labels[i].setLayoutX(110);
             labels[i].setLayoutY(500*(i)+420);
@@ -208,11 +262,9 @@ public class Viewuser implements Initializable {
                     if(event.getSource()==buttonslike[i])
                     {
                         System.out.println(i);
-                        if(!posts.get(i).LikedList.contains(PersonalHomepage.USER.UserName)){
-                            posts.get(i).LikedList.add(PersonalHomepage.USER.UserName);
-                            PersonalHomepage.USER.LikedPostCodes.add(posts.get(i).PostCode);
+                        if(!posts.get(i).UserNameLiked(PersonalHomepage.USER.UserName)){
                             try {
-                                UserTableDBC.userTableDBC.EditorDeleteUser(PersonalHomepage.USER,false);
+                                posts.get(i).LikedList.add(LikeHandle.NewLikeHandles(PersonalHomepage.USER.UserName,posts.get(i).PostCode,false));
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
@@ -222,21 +274,31 @@ public class Viewuser implements Initializable {
                                 e.printStackTrace();
                             }
                         }
-                        else {posts.get(i).LikedList.remove(PersonalHomepage.USER.UserName);
-                            PersonalHomepage.USER.LikedPostCodes.remove(posts.get(i).PostCode);
-
+                        else {
                             try {
-                                UserTableDBC.userTableDBC.EditorDeleteUser(PersonalHomepage.USER,false);
-                            } catch (SQLException e) {
-                                e.printStackTrace();
+                                String LikeCode="";
+                                for (String j:posts.get(i).LikedList){
+                                    if (MAINInformation.mainInformation.likeHandleMap.get(j).LikerUserName.equals(PersonalHomepage.USER.UserName)){
+                                        LikeCode=j;
+                                        PersonalHomepage.USER.addLikedPostCode(LikeCode,false);
+                                    }
+                                }
+                                posts.get(i).addLikeOrRemove(LikeCode,false);
                             }
-                            try {
-                                PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i),false);
-                            } catch (SQLException e) {
+                            catch (Exception e){
                                 e.printStackTrace();
                             }
                         }
                         refresh(posts);
+                    }
+                    if(event.getSource()==buttonsinfo[i]){
+                        try {
+                            ShowPostFXML.MyBack=0;
+                            Main.ShowPostFXMLStart(posts.get(i),PersonalHomepage.USER);
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
@@ -258,13 +320,13 @@ public class Viewuser implements Initializable {
         boolean liked;
         int i=0;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(PersonalHomepage.USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(PersonalHomepage.USER.UserName)){liked=true;}
             else {liked=false;}
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
 
             tallpane.getChildren().remove(buttonslike[i]);
@@ -347,6 +409,36 @@ public class Viewuser implements Initializable {
         imageView1.setY(0);
         imageView1.setOpacity(0);
 //=========================================
+        viewlabel=new Label("Views");
+        viewlabel.setLayoutX(30);
+        viewlabel.setLayoutY(410);
+        viewlabel.setFont(Font.font("Footlight MT Light",20));
+        viewlabel.setTextFill(dotcolor1);
+        viewlabel.setWrapText(true);
+
+        ListView <String>listView=new ListView<String>();
+        listView.setItems(FXCollections.observableList(userstories.get(index).viewersnameList));
+        listView.setTranslateX(30);
+        listView.setTranslateY(440);
+        listView.setPrefHeight(100);
+        listView.setPrefWidth(200);
+     //   listView.setBackground(new Background(BLUEVIOLET));
+//=========================================
+        likelabel=new Label("Likes");
+        likelabel.setLayoutX(30);
+        likelabel.setLayoutY(570);
+        likelabel.setFont(Font.font("Footlight MT Light",20));
+        likelabel.setTextFill(dotcolor1);
+        likelabel.setWrapText(true);
+
+        ListView <String>listView1=new ListView<String>();
+        listView1.setItems(FXCollections.observableList(userstories.get(index).likersnameList));
+        listView1.setTranslateX(30);
+        listView1.setTranslateY(600);
+        listView1.setPrefHeight(100);
+        listView1.setPrefWidth(200);
+        //listView1.setBackground(new BackgroundFill(Color.BLUEVIOLET, CornerRadii.EMPTY, Insets.EMPTY));
+//=========================================
         Image image=new Image(user1.profilepicpath);
         ImageView tempprof=new ImageView(CreatAccount.getRoundedImage(image,200));
         tempprof.setFitWidth(120);
@@ -425,7 +517,7 @@ public class Viewuser implements Initializable {
         PANE.getChildren().add(photo);
         PANE.getChildren().add(LIKE);
         PANE.getChildren().add(label4);
-        PANE.getChildren().addAll(butLike,butClose,butnext,butback);
+        PANE.getChildren().addAll(butLike,butClose,butnext,butback,listView,listView1,viewlabel,likelabel);
         if(ord&&label3!=null){PANE.getChildren().add(label3);}
 
         EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
@@ -434,7 +526,7 @@ public class Viewuser implements Initializable {
 
                 if(event.getSource()==butClose){
                     index=0;
-                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4,listView,listView1,viewlabel,likelabel);
                     if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
 
                 }
@@ -454,7 +546,7 @@ public class Viewuser implements Initializable {
                 if(event.getSource()==butnext){
                     if(index<=userstories.size()-2){
                         index++;
-                        PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                        PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4,listView,listView1,viewlabel,likelabel);
                         if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
                         storypic(user1);
                     }
@@ -463,7 +555,7 @@ public class Viewuser implements Initializable {
                 if(event.getSource()==butback){
                     if(index>0){
                         index--;
-                        PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                        PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4,listView,listView1,viewlabel,likelabel);
                         if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
                         storypic(user1);
                     }

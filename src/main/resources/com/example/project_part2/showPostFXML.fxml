@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ShowPostFXML">
+<Pane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ShowPostFXML">
     <children>
-        <ScrollPane fx:id="LikesScroll" layoutX="980.0" layoutY="48.0" prefHeight="196.0" prefWidth="212.0">
+        <ScrollPane layoutX="1003.0" layoutY="157.0" prefHeight="196.0" prefWidth="236.0">
             <content>
-                <AnchorPane fx:id="LikeAnchor" minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="193.0" />
+                <AnchorPane fx:id="LikeAnchor" minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="219.0" />
             </content>
         </ScrollPane>
-        <ScrollPane fx:id="CommentScroll" layoutX="371.0" layoutY="47.0" prefHeight="343.0" prefWidth="562.0">
+        <ScrollPane fx:id="CommentScroll" layoutX="371.0" layoutY="47.0" prefHeight="440.0" prefWidth="562.0">
             <content>
-                <AnchorPane fx:id="CommentAnchor" minHeight="0.0" minWidth="0.0" prefHeight="354.0" prefWidth="545.0" />
+                <AnchorPane fx:id="CommentAnchor" minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="545.0" />
             </content>
         </ScrollPane>
+        <DatePicker fx:id="StartDate" layoutX="1027.0" layoutY="46.0" promptText="Start Date" />
+        <DatePicker fx:id="EndDate" layoutX="1027.0" layoutY="84.0" promptText="End Date" />
+        <TextArea fx:id="CommentArea" layoutX="484.0" layoutY="512.0" prefHeight="41.0" prefWidth="349.0" promptText="Enter Comment" />
+        <ScrollPane fx:id="ViewScroll" layoutX="1004.0" layoutY="411.0" prefHeight="212.0" prefWidth="237.0">
+            <content>
+                <AnchorPane fx:id="ViewAnchor" minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="220.0" />
+            </content>
+        </ScrollPane>
+        <Button fx:id="UpdateButton" layoutX="1087.0" layoutY="121.0" mnemonicParsing="false" onAction="#UpdateLikeAndComment" text="Update" />
+        <Button fx:id="Add" layoutX="852.0" layoutY="520.0" mnemonicParsing="false" onAction="#AddComment" text="          " />
+        <Label fx:id="CaptionLabel" layoutX="39.0" layoutY="308.0" text="Label" />
+        <Label fx:id="DescriptionLabel" layoutX="39.0" layoutY="411.0" text="Label" />
+        <Button fx:id="EditPost" layoutX="27.0" layoutY="274.0" mnemonicParsing="false" onAction="#UpdatePost" text="Edit Caption" />
+        <Button layoutX="41.0" layoutY="623.0" mnemonicParsing="false" onAction="#Back" text="Back" />
     </children>
 </Pane>

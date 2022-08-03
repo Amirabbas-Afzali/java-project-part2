@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CompletePersonalInformation">
    <children>
-      <ImageView fitHeight="812.0" fitWidth="1374.0" layoutX="-6.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bckgr" fitHeight="812.0" fitWidth="1374.0" layoutX="-6.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@blue-sea-water-and-beach-from-birds-eye-view-for-background-119-medium.jpg" />
          </image>
@@ -111,5 +111,20 @@
             <Font size="20.0" />
          </font>
       </TextField>
+      <CheckBox fx:id="them1" layoutX="142.0" layoutY="553.0" mnemonicParsing="false" onAction="#them1func" prefHeight="51.0" prefWidth="125.0" text="Nature" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="25.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="them2" layoutX="141.0" layoutY="609.0" mnemonicParsing="false" onAction="#them2func" prefHeight="51.0" prefWidth="125.0" text="Art" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="25.0" />
+         </font>
+      </CheckBox>
+      <Label fx:id="label13" alignment="CENTER" layoutX="95.0" layoutY="497.0" prefHeight="51.0" prefWidth="219.0" text="Select theme" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="31.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

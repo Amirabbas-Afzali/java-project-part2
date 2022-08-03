@@ -28,18 +28,32 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class CompletePersonalInformation implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\blue-sea-water-and-beach-from-birds-eye-view-for-background-119-medium.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\WallpaperDog-10707330.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+        bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+    }
+
     public static com.example.project_part2.CompletePersonalInformation completePersonalInformation=new com.example.project_part2.CompletePersonalInformation();
     public static User user;
     @FXML
     ImageView prof;
     @FXML
+     ImageView bckgr;
+    @FXML
     Label ordorbus,label12;
     @FXML
     TextField nameF,cityF,Countryf,Biographyf;
     @FXML
-    CheckBox male,female,marr,notmarr;
-
+    CheckBox male,female,marr,notmarr,them1,them2;
+public static int SetTheme=1;
     public String profpath;
+public static  ImageView aq =new ImageView();
 
     public void start() throws SQLException {
         boolean flag = true, flag2 = true, flag3 = true;
@@ -84,6 +98,22 @@ public class CompletePersonalInformation implements Initializable {
 
         System.out.println("Information updated successful.");
     }
+
+    public void them1func(){
+        them1.setSelected(true);
+        them2.setSelected(false);
+        SetTheme=1;
+        SETThEME();
+    }
+
+    public void them2func(){
+        them1.setSelected(false);
+        them2.setSelected(true);
+        SetTheme=2;
+        SETThEME();
+        //bckgr.setFitWidth(1400);bckgr.setFitHeight(800);
+    }
+
 
     public void Back() throws IOException {
         Main.personalpageSTART();
@@ -138,6 +168,7 @@ public class CompletePersonalInformation implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
       if(user.Kind){
           BusinessUser businessUser=(BusinessUser) user;
           ordorbus.setText("Business User ("+businessUser.buisnessType +")");}

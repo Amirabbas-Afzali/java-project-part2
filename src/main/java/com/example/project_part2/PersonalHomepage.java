@@ -284,7 +284,6 @@ public void FillStatics(){
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("wow");
         tallpane.getChildren().clear();
         stories.getChildren().clear();
                       FillStatics();
@@ -310,13 +309,13 @@ public void FillStatics(){
         boolean liked;
         int i=0;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(USER.UserName)){liked=true;}
             else {liked=false;}
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
 
             tallpane.getChildren().remove(buttonslike[i]);
@@ -345,7 +344,7 @@ public void FillStatics(){
         int i=0;
           boolean liked;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(USER.UserName)){liked=true;}
             else {liked=false;}
             Image image=new Image(posttemp.photopath);
             ImageView imageView=new ImageView(image);
@@ -408,10 +407,10 @@ public void FillStatics(){
             //============================
             labels[i] =new Label();
          if(!posttemp.Kind){
-             labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+             labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
          else {
              BusinessPost businessPost=(BusinessPost) posttemp;
-             labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+             labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
          }
             labels[i].setLayoutX(110);
             labels[i].setLayoutY(500*(i)+420);
@@ -431,11 +430,9 @@ public void FillStatics(){
                 if(event.getSource()==buttonslike[i])
                 {
                     System.out.println(i);
-                    if(!posts.get(i).LikedList.contains(USER.UserName)){
-                  posts.get(i).LikedList.add(USER.UserName);
-                    USER.LikedPostCodes.add(posts.get(i).PostCode);
+                    if(!posts.get(i).UserNameLiked(USER.UserName)){
                         try {
-                            UserTableDBC.userTableDBC.EditorDeleteUser(USER,false);
+                            posts.get(i).LikedList.add(LikeHandle.NewLikeHandles(USER.UserName,posts.get(i).PostCode,false));
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -445,22 +442,32 @@ public void FillStatics(){
                             e.printStackTrace();
                         }
                     }
-                    else {posts.get(i).LikedList.remove(USER.UserName);
-                        USER.LikedPostCodes.remove(posts.get(i).PostCode);
+                    else {
                         try {
-                            UserTableDBC.userTableDBC.EditorDeleteUser(USER,false);
-                        } catch (SQLException e) {
+                            String LikeCode="";
+                            for (String j:posts.get(i).LikedList){
+                                if (MAINInformation.mainInformation.likeHandleMap.get(j).LikerUserName.equals(USER.UserName)){
+                                    LikeCode=j;
+                                    USER.addLikedPostCode(LikeCode,false);
+                                }
+                            }
+                            posts.get(i).addLikeOrRemove(LikeCode,false);
+                        }
+                        catch (Exception e){
                             e.printStackTrace();
                         }
-                        try {
-                            PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i),false);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-
                     }
-                             refresh(posts);
+                    refresh(posts);
                 }
+                    if(event.getSource()==buttonsinfo[i]){
+                        try {
+                            ShowPostFXML.MyBack=0;
+                            Main.ShowPostFXMLStart(posts.get(i),USER);
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
                 event.consume();
@@ -477,7 +484,6 @@ public void FillStatics(){
     }
 
     public void intro() throws IOException {
-//Main.introSTART();
         introduction.introduction1.start(mainstage);
     }
 
@@ -781,6 +787,11 @@ public void exit(){
         Main.suggestSTART();
     }
     public void contact(){}
-    public void direct(){}
+    public void direct(){
+        try {
+            Main.ChatAndPvsStart(USER);
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }}
 
 }

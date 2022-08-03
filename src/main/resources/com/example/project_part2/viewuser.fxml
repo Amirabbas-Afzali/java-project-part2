@@ -48,8 +48,8 @@
             <Font name="Footlight MT Light" size="31.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="Blocklist" layoutX="964.0" layoutY="621.0" prefHeight="34.0" prefWidth="179.0" />
-      <ChoiceBox fx:id="Closelist" layoutX="965.0" layoutY="676.0" prefHeight="33.0" prefWidth="179.0" />
+      <ChoiceBox fx:id="Blocklist" layoutX="964.0" layoutY="621.0" onMousePressed="#BLO" prefHeight="34.0" prefWidth="156.0" />
+      <ChoiceBox fx:id="Closelist" layoutX="965.0" layoutY="676.0" onMousePressed="#CLO" prefHeight="34.0" prefWidth="156.0" />
       <Label fx:id="block" alignment="CENTER" layoutX="836.0" layoutY="616.0" prefHeight="39.0" prefWidth="119.0" text="Blocked Users:" textFill="WHITE">
          <font>
             <Font name="Calisto MT" size="18.0" />
@@ -73,5 +73,11 @@
       <Button layoutX="1209.0" layoutY="653.0" mnemonicParsing="false" onAction="#home" opacity="0.0" prefHeight="48.0" prefWidth="49.0" text="Button" />
       <ImageView fx:id="proffield" fitHeight="118.0" fitWidth="128.0" layoutX="32.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="52.0" layoutY="30.0" mnemonicParsing="false" onAction="#viewStory" opacity="0.0" prefHeight="106.0" prefWidth="130.0" text="Button" />
+      <ImageView fx:id="searchpost1" fitHeight="50.0" fitWidth="39.0" layoutX="1135.0" layoutY="616.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon/search.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="getuser11" layoutX="1136.0" layoutY="615.0" mnemonicParsing="false" onAction="#searchlist" opacity="0.0" prefHeight="41.0" prefWidth="38.0" text="Button" />
    </children>
 </AnchorPane>

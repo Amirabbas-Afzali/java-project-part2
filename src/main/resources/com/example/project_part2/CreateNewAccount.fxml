@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatAccount">
    <children>
-      <ImageView fitHeight="873.0" fitWidth="1318.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bckgr" fitHeight="873.0" fitWidth="1318.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@polish-sea-baltic-53-big.jpg" />
          </image>

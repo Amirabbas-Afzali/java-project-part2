@@ -52,7 +52,7 @@ public class ViewOtherUsers implements Initializable {
     boolean com=false;
     boolean ord=false;
     public int index=0;
-    public Label label3=null,label4=null;
+    public Label label3=null,label4=null,viewlabel=null,likelabel;
     Color dotcolor = Color.FORESTGREEN;
     Color dotcolor1 = Color.WHITE;
     Image prof;
@@ -140,7 +140,6 @@ public class ViewOtherUsers implements Initializable {
 
     }
 
-
     public void addcomment(Post post){
         com=true;
         commentfield=new TextArea();
@@ -196,7 +195,7 @@ public class ViewOtherUsers implements Initializable {
         int i=0;
         boolean liked;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(PersonalHomepage.USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(PersonalHomepage.USER.UserName)){liked=true;}
             else {liked=false;}
             Image image=new Image(posttemp.photopath);
             ImageView imageView=new ImageView(image);
@@ -259,10 +258,10 @@ public class ViewOtherUsers implements Initializable {
             //============================
             labels[i] =new Label();
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
             labels[i].setLayoutX(110);
             labels[i].setLayoutY(500*(i)+420);
@@ -282,11 +281,9 @@ public class ViewOtherUsers implements Initializable {
                     if(event.getSource()==buttonslike[i])
                     {
                         System.out.println(i);
-                        if(!posts.get(i).LikedList.contains(PersonalHomepage.USER.UserName)){
-                            posts.get(i).LikedList.add(PersonalHomepage.USER.UserName);
-                            PersonalHomepage.USER.LikedPostCodes.add(posts.get(i).PostCode);
+                        if(!posts.get(i).UserNameLiked(PersonalHomepage.USER.UserName)){
                             try {
-                                UserTableDBC.userTableDBC.EditorDeleteUser(PersonalHomepage.USER,false);
+                                posts.get(i).LikedList.add(LikeHandle.NewLikeHandles(PersonalHomepage.USER.UserName,posts.get(i).PostCode,false));
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
@@ -296,21 +293,31 @@ public class ViewOtherUsers implements Initializable {
                                 e.printStackTrace();
                             }
                         }
-                        else {posts.get(i).LikedList.remove(PersonalHomepage.USER.UserName);
-                            PersonalHomepage.USER.LikedPostCodes.remove(posts.get(i).PostCode);
-
+                        else {
                             try {
-                                UserTableDBC.userTableDBC.EditorDeleteUser(PersonalHomepage.USER,false);
-                            } catch (SQLException e) {
-                                e.printStackTrace();
+                                String LikeCode="";
+                                for (String j:posts.get(i).LikedList){
+                                    if (MAINInformation.mainInformation.likeHandleMap.get(j).LikerUserName.equals(PersonalHomepage.USER.UserName)){
+                                        LikeCode=j;
+                                        PersonalHomepage.USER.addLikedPostCode(LikeCode,false);
+                                    }
+                                }
+                                posts.get(i).addLikeOrRemove(LikeCode,false);
                             }
-                            try {
-                                PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i),false);
-                            } catch (SQLException e) {
+                            catch (Exception e){
                                 e.printStackTrace();
                             }
                         }
                         refresh(posts);
+                    }
+                    if(event.getSource()==buttonsinfo[i]){
+                        try {
+                            ShowPostFXML.MyBack=0;
+                            Main.ShowPostFXMLStart(posts.get(i),PersonalHomepage.USER);
+                        }
+                        catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 
@@ -332,13 +339,13 @@ public class ViewOtherUsers implements Initializable {
         boolean liked;
         int i=0;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(PersonalHomepage.USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(PersonalHomepage.USER.UserName)){liked=true;}
             else {liked=false;}
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
 
             tallpane.getChildren().remove(buttonslike[i]);
@@ -576,7 +583,20 @@ public class ViewOtherUsers implements Initializable {
 
     public void viewStory(){
         if(ThisUser.StoryCodeList.size()>0) {
+            if(ThisUser.Kind){
             storypic(ThisUser);
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    storypic(ThisUser);
+                }
+            }
+            else {
+                storypic(ThisUser);
+            }
+            }
         }
     }
 
@@ -640,11 +660,53 @@ public class ViewOtherUsers implements Initializable {
         for (User user : ThisUser.FollowingMap.values()){
             wing.add(user);
         }
-        setFollowers(wer);
-        setFollowings(wing);
-//======================
+//---------------------------------------------------------
+            if(ThisUser.Kind){
+                setFollowers(wer);
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    setFollowers(wer);
+                }
+            }
+            else {
+                setFollowers(wer);
+            }
+        }
+       // ---------------------------------------------------------
+        if(ThisUser.Kind){
+            setFollowings(wing);
 
-        setscrollpane(timelineposts);
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    setFollowings(wing);
+                }
+            }
+            else {
+                setFollowings(wing);
+            }
+        }
+//======================
+        if(ThisUser.Kind){
+            setscrollpane(timelineposts);
+
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    setscrollpane(timelineposts);
+                }
+            }
+            else {
+                setscrollpane(timelineposts);
+            }
+        }
     }
 
     public void setFollowings(List<User> suguser) {

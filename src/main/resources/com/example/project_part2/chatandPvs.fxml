@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="680.0" maxWidth="1280.0" minHeight="680.0" minWidth="1280.0" prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ChatAndPvs">
+    <children>
+        <ScrollPane layoutX="462.0" layoutY="106.0" prefHeight="450.0" prefWidth="600.0">
+            <content>
+                <AnchorPane fx:id="MassagesAnchor" minHeight="0.0" minWidth="0.0" prefHeight="534.0" prefWidth="583.0" />
+            </content>
+        </ScrollPane>
+        <Button layoutX="39.0" layoutY="611.0" mnemonicParsing="false" onAction="#Back" text="Back" />
+        <ScrollPane layoutX="88.0" layoutY="65.0" prefHeight="495.0" prefWidth="312.0">
+            <content>
+                <AnchorPane fx:id="ChatAndPvsAnchor" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="296.0" />
+            </content>
+        </ScrollPane>
+    </children>
+</Pane>

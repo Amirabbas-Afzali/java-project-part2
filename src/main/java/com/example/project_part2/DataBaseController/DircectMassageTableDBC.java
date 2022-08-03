@@ -51,6 +51,7 @@ public class DircectMassageTableDBC {
                 group.Admins=getPostCode(resultSet.getString("Admins"));
                 group.IsPrivate=resultSet.getBoolean("IsPrivate");
                 group.GroupID=resultSet.getString("GroupID");
+                group.ProfilePath=resultSet.getString("ProfilePath");
                 result=(T) group;
             }
             else {
@@ -71,7 +72,7 @@ public class DircectMassageTableDBC {
             Group group=(Group) directinput;
             PreparedStatement statement= connection.prepareStatement("" +
                     "INSERT INTO directmassagetable (DirectMassageCode,isGroup,MassageCodes,UserNamesInChat," +
-                    "GrOwner,bio,Admins,GroupID,IsPrivate) VALUES (?,?,?,?,?,?,?,?,?)");
+                    "GrOwner,bio,Admins,GroupID,IsPrivate,ProfilePath) VALUES (?,?,?,?,?,?,?,?,?,?)");
             statement.setString(1,directinput.Code);
             statement.setBoolean(2,directinput.isGroup);
             statement.setString(3,generatePostCodeString(directinput.MassageCodes));
@@ -81,6 +82,7 @@ public class DircectMassageTableDBC {
             statement.setString(7,generatePostCodeString(group.Admins));
             statement.setString(8,group.GroupID);
             statement.setBoolean(9,group.IsPrivate);
+            statement.setString(10,((Group) directinput).ProfilePath);
             statement.executeUpdate();
             statement.close();
         }

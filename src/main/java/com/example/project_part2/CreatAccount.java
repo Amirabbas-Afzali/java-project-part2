@@ -36,6 +36,16 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class CreatAccount implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\polish-sea-baltic-53-big.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\WallpaperDog-10707336.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+    }
     public static CreatAccount creatAccount=new CreatAccount();
 
     public void start() throws SQLException {
@@ -171,7 +181,7 @@ public class CreatAccount implements Initializable {
     }
 
 @FXML
-ImageView prof;
+ImageView prof,bckgr;
     @FXML
     TextField usernameF,dateF;
     @FXML
@@ -187,6 +197,7 @@ ImageView prof;
     @Override
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         label.setText("Enter your information :");
         List<String> list=new ArrayList<>();
         list.add("Technology");list.add("Cloth");list.add("AD");list.add("Art");list.add("Sport (default)");

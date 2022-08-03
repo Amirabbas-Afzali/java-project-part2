@@ -1,5 +1,6 @@
 package com.example.project_part2;
 
+import com.example.project_part2.DataBaseController.MassageTableDBC;
 import com.example.project_part2.USER.User;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -16,20 +17,35 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class ShowMassageHandler {
-    boolean ShowExtra=false;
+    public static List<ShowMassageHandler> showMassageHandlers;
+    // public static ImageView BackGround;
+    boolean ShowExtra=false,isReply=false;
     User Viewer;
 
     Button OptionButton=new Button(),ProfButton=new Button(),LikeButton=new Button()
-            ,ReplyButton=new Button(),ForwardButton=new Button(),MoreOptionButton=new Button();
+            ,ReplyButton=new Button(),ForwardButton=new Button(),MoreOptionButton=new Button(),EditButton=new Button(),EditButton2=new Button();
     ImageView imageView,LikeImage,DisLikeImage,ReplyImage,ForwardImage,MoreOptionImage;
     AnchorPane myPane;
     Massage massage;
     String text;
+    TextArea EditArea=new TextArea();
     Label label=new Label(),Likeslabel=new Label(),Comments=new Label();
-    Rectangle rectangle=new Rectangle(),UnderRec=new Rectangle();
+    Rectangle rectangle=new Rectangle(),UnderRec=new Rectangle(),ColorRec=new Rectangle(),ReplytoRec=new Rectangle();
     ShowMassageHandler(){}
-    ShowMassageHandler(Massage _massage, double X, double Y,User user){
+    ShowMassageHandler(Massage _massage, double X, double Y,User user,Color color,boolean isColor){
+        if (isColor){
+            isReply=true;
+            ReplytoRec.setFill(color);
+
+        }
+        Random rand = new Random(System.currentTimeMillis());
+        ColorRec.setFill(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255),0.99));
         Viewer=user;
         Image image=new Image(Viewer.profilepicpath);
         image=getRoundedImage(image,200);
@@ -39,27 +55,28 @@ public class ShowMassageHandler {
         imageView.setTranslateX(X-47);
         imageView.setPreserveRatio(true);
 
-        image=new Image("C:\\Users\\season\\Desktop\\Projrct\\Project_part2\\icon\\like.png");
+
+        image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\like.png");
         LikeImage=new ImageView(image);
         LikeImage.setFitHeight(25);
         LikeImage.setFitWidth(25);
 
-        image=new Image("C:\\Users\\season\\Desktop\\Projrct\\Project_part2\\icon\\dislike.png");
+        image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\dislike.png");
         DisLikeImage=new ImageView(image);
         DisLikeImage.setFitHeight(25);
         DisLikeImage.setFitWidth(25);
 
-        image=new Image("C:\\Users\\season\\Desktop\\Projrct\\Project_part2\\icon\\Reply.png");
+        image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\Reply.png");
         ReplyImage=new ImageView(image);
         ReplyImage.setFitHeight(25);
         ReplyImage.setFitWidth(25);
 
-        image=new Image("C:\\Users\\season\\Desktop\\Projrct\\Project_part2\\icon\\forward.png");
+        image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\forward.png");
         ForwardImage=new ImageView(image);
         ForwardImage.setFitHeight(25);
         ForwardImage.setFitWidth(25);
 
-        image=new Image("C:\\Users\\season\\Desktop\\Projrct\\Project_part2\\icon\\moreoption.png");
+        image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\moreoption.png");
         MoreOptionImage=new ImageView(image);
         MoreOptionImage.setFitHeight(25);
         MoreOptionImage.setFitWidth(25);
@@ -101,6 +118,13 @@ public class ShowMassageHandler {
         ProfButton.setText("   ");
         ProfButton.setBackground(null);
 
+        setColor();
+        if (isReply){
+            setColor1();
+        }
+
+
+
         OptionButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -116,15 +140,22 @@ public class ShowMassageHandler {
         LikeButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-              /*  if (!massage.LikeHandleList.contains(Viewer.UserName)){
-                    massage.LikeHandleList.add(Viewer.UserName);
+                if (!massage.UserLikedBefore(Viewer.UserName)){
+                    try {
+                        massage.AddLike(Viewer.UserName);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
                 else {
-                    massage.LikeHandleList.remove(Viewer.UserName);
+                    try {
+                        massage.RemoveLike(Viewer.UserName);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
                 ShowExtra();
                 labelUpdate();
-                */
             }
         });
         ForwardButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -151,9 +182,95 @@ public class ShowMassageHandler {
             public void handle(ActionEvent event) {
 
                 System.out.println("More option");
+                ShowReplys();
 
             }
         });
+        EditButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Edit button");
+                EditMassage();
+            }
+        });
+        EditButton2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                System.out.println("Edit button2");
+                EditMassage2();
+            }
+        });
+
+    }
+    public void EditMassage(){
+        EditButton2.setTranslateX(EditButton.getTranslateX()+70);
+        EditButton2.setTranslateY(EditButton.getTranslateY());
+        EditButton2.setText("Edit");
+        EditArea.setTranslateY(EditButton.getTranslateY()-60);
+        EditArea.setTranslateX(EditButton.getTranslateX()+40);
+        EditArea.setMaxWidth(100);
+        EditArea.setMaxHeight(50);
+        try {
+            myPane.getChildren().add(EditArea);
+            myPane.getChildren().add(EditButton2);
+        }
+        catch (Exception e){
+            System.out.println("error EditMassage");
+        }
+    }
+    public void EditMassage2(){
+        if (EditArea.getText()!=null&&!"".equals(EditArea.getText())){
+            massage.massageString=EditArea.getText().replaceAll("\n"," ");
+            UpdateText(EditArea.getText().replaceAll("\n"," "));
+            try {
+                MassageTableDBC.massageTableDBC.EditOrDeleteMassage(massage,false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        this.DisShowExtra();
+        myPane.getChildren().remove(EditButton2);
+        myPane.getChildren().remove(EditArea);
+    }
+    public void UpdateText(String _text){
+        double Y=this.rectangle.getHeight();
+        StringBuilder stringBuilder=new StringBuilder();
+        double a=((Math.ceil( (double) _text.length()/45)*17)+5+15);
+
+        while (_text.length()>45){
+            stringBuilder.append(_text, 0, 45).append("\n");
+            _text=_text.substring(45);
+        }
+        stringBuilder.append(_text).append("\n").append(DateFormat.dateFormat.reportdate2(massage.date)).append("    Sender : ").append(massage.SenderUserName);
+        text=_text;
+        label.setText(stringBuilder.toString());
+        rectangle.setHeight(a);
+        UnderRec.setTranslateY(rectangle.getTranslateY()+rectangle.getHeight()-18);
+        OptionButton.setTranslateY(UnderRec.getTranslateY());
+        imageView.setTranslateY(UnderRec.getTranslateY()-20);
+        ProfButton.setTranslateY(UnderRec.getTranslateY()-17);
+        double delta=(this.rectangle.getHeight()-Y);
+        for (ShowMassageHandler i:showMassageHandlers){
+            if (i.rectangle.getTranslateY()>this.rectangle.getTranslateY()){
+                i.ShiftY(delta);
+            }
+        }
+        // TODO: 8/3/2022 check
+        myPane.setPrefHeight(myPane.getHeight()+delta);
+    }
+    public void setColor1(){
+        ReplytoRec.setTranslateX(rectangle.getTranslateX());
+        ReplytoRec.setTranslateY(rectangle.getTranslateY()-4);
+        ReplytoRec.setWidth(rectangle.getWidth());
+        ReplytoRec.setHeight(4);
+    }
+    public void setColor(){
+        //color setting
+        ColorRec.setTranslateX(rectangle.getTranslateX()+rectangle.getWidth());
+        ColorRec.setTranslateY(rectangle.getTranslateY());
+        ColorRec.setWidth(7);
+        ColorRec.setHeight(10);
+        //done
     }
     public void AddtoRoot(AnchorPane anchorPane){
         myPane=anchorPane;
@@ -164,15 +281,19 @@ public class ShowMassageHandler {
         anchorPane.getChildren().add(label);
         myPane.getChildren().add(OptionButton);
         myPane.getChildren().add(ProfButton);
+        myPane.getChildren().add(ColorRec);
+        if (isReply){
+            myPane.getChildren().add(ReplytoRec);
+        }
     }
     public double getDown(){
-        return UnderRec.getY()+UnderRec.getHeight();
+        return (rectangle.getTranslateY()+rectangle.getHeight());
     }
     public double getHeight(){
-        return getUp()-getDown();
+        return rectangle.getHeight();
     }
     public double getUp(){
-        return rectangle.getY();
+        return rectangle.getTranslateY();
     }
     public void setX(double X){
         label.setTranslateX(X);
@@ -181,7 +302,11 @@ public class ShowMassageHandler {
         OptionButton.setTranslateX(UnderRec.getTranslateX()+240);
         imageView.setTranslateX(X-47);
         ProfButton.setTranslateX(X-43);
+        setColor();
         setExtra();
+        if (isReply){
+            setColor1();
+        }
     }
     public void setY(double Y){
         rectangle.setTranslateY(Y);
@@ -190,7 +315,11 @@ public class ShowMassageHandler {
         OptionButton.setTranslateY(UnderRec.getTranslateY());
         imageView.setTranslateY(UnderRec.getTranslateY()-20);
         ProfButton.setTranslateY(UnderRec.getTranslateY()-17);
+        setColor();
         setExtra();
+        if (isReply){
+            setColor1();
+        }
 
     }
     public void setExtra(){
@@ -233,7 +362,11 @@ public class ShowMassageHandler {
         MoreOptionButton.setBackground(null);
         MoreOptionButton.setTranslateX(rectangle.getTranslateX()+rectangle.getWidth()+10);
         MoreOptionButton.setTranslateY(OptionButton.getTranslateY()+50);
-
+        if (massage.SenderUserName.equals(Viewer.UserName)) {
+            EditButton.setText("Edit");
+            EditButton.setTranslateX(rectangle.getTranslateX() + rectangle.getWidth() + 10);
+            EditButton.setTranslateY(OptionButton.getTranslateY() + 75);
+        }
         Likeslabel.setTranslateX(LikeImage.getTranslateX()+25);
         Likeslabel.setTranslateY(LikeImage.getTranslateY()+5);
 
@@ -242,14 +375,14 @@ public class ShowMassageHandler {
 
     }
     public void ShowExtra(){
-      /*  if (massage.LikeHandleList.contains(Viewer.UserName)){
+        if (massage.UserLikedBefore(Viewer.UserName)){
             myPane.getChildren().remove(LikeImage);
             myPane.getChildren().add(DisLikeImage);
         }
         else {
             myPane.getChildren().remove(DisLikeImage);
             myPane.getChildren().add(LikeImage);
-        }*/
+        }
         if (!myPane.getChildren().contains(LikeButton))
             myPane.getChildren().add(LikeButton);
         if (!myPane.getChildren().contains(ReplyImage)){
@@ -277,6 +410,9 @@ public class ShowMassageHandler {
         if (!myPane.getChildren().contains(Comments)){
             myPane.getChildren().add(Comments);
         }
+        if (!myPane.getChildren().contains(EditButton)&&massage.SenderUserName.equals(Viewer.UserName)){
+            myPane.getChildren().add(EditButton);
+        }
 
     }
     public void MassageOption(){
@@ -303,6 +439,9 @@ public class ShowMassageHandler {
         myPane.getChildren().remove(MoreOptionButton);
         myPane.getChildren().remove(Likeslabel);
         myPane.getChildren().remove(Comments);
+        if (massage.SenderUserName.equals(Viewer.UserName)){
+            myPane.getChildren().remove(EditButton);
+        }
     }
     public void addReply(){
         TextArea textField=new TextArea();
@@ -320,6 +459,14 @@ public class ShowMassageHandler {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("new reply : "+textField.getText().replaceAll("\n"," "));
+
+                try {
+                    Massage massage1 = new Massage(textField.getText().replaceAll("\n"," "),Viewer);
+                    massage.AddReplyToList(massage1.massageCode);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                labelUpdate();
                 myPane.getChildren().remove(button);
                 myPane.getChildren().remove(textField);
             }
@@ -371,8 +518,37 @@ public class ShowMassageHandler {
         //prof.setImage(getRoundedImage(image,200));
     }
     void labelUpdate(){
-        Likeslabel.setText("120");
-        Comments.setText("100");
+        Likeslabel.setText(Integer.toString(massage.LikeCodes.size()));
+        Massage.sum=0;
+        massage.GetThreadSum();
+        Massage.sum--;
+        Comments.setText(Massage.sum.toString());
+        Massage.sum=0;
     }
+    public void ShowReplys(){
+        List<ShowMassageHandler> toAdd=new ArrayList<>();
+        double Y=getDown()+10,Y0=getDown()+10;
 
+        for (String i:massage.ReplyMassagesCodes){
+            toAdd.add(new ShowMassageHandler(MAINInformation.mainInformation.massages.get(i),50,Y,Viewer, (Color) this.ColorRec.getFill(),true));
+            Y+=(toAdd.get(toAdd.size()-1).getHeight()+10);
+        }
+        for (ShowMassageHandler i: showMassageHandlers){
+            if (i.getUp()>this.getUp()){
+                i.ShiftY(Y-Y0);
+            }
+        }
+        showMassageHandlers.addAll(toAdd);
+        UpdateCommentAfter();
+    }
+    void UpdateCommentAfter(){
+        double Y=0;
+        myPane.getChildren().clear();
+        for (ShowMassageHandler i:showMassageHandlers){
+            i.AddtoRoot(myPane);
+            Y+=(i.getHeight()+10);
+        }
+        myPane.setPrefHeight(Y+200);
+        myPane.setMaxHeight(Y+200);
+    }
 }
