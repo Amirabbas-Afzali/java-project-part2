@@ -31,6 +31,21 @@ import javafx.scene.text.Font;
 import static com.example.project_part2.Main.mainstage;
 
 public class PersonalHomepage implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\beautiful-pink-sunset-over-the-sea-in-spain-409-big.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\7.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
+
     public static PersonalHomepage personalHomepage=new PersonalHomepage();
     public static User USER;
 
@@ -49,7 +64,7 @@ public class PersonalHomepage implements Initializable {
     public static     ImageView []Sotryuserprof;
 
     @FXML
-    ImageView img;
+    ImageView bckgr;
     @FXML
     TextField t1;
     @FXML
@@ -284,6 +299,7 @@ public void FillStatics(){
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         tallpane.getChildren().clear();
         stories.getChildren().clear();
                       FillStatics();

@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,6 +18,20 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class Login2 implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\sunset-in-the-mountains-60-big.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\5.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
 
     @FXML
     Label label,captcha;
@@ -23,6 +39,8 @@ public class Login2 implements Initializable {
     TextField usernameF;
     @FXML
     PasswordField passF,passF1;
+    @FXML
+    ImageView bckgr;
 
     public String existuser(String username){
         for(User user: MAINInformation.mainInformation.users.values()){
@@ -81,6 +99,7 @@ public class Login2 implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         label.setText("Enter your information :");
         createcaptcha();
     }

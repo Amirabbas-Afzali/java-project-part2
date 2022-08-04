@@ -22,12 +22,26 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class CreatenewStory implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\lake-sunset-poland-55-big.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\4.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
     static CreatenewStory createnewStory = new CreatenewStory();
 
     public static User user;
     public String profpath;
     @FXML
-    ImageView photo;
+    ImageView photo,bckgr;
     @FXML
     Label label;
 
@@ -155,6 +169,7 @@ public class CreatenewStory implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
 label.setText("Add Story");
     }
 }

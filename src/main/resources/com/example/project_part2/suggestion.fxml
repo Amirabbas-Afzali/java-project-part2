@@ -14,7 +14,7 @@
 
 <Pane fx:id="PANE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.Suggestions">
    <children>
-      <ImageView fitHeight="982.0" fitWidth="1372.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bckgr" fitHeight="982.0" fitWidth="1372.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@destroyairplane.jpg" />
          </image>
@@ -24,14 +24,14 @@
             <AnchorPane fx:id="tallpane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="730.0" />
          </content>
       </ScrollPane>
-      <CheckBox fx:id="hash" layoutX="79.0" layoutY="44.0" mnemonicParsing="false" onAction="#hashfill" prefHeight="57.0" prefWidth="194.0" text="search Hashtag">
+      <CheckBox fx:id="hash" layoutX="79.0" layoutY="44.0" mnemonicParsing="false" onAction="#hashfill" prefHeight="57.0" prefWidth="194.0" text="search Hashtag" textFill="#fffcfc">
          <font>
-            <Font size="19.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="bus" layoutX="79.0" layoutY="99.0" mnemonicParsing="false" onAction="#busfill" prefHeight="39.0" prefWidth="194.0" text="search Business">
+      <CheckBox fx:id="bus" layoutX="79.0" layoutY="99.0" mnemonicParsing="false" onAction="#busfill" prefHeight="39.0" prefWidth="194.0" text="search Business" textFill="WHITE">
          <font>
-            <Font size="19.0" />
+            <Font size="22.0" />
          </font>
       </CheckBox>
       <TextField fx:id="post" alignment="CENTER" layoutX="413.0" layoutY="146.0" prefHeight="38.0" prefWidth="225.0" promptText="Search">

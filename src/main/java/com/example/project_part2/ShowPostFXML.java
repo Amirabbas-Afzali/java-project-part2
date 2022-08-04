@@ -24,6 +24,21 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class ShowPostFXML implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\300033.png");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\11.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
+
     public static User Viewer;
     public static Post post;
     public static Massage massage;
@@ -34,6 +49,9 @@ public class ShowPostFXML implements Initializable {
     boolean PostKind=false;
     @FXML
     private AnchorPane CommentAnchor;
+
+    @FXML
+    ImageView bckgr;
 
     @FXML
     Button Add;
@@ -80,10 +98,10 @@ public class ShowPostFXML implements Initializable {
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-
+        SETThEME();
         postImage=new ImageView(new Image(post.photopath));
         postImage.setTranslateX(20);
-        postImage.setTranslateY(50);
+        postImage.setTranslateY(30);
         postImage.setFitHeight(300);
         postImage.setFitWidth(300);
         postImage.setPreserveRatio(true);
@@ -91,7 +109,7 @@ public class ShowPostFXML implements Initializable {
 
         SendMassage=new ImageView(new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\SendMassage.png"));
         SendMassage.setTranslateX(850);
-        SendMassage.setTranslateY(515);
+        SendMassage.setTranslateY(547);
         SendMassage.setFitHeight(40);
         SendMassage.setFitWidth(40);
         SendMassage.setPreserveRatio(true);

@@ -37,13 +37,17 @@ import static com.example.project_part2.Main.mainstage;
 
 public class CreatAccount implements Initializable {
     Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\polish-sea-baltic-53-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\WallpaperDog-10707336.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\2.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
             bckgr.setImage(image1);}
         else if(CompletePersonalInformation.SetTheme==2){
             bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
         }
     }
     public static CreatAccount creatAccount=new CreatAccount();

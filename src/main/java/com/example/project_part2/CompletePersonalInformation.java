@@ -29,13 +29,17 @@ import static com.example.project_part2.Main.mainstage;
 
 public class CompletePersonalInformation implements Initializable {
     Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\blue-sea-water-and-beach-from-birds-eye-view-for-background-119-medium.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\WallpaperDog-10707330.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\1.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
         bckgr.setImage(image1);}
         else if(CompletePersonalInformation.SetTheme==2){
             bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
         }
     }
 
@@ -50,7 +54,7 @@ public class CompletePersonalInformation implements Initializable {
     @FXML
     TextField nameF,cityF,Countryf,Biographyf;
     @FXML
-    CheckBox male,female,marr,notmarr,them1,them2;
+    CheckBox male,female,marr,notmarr,them1,them2,them3;
 public static int SetTheme=1;
     public String profpath;
 public static  ImageView aq =new ImageView();
@@ -101,17 +105,22 @@ public static  ImageView aq =new ImageView();
 
     public void them1func(){
         them1.setSelected(true);
-        them2.setSelected(false);
+        them2.setSelected(false);them3.setSelected(false);
         SetTheme=1;
         SETThEME();
     }
 
     public void them2func(){
-        them1.setSelected(false);
+        them1.setSelected(false);them3.setSelected(false);
         them2.setSelected(true);
         SetTheme=2;
         SETThEME();
-        //bckgr.setFitWidth(1400);bckgr.setFitHeight(800);
+    }
+    public void them3func(){
+        them1.setSelected(false);them3.setSelected(true);
+        them2.setSelected(false);
+        SetTheme=3;
+        SETThEME();
     }
 
 
@@ -169,6 +178,18 @@ public static  ImageView aq =new ImageView();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SETThEME();
+        if(CompletePersonalInformation.SetTheme==1){
+            them1.setSelected(true);
+            them2.setSelected(false);them3.setSelected(false);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            them1.setSelected(false);them3.setSelected(false);
+            them2.setSelected(true);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            them1.setSelected(false);them3.setSelected(true);
+            them2.setSelected(false);
+        }
+
       if(user.Kind){
           BusinessUser businessUser=(BusinessUser) user;
           ordorbus.setText("Business User ("+businessUser.buisnessType +")");}

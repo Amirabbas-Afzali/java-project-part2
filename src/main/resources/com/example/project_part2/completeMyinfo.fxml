@@ -116,7 +116,7 @@
             <Font name="Footlight MT Light" size="25.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="them2" layoutX="141.0" layoutY="609.0" mnemonicParsing="false" onAction="#them2func" prefHeight="51.0" prefWidth="125.0" text="Art" textFill="WHITE">
+      <CheckBox fx:id="them2" layoutX="141.0" layoutY="604.0" mnemonicParsing="false" onAction="#them2func" prefHeight="51.0" prefWidth="125.0" text="Art" textFill="WHITE">
          <font>
             <Font name="Footlight MT Light" size="25.0" />
          </font>
@@ -126,5 +126,10 @@
             <Font name="Footlight MT Light" size="31.0" />
          </font>
       </Label>
+      <CheckBox fx:id="them3" layoutX="141.0" layoutY="654.0" mnemonicParsing="false" onAction="#them3func" prefHeight="51.0" prefWidth="125.0" text="Dark" textFill="WHITE">
+         <font>
+            <Font name="Footlight MT Light" size="25.0" />
+         </font>
+      </CheckBox>
    </children>
 </Pane>

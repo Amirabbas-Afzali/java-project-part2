@@ -12,7 +12,7 @@
 
 <Pane fx:id="PANE" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.PersonalHomepage">
    <children>
-       <ImageView fitHeight="873.0" fitWidth="1311.0" layoutX="-4.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+       <ImageView fx:id="bckgr" fitHeight="873.0" fitWidth="1311.0" layoutX="-4.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
            <image>
                <Image url="@beautiful-pink-sunset-over-the-sea-in-spain-409-big.jpg" />
            </image>

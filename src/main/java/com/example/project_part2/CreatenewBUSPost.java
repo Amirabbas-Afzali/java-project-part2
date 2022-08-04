@@ -7,6 +7,7 @@ import com.example.project_part2.POST.Post;
 import com.example.project_part2.USER.BusinessUser;
 import com.example.project_part2.USER.User;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -16,19 +17,37 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import static com.example.project_part2.Main.mainstage;
 
-public class CreatenewBUSPost {
+public class CreatenewBUSPost implements Initializable {
+
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\3.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
+
   public static   User user;
 
 public String profpath;
     @FXML
     TextArea cap,des;
     @FXML
-    ImageView photo;
+    ImageView photo,bckgr;
     @FXML
     Label label;
 
@@ -64,5 +83,10 @@ public String profpath;
         Post.PostCodeStatic++;
         StaticTableDBC.staticTableDBC.SetCodeNumber("Post",Post.PostCodeStatic);
         return result;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
     }
 }

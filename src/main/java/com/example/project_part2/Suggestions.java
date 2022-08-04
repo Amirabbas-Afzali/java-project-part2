@@ -23,6 +23,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Suggestions implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\destroyairplane.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\9.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
 
 static User USER;
     @FXML
@@ -36,7 +50,7 @@ static User USER;
     @FXML
     ChoiceBox bis;
     @FXML
-    ImageView searchpost,searchpost1;
+    ImageView searchpost,searchpost1,bckgr;
 
     Image comment=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\comment.png");
     Image info=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\information.png");
@@ -388,6 +402,7 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         List<String> list=new ArrayList<>();
         list.add("Technology");list.add("Cloth");list.add("AD");list.add("Art");list.add("Sport (default)");
         bis.setItems(FXCollections.observableList(list));

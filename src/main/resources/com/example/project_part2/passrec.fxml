@@ -11,7 +11,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.PasswordRecovery">
    <children>
-      <ImageView fitHeight="873.0" fitWidth="1318.0" layoutX="-4.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bckgr" fitHeight="873.0" fitWidth="1318.0" layoutX="-4.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@beautiful-sunset-with-tree-and-sea-108-medium.jpg" />
          </image>

@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewORDPost">
    <children>
-      <ImageView fitHeight="871.0" fitWidth="1400.0" layoutX="-4.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="bckgr" fitHeight="871.0" fitWidth="1400.0" layoutX="-4.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg" />
          </image>

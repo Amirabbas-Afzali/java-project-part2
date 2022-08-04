@@ -32,6 +32,21 @@ import javax.swing.*;
 import javax.swing.JOptionPane;
 
 public class ViewuserPrivate implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\31189.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\10.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
+
     public static User ThisUser;
     public static List<Post> timelineposts;
 
@@ -65,7 +80,7 @@ public class ViewuserPrivate implements Initializable {
     @FXML
     Label intro,block,close,qq;
     @FXML
-    ImageView proffield;
+    ImageView proffield,bckgr;
     @FXML
     ChoiceBox Closelist,Blocklist,requests;
 
@@ -614,6 +629,7 @@ public class ViewuserPrivate implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         if(!ThisUser.Kind){
             OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
             if(ordinaryUser.Private){

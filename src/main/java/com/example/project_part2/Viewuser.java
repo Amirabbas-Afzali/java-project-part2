@@ -2,7 +2,6 @@ package com.example.project_part2;
 
 import com.example.project_part2.DataBaseController.PostTableDBC;
 import com.example.project_part2.DataBaseController.StoryTableDBC;
-import com.example.project_part2.DataBaseController.UserTableDBC;
 import com.example.project_part2.POST.BusinessPost;
 import com.example.project_part2.POST.Post;
 import com.example.project_part2.USER.BusinessUser;
@@ -12,18 +11,13 @@ import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -33,10 +27,23 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static javafx.scene.layout.CornerRadii.EMPTY;
-import static javafx.scene.paint.Color.BLUEVIOLET;
 
 public class Viewuser implements Initializable {
+    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\31189.jpg");
+    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\10.jpg");
+    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            bckgr.setImage(image1);}
+        else if(CompletePersonalInformation.SetTheme==2){
+            bckgr.setImage(image2);
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            bckgr.setImage(image3);
+        }
+    }
+
     public static User ThisUser;
     public static List<Post> timelineposts;
 
@@ -70,7 +77,7 @@ public class Viewuser implements Initializable {
     @FXML
     Label intro,block,close;
     @FXML
-    ImageView proffield;
+    ImageView proffield,bckgr;
     @FXML
     ChoiceBox Closelist,Blocklist;
 
@@ -587,6 +594,7 @@ public class Viewuser implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         if(!ThisUser.Kind){
             OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
             if(ordinaryUser.Private){
