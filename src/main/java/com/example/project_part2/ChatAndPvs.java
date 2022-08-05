@@ -33,7 +33,7 @@ public class ChatAndPvs implements Initializable {
     private AnchorPane MassagesAnchor;
 
     public static User Viewer;
-
+  ///jy,yfyfifig.gli.ho
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         LoadDms();
