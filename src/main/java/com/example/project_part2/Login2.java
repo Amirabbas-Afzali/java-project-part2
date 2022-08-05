@@ -121,11 +121,11 @@ public class Login2 implements Initializable {
                 if(checkpass(searchuser(usernameF.getText()),passF.getText()).equals("Welcome")){
                     if(passF1.getText().equals(cap)){
 
-                      //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,MAINInformation.mainInformation.users.get(usernameF.getText()));;
-                       PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
+                    //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,MAINInformation.mainInformation.users.get(usernameF.getText()));;
+                   //    PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
                        PersonalHomepage.USER=MAINInformation.mainInformation.users.get(usernameF.getText());
-                      //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,PersonalHomepage.USER);
-
+                      PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,PersonalHomepage.USER);
+// TODO: 8/5/2022
                         Main.personalpageSTART();
                     }
                     else {

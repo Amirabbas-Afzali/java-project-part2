@@ -489,6 +489,14 @@ public class ShowMassageHandler {
             @Override
             public void handle(ActionEvent event) {
                 System.out.println("Forwarded to "+listView.getSelectionModel().getSelectedItem());
+                // TODO: 8/5/2022 Did forward
+                try {
+                    String code1 = Massage.NewMassage(Viewer.UserName,massage.massageString);
+                    MAINInformation.mainInformation.directmassages.get(Viewer.DMNameToCode(listView.getSelectionModel().getSelectedItem())).addMassage(code1);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
                 myPane.getChildren().remove(button);
                 myPane.getChildren().remove(listView);
             }

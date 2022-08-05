@@ -266,7 +266,7 @@ public class User {
     public List<User> getFollowing(){
         List<User> result=new ArrayList<>();
         for (String i:getFollowings()){
-            result.add(MAINInformation.mainInformation.users.get(User.UserNamesList.indexOf(i)));
+            result.add(MAINInformation.mainInformation.users.get(i));
         }
         return result;
     }
@@ -496,6 +496,41 @@ public class User {
                 OrdinaryUser.ordinaryUser.ShowOrdUserByOrdUser(ordinaryUser,6,Loginuser);
             }
         }
+    }
+
+    public List<String> getDMsList(){
+        List<String> result=new ArrayList<>();
+        for (String i:DirectMassageCodes){
+            if (MAINInformation.mainInformation.directmassages.get(i).isGroup){
+                result.add(((Group)MAINInformation.mainInformation.directmassages.get(i)).GroupID);
+            }
+            else {
+                for (String j:MAINInformation.mainInformation.directmassages.get(i).UserNamesInChat){
+                    if (!j.equals(UserName)){
+                        result.add(j);
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    public String DMNameToCode(String input){
+        if (MAINInformation.mainInformation.users.containsKey(input)){
+            for (String i:DirectMassageCodes){
+                if (MAINInformation.mainInformation.directmassages.get(i).UserNamesInChat.contains(input)){
+                    return i;
+                }
+            }
+        }
+        else {
+            for (String i:DirectMassageCodes){
+                if (MAINInformation.mainInformation.directmassages.get(i).isGroup)
+                    if (((Group)MAINInformation.mainInformation.directmassages.get(i)).GroupID.equals(input)){
+                        return i;
+                    }
+            }
+        }
+        return "";
     }
 
 }

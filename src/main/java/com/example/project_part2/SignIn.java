@@ -1,17 +1,12 @@
 package com.example.project_part2;
 
-import com.example.project_part2.POST.*;
 import com.example.project_part2.USER.*;
 import com.example.project_part2.DataBaseController.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -24,23 +19,28 @@ import static com.example.project_part2.CreatAccount.creatAccount;
 import static com.example.project_part2.Main.mainstage;
 
 public class SignIn implements Initializable{
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\sunset-in-california-ocean-usa-110-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\8.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+  //  Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\sunset-in-california-ocean-usa-110-big.jpg");
+   // Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\8.jpg");
+  //  Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Mfolder/style.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+            }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style8/s8.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
     static SignIn signIn=new SignIn();
-    @FXML
-    ImageView bckgr;
+   @FXML
+    AnchorPane anch1;
+
 
     public void start() throws SQLException {
         boolean flag1=true,flag2=true,endprogram=false;
@@ -160,6 +160,7 @@ public class SignIn implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        SETThEME();
+      //  log.getStyleClass().add("log");
+      SETThEME();
     }
 }

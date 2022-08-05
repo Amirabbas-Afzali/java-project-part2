@@ -76,6 +76,35 @@ public class Main extends Application {
         // mainstage.show();
     }
 
+    public static void ChatAndPvsStart(User user) throws IOException,SQLException{
+        ChatAndPvs.Viewer=user;
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chatAndPvs.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
+        mainstage.setTitle("Chat And Pvs");
+        mainstage.setScene(scene);
+        // mainstage.show();
+    }
+    public static void NewGroup(Group group,boolean New,User Viewer){
+        NewGroup.myGroup=group;
+        NewGroup.Viewer=Viewer;
+        NewGroup.New=New;
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGroup.fxml"));
+        Scene scene = null;
+        try {
+            scene = new Scene(fxmlLoader.load(), 1280, 680);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (New){
+            mainstage.setTitle("New Group");
+        }
+        else {
+            mainstage.setTitle("Edit Group");
+        }
+        mainstage.setScene(scene);
+
+    }
+
     public static void suggestSTART() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("suggestion.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
@@ -129,15 +158,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
         mainstage.setTitle("Show Post of : "+post.PosterName);
 
-        mainstage.setScene(scene);
-        // mainstage.show();
-    }
-
-    public static void ChatAndPvsStart(User user) throws IOException,SQLException{
-        ChatAndPvs.Viewer=user;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chatAndPvs.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
-        mainstage.setTitle("Chat And Pvs");
         mainstage.setScene(scene);
         // mainstage.show();
     }

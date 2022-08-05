@@ -166,6 +166,7 @@ public class Group extends DirectMassage{
         DircectMassageTableDBC.dircectMassageTableDBC.EditorDeleteDirect(this,false);
     }
     public void removeMember(String username) throws SQLException {
+        this.RemoveAdmin(username);
         this.UserNamesInChat.remove(username);
         MAINInformation.mainInformation.users.get(username).removeDirectMassageCode(this.Code);
         DircectMassageTableDBC.dircectMassageTableDBC.EditorDeleteDirect(this,false);

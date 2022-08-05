@@ -2,15 +2,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-
+<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="680.0" maxWidth="1280.0" minHeight="680.0" minWidth="1280.0" prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ChatAndPvs">
     <children>
         <ScrollPane layoutX="462.0" layoutY="106.0" prefHeight="450.0" prefWidth="600.0">
             <content>
-                <AnchorPane fx:id="MassagesAnchor" minHeight="0.0" minWidth="0.0" prefHeight="534.0" prefWidth="583.0" />
+                <AnchorPane fx:id="MassagesAnchor" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="583.0" />
             </content>
         </ScrollPane>
         <Button layoutX="39.0" layoutY="611.0" mnemonicParsing="false" onAction="#Back" text="Back" />
@@ -19,5 +20,17 @@
                 <AnchorPane fx:id="ChatAndPvsAnchor" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="296.0" />
             </content>
         </ScrollPane>
+        <Button layoutX="1121.0" layoutY="56.0" mnemonicParsing="false" onAction="#NewGroup" text="New Group" textFill="#750098">
+            <font>
+                <Font name="System Bold Italic" size="17.0" />
+            </font>
+        </Button>
+        <Button layoutX="962.0" layoutY="594.0" mnemonicParsing="false" onAction="#AddComment" text="Add" />
+        <TextArea fx:id="CommentArea" layoutX="568.0" layoutY="577.0" prefHeight="56.0" prefWidth="375.0" promptText="Massage" />
+        <Button layoutX="664.0" layoutY="37.0" mnemonicParsing="false" onAction="#EditeGroup" prefHeight="56.0" prefWidth="183.0" text="Edit And Info">
+            <font>
+                <Font name="System Bold Italic" size="22.0" />
+            </font>
+        </Button>
     </children>
 </Pane>

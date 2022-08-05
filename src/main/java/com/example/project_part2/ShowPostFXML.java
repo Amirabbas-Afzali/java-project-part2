@@ -1,5 +1,7 @@
 package com.example.project_part2;
 
+import com.example.project_part2.DataBaseController.PostTableDBC;
+import com.example.project_part2.DataBaseController.UserTableDBC;
 import com.example.project_part2.POST.BusinessPost;
 import com.example.project_part2.POST.Post;
 import com.example.project_part2.USER.User;
@@ -64,7 +66,7 @@ public class ShowPostFXML implements Initializable {
     private DatePicker EndDate;
 
     @FXML
-    Button UpdateButton;
+    Button UpdateButton,RepostButton;
 
     @FXML
     private AnchorPane LikeAnchor;
@@ -115,6 +117,12 @@ public class ShowPostFXML implements Initializable {
         SendMassage.setPreserveRatio(true);
         MainPane.getChildren().add(SendMassage);
         Add.setBackground(null);
+        if (post.RepostersList.contains(Viewer.UserName)||post.PosterName.equals(Viewer.UserName)){
+            RepostButton.setText("Un Repost");
+        }
+        else {
+            RepostButton.setText("Repost");
+        }
 
         EditCaption.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -281,5 +289,23 @@ public class ShowPostFXML implements Initializable {
             return result;
         }
         return new Date();
+    }
+    @FXML
+    void RepostManage () throws SQLException {
+        if (post.RepostersList.contains(Viewer.UserName)||post.PosterName.equals(Viewer.UserName)){
+
+            Viewer.PostCodesList.remove(post.PostCode);
+            Viewer.posts.remove(post);
+            UserTableDBC.userTableDBC.EditorDeleteUser(Viewer,false);
+            post.RepostersList.remove(Viewer.UserName);
+            PostTableDBC.postTableDBC.EditorDeletePost(post,false);
+            RepostButton.setText("Repost");
+        }
+        else {
+            Viewer.addPostToPosts(post);
+            post.RepostersList.add(Viewer.UserName);
+            PostTableDBC.postTableDBC.EditorDeletePost(post,false);
+            RepostButton.setText("Un Repost");
+        }
     }
 }

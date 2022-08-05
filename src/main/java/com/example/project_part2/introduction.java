@@ -30,7 +30,7 @@ public class introduction extends  Application  {
     public static introduction introduction1=new introduction();
     Color dotcolor1 = Color.WHITE;
 
-    Hyperlink link = new Hyperlink("https://github.com/Amirabbas-Afzali/java-project-part2");
+    Hyperlink link = new Hyperlink("www.linkedin.com/in/amirreza-zameni-ateni-096889247");
     Hyperlink link2= new Hyperlink("https://www.linkedin.com/in/amir-a-afzali-b539b1226");
    Hyperlink part2 = new Hyperlink("https://github.com/Amirabbas-Afzali/java-project-part2");
    Hyperlink part1= new Hyperlink("https://github.com/Amirabbas-Afzali/java-project-part1");
