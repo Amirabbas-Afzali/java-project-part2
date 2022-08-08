@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -29,20 +30,27 @@ import static com.example.project_part2.Main.mainstage;
 
 
 public class CreatenewORDPost implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\3.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+ //   Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg");
+ //   Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\3.jpg");
+  //  Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style3a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style3/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+    @FXML
+    AnchorPane anch1;
+
     public static   User user;
 
     public String profpath;
@@ -64,7 +72,7 @@ public class CreatenewORDPost implements Initializable {
             OrdinaryPost ordinaryPost = new OrdinaryPost(str1, cap.getText(), (OrdinaryUser) user, new Date(),((OrdinaryUser) user).Private,profpath);
             PostTableDBC.postTableDBC.setPost(ordinaryPost);
             MAINInformation.mainInformation.posts.put(str1,ordinaryPost);
-            user.posts.add(ordinaryPost);
+          //  user.posts.add(ordinaryPost);
             Main.personalpageSTART();
         }
         else {label.setText("Error !");}

@@ -23,20 +23,26 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class Suggestions implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\destroyairplane.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\9.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+ //   Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\destroyairplane.jpg");
+  //  Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\9.jpg");
+  //  Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style11a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style11/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+    @FXML
+    AnchorPane anch1;
 
 static User USER;
     @FXML

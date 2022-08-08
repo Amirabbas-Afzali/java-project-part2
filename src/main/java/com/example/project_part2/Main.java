@@ -79,7 +79,7 @@ public class Main extends Application {
     public static void ChatAndPvsStart(User user) throws IOException,SQLException{
         ChatAndPvs.Viewer=user;
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("chatAndPvs.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
         mainstage.setTitle("Chat And Pvs");
         mainstage.setScene(scene);
         // mainstage.show();
@@ -91,7 +91,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("newGroup.fxml"));
         Scene scene = null;
         try {
-            scene = new Scene(fxmlLoader.load(), 1280, 680);
+            scene = new Scene(fxmlLoader.load(), 1300, 750);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,11 +155,10 @@ public class Main extends Application {
         ShowPostFXML.post=post;
         ShowPostFXML.Viewer=user;
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("showPostFXML.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1280, 680);
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
         mainstage.setTitle("Show Post of : "+post.PosterName);
 
         mainstage.setScene(scene);
-        // mainstage.show();
     }
 
     public static void main(String[] args)throws SQLException {

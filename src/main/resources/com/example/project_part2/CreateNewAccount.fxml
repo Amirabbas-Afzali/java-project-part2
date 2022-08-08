@@ -9,78 +9,73 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatAccount">
+<AnchorPane fx:id="anch1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatAccount">
    <children>
-      <ImageView fx:id="bckgr" fitHeight="873.0" fitWidth="1318.0" layoutX="-3.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@polish-sea-baltic-53-big.jpg" />
-         </image>
-      </ImageView>
-      <TextField fx:id="usernameF" alignment="CENTER" layoutX="693.0" layoutY="180.0" prefHeight="43.0" prefWidth="280.0" promptText="User Name">
+      <TextField fx:id="usernameF" alignment="CENTER" layoutX="703.0" layoutY="190.0" prefHeight="43.0" prefWidth="280.0" promptText="User Name" AnchorPane.bottomAnchor="516.8" AnchorPane.leftAnchor="703.0" AnchorPane.rightAnchor="317.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="passF" alignment="CENTER" layoutX="696.0" layoutY="349.0" prefHeight="44.0" prefWidth="277.0" promptText="Password">
+      <PasswordField fx:id="passF" alignment="CENTER" layoutX="706.0" layoutY="359.0" prefHeight="44.0" prefWidth="277.0" promptText="Password" AnchorPane.bottomAnchor="347.0" AnchorPane.leftAnchor="706.0" AnchorPane.rightAnchor="315.6">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <PasswordField fx:id="repassF" alignment="CENTER" layoutX="696.0" layoutY="429.0" prefHeight="44.0" prefWidth="278.0" promptText="Re-enter your Password">
+      <PasswordField fx:id="repassF" alignment="CENTER" layoutX="706.0" layoutY="439.0" prefHeight="44.0" prefWidth="278.0" promptText="Re-enter your Password" AnchorPane.bottomAnchor="267.0" AnchorPane.leftAnchor="706.0" AnchorPane.rightAnchor="315.6">
          <font>
             <Font size="20.0" />
          </font>
       </PasswordField>
-      <ImageView fx:id="prof" fitHeight="248.0" fitWidth="282.0" layoutX="178.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="prof" fitHeight="248.0" fitWidth="282.0" layoutX="188.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="187.73792419433593" AnchorPane.rightAnchor="861.8620758056641">
          <image>
             <Image url="@person.png" />
          </image>
       </ImageView>
-      <Button layoutX="237.0" layoutY="438.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+      <Button layoutX="247.0" layoutY="448.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo" AnchorPane.bottomAnchor="260.4" AnchorPane.leftAnchor="247.00000000000003" AnchorPane.rightAnchor="911.4">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="1034.0" layoutY="619.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create">
+      <Button layoutX="1044.0" layoutY="629.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create" AnchorPane.leftAnchor="1044.0" AnchorPane.rightAnchor="130.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="878.0" layoutY="621.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back">
+      <Button layoutX="888.0" layoutY="631.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back" AnchorPane.leftAnchor="888.0" AnchorPane.rightAnchor="286.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Label fx:id="label" alignment="CENTER" layoutX="47.0" layoutY="28.0" prefHeight="62.0" prefWidth="1214.0" text="Enter your information :" textFill="WHITE">
+      <Label fx:id="label" alignment="CENTER" layoutX="57.0" layoutY="38.0" prefHeight="62.0" prefWidth="1214.0" text="Enter your information :" textFill="WHITE" AnchorPane.bottomAnchor="649.6" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="28.59999999999991">
          <font>
             <Font name="Footlight MT Light" size="27.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dateB" layoutX="697.0" layoutY="254.0" prefHeight="55.0" prefWidth="274.0" promptText="Birthday" />
-      <ChoiceBox fx:id="bus" layoutX="228.0" layoutY="561.0" prefHeight="31.0" prefWidth="210.0" />
-      <Label alignment="CENTER" layoutX="360.0" layoutY="562.0" prefHeight="31.0" prefWidth="47.0" text="Field">
+      <DatePicker fx:id="dateB" layoutX="707.0" layoutY="264.0" prefHeight="55.0" prefWidth="274.0" promptText="Birthday" AnchorPane.bottomAnchor="430.8" AnchorPane.leftAnchor="707.0" AnchorPane.rightAnchor="318.6" />
+      <ChoiceBox fx:id="bus" layoutX="238.0" layoutY="571.0" prefHeight="31.0" prefWidth="210.0" AnchorPane.bottomAnchor="147.8" AnchorPane.leftAnchor="237.99999999999997" AnchorPane.rightAnchor="851.6" />
+      <Label alignment="CENTER" layoutX="370.0" layoutY="572.0" prefHeight="31.0" prefWidth="47.0" text="Field" AnchorPane.bottomAnchor="146.8" AnchorPane.leftAnchor="370.00000000000006" AnchorPane.rightAnchor="882.8">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <ChoiceBox fx:id="ord" layoutX="229.0" layoutY="611.0" prefHeight="31.0" prefWidth="208.0" />
-      <Label alignment="CENTER" layoutX="354.0" layoutY="612.0" prefHeight="31.0" prefWidth="57.0" text="Privacy">
+      <ChoiceBox fx:id="ord" layoutX="239.0" layoutY="621.0" prefHeight="31.0" prefWidth="208.0" AnchorPane.bottomAnchor="97.8" AnchorPane.leftAnchor="237.99999999999997" AnchorPane.rightAnchor="851.6" />
+      <Label alignment="CENTER" layoutX="367.0" layoutY="622.0" prefHeight="31.0" prefWidth="63.0" text="Privacy" AnchorPane.bottomAnchor="96.8" AnchorPane.leftAnchor="367.0" AnchorPane.rightAnchor="870.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
-      <CheckBox fx:id="buschoice" layoutX="79.0" layoutY="564.0" mnemonicParsing="false" onAction="#busfill" prefHeight="31.0" prefWidth="126.0" text="Business user" textFill="WHITE">
+      <CheckBox fx:id="buschoice" layoutX="89.0" layoutY="574.0" mnemonicParsing="false" onAction="#busfill" prefHeight="31.0" prefWidth="126.0" text="Business user" textFill="WHITE" AnchorPane.bottomAnchor="144.8" AnchorPane.leftAnchor="89.00000000000009" AnchorPane.rightAnchor="1084.6">
          <font>
             <Font size="15.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="ordchoice" layoutX="80.0" layoutY="611.0" mnemonicParsing="false" onAction="#ordfill" prefHeight="31.0" prefWidth="126.0" text="Ordinary user" textFill="WHITE">
+      <CheckBox fx:id="ordchoice" layoutX="90.0" layoutY="621.0" mnemonicParsing="false" onAction="#ordfill" prefHeight="31.0" prefWidth="126.0" text="Ordinary user" textFill="WHITE" AnchorPane.bottomAnchor="97.8" AnchorPane.leftAnchor="89.00000000000009" AnchorPane.rightAnchor="1084.6">
          <font>
             <Font size="15.0" />
          </font>
       </CheckBox>
    </children>
-</Pane>
+</AnchorPane>

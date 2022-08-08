@@ -12,22 +12,22 @@
             <Font name="Footlight MT Light" size="73.0" />
          </font>
       </Label>
-      <Button fx:id="log" layoutX="472.0" layoutY="346.0" minHeight="10.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#loginfunc" prefHeight="47.0" prefWidth="432.0" text="Login" AnchorPane.bottomAnchor="356.8" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="346.0">
+      <Button fx:id="log" layoutX="472.0" layoutY="346.0" minHeight="10.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#loginfunc" prefHeight="47.0" prefWidth="432.0" text="Login" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="346.0">
          <font>
             <Font name="Footlight MT Light" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="469.0" layoutY="468.0" mnemonicParsing="false" onAction="#recoveryfunc" prefHeight="47.0" prefWidth="435.0" text="Password recovery" AnchorPane.bottomAnchor="234.8" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="468.00000000000006">
+      <Button layoutX="469.0" layoutY="468.0" mnemonicParsing="false" onAction="#recoveryfunc" prefHeight="47.0" prefWidth="435.0" text="Password recovery" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="468.00000000000006">
          <font>
             <Font name="Footlight MT Light" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="472.0" layoutY="407.0" mnemonicParsing="false" onAction="#newaccountfunc" prefHeight="47.0" prefWidth="432.0" text="Create new Account" AnchorPane.bottomAnchor="295.8" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="407.0">
+      <Button layoutX="472.0" layoutY="407.0" mnemonicParsing="false" onAction="#newaccountfunc" prefHeight="47.0" prefWidth="432.0" text="Create new Account" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="407.0">
          <font>
             <Font name="Footlight MT Light" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="470.0" layoutY="529.0" mnemonicParsing="false" onAction="#exitfunc" prefHeight="47.0" prefWidth="435.0" text="Exit" AnchorPane.bottomAnchor="173.8" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="529.0">
+      <Button layoutX="470.0" layoutY="529.0" mnemonicParsing="false" onAction="#exitfunc" prefHeight="47.0" prefWidth="435.0" text="Exit" AnchorPane.leftAnchor="467.0" AnchorPane.rightAnchor="396.0" AnchorPane.topAnchor="529.0">
          <font>
             <Font name="Footlight MT Light" size="20.0" />
          </font>

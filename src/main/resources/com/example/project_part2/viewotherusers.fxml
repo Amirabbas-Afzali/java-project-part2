@@ -11,13 +11,8 @@
 
 <AnchorPane fx:id="PANE" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ViewOtherUsers">
     <children>
-        <ImageView fx:id="bckgr" fitHeight="982.0" fitWidth="1372.0" layoutX="-2.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@31189.jpg" />
-            </image>
-        </ImageView>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="166.0" layoutX="227.0" layoutY="14.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="402.0" />
-        <ScrollPane layoutX="28.0" layoutY="205.0" prefHeight="523.0" prefWidth="757.0">
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="166.0" layoutX="227.0" layoutY="14.0" opacity="0.25" stroke="BLACK" strokeType="INSIDE" width="402.0" AnchorPane.bottomAnchor="570.0" AnchorPane.leftAnchor="226.60000000000002" AnchorPane.rightAnchor="671.0" />
+        <ScrollPane layoutX="28.0" layoutY="205.0" prefHeight="523.0" prefWidth="757.0" AnchorPane.bottomAnchor="21.799999999999955" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="514.4">
             <content>
                 <AnchorPane fx:id="tallpane" minHeight="0.0" minWidth="0.0" prefHeight="575.0" prefWidth="742.0" />
             </content>
@@ -27,32 +22,32 @@
                 <Font name="Footlight MT Light" size="31.0" />
             </font>
         </Label>
-        <ScrollPane layoutX="814.0" layoutY="129.0" prefHeight="501.0" prefWidth="214.0">
+        <ScrollPane layoutX="814.0" layoutY="129.0" prefHeight="501.0" prefWidth="214.0" AnchorPane.bottomAnchor="119.39999999999998" AnchorPane.leftAnchor="814.0000000000001" AnchorPane.rightAnchor="271.6">
             <content>
                 <AnchorPane fx:id="tallpanfollowers" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="194.0" />
             </content>
         </ScrollPane>
-        <ScrollPane layoutX="1059.0" layoutY="131.0" prefHeight="501.0" prefWidth="214.0">
+        <ScrollPane layoutX="1059.0" layoutY="131.0" prefHeight="501.0" prefWidth="214.0" AnchorPane.bottomAnchor="117.39999999999998" AnchorPane.leftAnchor="1059.0" AnchorPane.rightAnchor="26.599999999999994">
             <content>
                 <AnchorPane fx:id="tallpanfollowings" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="194.0" />
             </content>
         </ScrollPane>
-        <Label fx:id="ordorbus1" alignment="CENTER" layoutX="807.0" layoutY="83.0" prefHeight="55.0" prefWidth="219.0" text="Followers" textFill="WHITE">
+        <Label fx:id="ordorbus1" alignment="CENTER" layoutX="807.0" layoutY="83.0" prefHeight="55.0" prefWidth="219.0" text="Followers" textFill="WHITE" AnchorPane.bottomAnchor="611.8" AnchorPane.leftAnchor="807.0" AnchorPane.rightAnchor="273.8">
             <font>
                 <Font name="Footlight MT Light" size="31.0" />
             </font>
         </Label>
-        <Label fx:id="ordorbus11" alignment="CENTER" layoutX="1048.0" layoutY="82.0" prefHeight="55.0" prefWidth="219.0" text="Followings" textFill="WHITE">
+        <Label fx:id="ordorbus11" alignment="CENTER" layoutX="1048.0" layoutY="82.0" prefHeight="55.0" prefWidth="219.0" text="Followings" textFill="WHITE" AnchorPane.bottomAnchor="612.8" AnchorPane.leftAnchor="1048.0" AnchorPane.rightAnchor="32.80000000000001">
             <font>
                 <Font name="Footlight MT Light" size="31.0" />
             </font>
         </Label>
-        <Label fx:id="intro" layoutX="249.0" layoutY="17.0" prefHeight="167.0" prefWidth="386.0" textFill="WHITE">
+        <Label fx:id="intro" layoutX="249.0" layoutY="17.0" prefHeight="167.0" prefWidth="386.0" textFill="WHITE" AnchorPane.bottomAnchor="565.8" AnchorPane.leftAnchor="249.0" AnchorPane.rightAnchor="664.6">
             <font>
                 <Font name="Footlight MT Light" size="26.0" />
             </font>
         </Label>
-        <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="1219.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="59.0" fitWidth="65.0" layoutX="1219.0" layoutY="651.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="1218.8" AnchorPane.rightAnchor="22.0">
             <image>
                 <Image url="@icon/download-icon-left+back+backwards+left+left+arrow+long+arrow+previous+icon-1320085925301623010_256.png" />
             </image>
@@ -60,23 +55,23 @@
         <Button layoutX="1224.0" layoutY="654.0" mnemonicParsing="false" onAction="#home" opacity="0.0" prefHeight="48.0" prefWidth="49.0" text="Button" />
         <ImageView fx:id="proffield" fitHeight="118.0" fitWidth="128.0" layoutX="32.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
         <Button layoutX="52.0" layoutY="30.0" mnemonicParsing="false" onAction="#viewStory" opacity="0.0" prefHeight="106.0" prefWidth="130.0" text="Button" />
-      <Button fx:id="massag" layoutX="899.0" layoutY="19.0" mnemonicParsing="false" onAction="#massage" prefHeight="26.0" prefWidth="110.0" text="Massage">
+      <Button fx:id="massag" layoutX="899.0" layoutY="19.0" mnemonicParsing="false" onAction="#massage" prefHeight="26.0" prefWidth="110.0" text="Massage" AnchorPane.bottomAnchor="701.4" AnchorPane.rightAnchor="290.6">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addblockbut" layoutX="1024.0" layoutY="19.0" mnemonicParsing="false" onAction="#addblock" prefHeight="26.0" prefWidth="110.0" text="Block">
+      <Button fx:id="addblockbut" layoutX="1024.0" layoutY="19.0" mnemonicParsing="false" onAction="#addblock" prefHeight="26.0" prefWidth="110.0" text="Block" AnchorPane.bottomAnchor="701.4" AnchorPane.rightAnchor="165.6">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addClosebut" layoutX="738.0" layoutY="18.0" mnemonicParsing="false" onAction="#addclose" prefHeight="30.0" prefWidth="147.0" text="Add to CloseList" />
-      <Label fx:id="answer" alignment="CENTER" layoutX="802.0" layoutY="653.0" prefHeight="55.0" prefWidth="406.0" text="Followers" textFill="WHITE">
+      <Button fx:id="addClosebut" layoutX="738.0" layoutY="18.0" mnemonicParsing="false" onAction="#addclose" prefHeight="30.0" prefWidth="147.0" text="Add to CloseList" AnchorPane.bottomAnchor="701.6" AnchorPane.rightAnchor="414.8" />
+      <Label fx:id="answer" alignment="CENTER" layoutX="802.0" layoutY="653.0" prefHeight="55.0" prefWidth="406.0" text="Followers" textFill="WHITE" AnchorPane.bottomAnchor="41.8" AnchorPane.leftAnchor="802.0000000000001" AnchorPane.rightAnchor="91.60000000000002">
          <font>
             <Font name="High Tower Text" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="addfollowbut" layoutX="1150.0" layoutY="19.0" mnemonicParsing="false" onAction="#followuser" prefHeight="26.0" prefWidth="110.0" text="Follow">
+      <Button fx:id="addfollowbut" layoutX="1150.0" layoutY="19.0" mnemonicParsing="false" onAction="#followuser" prefHeight="26.0" prefWidth="110.0" text="Follow" AnchorPane.bottomAnchor="701.4" AnchorPane.rightAnchor="39.599999999999994">
          <font>
             <Font size="14.0" />
          </font>

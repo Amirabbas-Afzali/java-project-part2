@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,20 +19,27 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class Login2 implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\sunset-in-the-mountains-60-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\5.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+ //   Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\sunset-in-the-mountains-60-big.jpg");
+  //  Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\5.jpg");
+   // Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style5a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style5/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+
+    @FXML
+    AnchorPane anch1;
 
     @FXML
     Label label,captcha;
@@ -121,11 +129,8 @@ public class Login2 implements Initializable {
                 if(checkpass(searchuser(usernameF.getText()),passF.getText()).equals("Welcome")){
                     if(passF1.getText().equals(cap)){
 
-                    //  PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,MAINInformation.mainInformation.users.get(usernameF.getText()));;
-                   //    PersonalHomepage.timelineposts=MAINInformation.mainInformation.users.get(usernameF.getText()).posts;
                        PersonalHomepage.USER=MAINInformation.mainInformation.users.get(usernameF.getText());
                       PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,PersonalHomepage.USER);
-// TODO: 8/5/2022
                         Main.personalpageSTART();
                     }
                     else {

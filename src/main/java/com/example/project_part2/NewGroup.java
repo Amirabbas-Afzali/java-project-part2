@@ -27,6 +27,23 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class NewGroup implements Initializable {
+    public void SETThEME(){
+        if(CompletePersonalInformation.SetTheme==1){
+            anch1.getStylesheets().add(getClass().getResource("Style4a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
+        else if(CompletePersonalInformation.SetTheme==2){
+            anch1.getStylesheets().add(getClass().getResource("Style4/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
+        else if(CompletePersonalInformation.SetTheme==3){
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
+    }
+    @FXML
+    AnchorPane anch1;
+
 
     public static Group myGroup;
     public static User Viewer;
@@ -139,6 +156,7 @@ public class NewGroup implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SETThEME();
         if (New){
             SetNewOptions();
         }

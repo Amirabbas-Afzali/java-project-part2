@@ -8,44 +8,38 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ShowPostFXML">
-    <children>
-        <ImageView fx:id="bckgr" fitHeight="812.0" fitWidth="1374.0" layoutX="-4.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@300033.png" />
-            </image>
-        </ImageView>
-        <ScrollPane layoutX="1003.0" layoutY="190.0" prefHeight="196.0" prefWidth="236.0">
-            <content>
-                <AnchorPane fx:id="LikeAnchor" minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="219.0" />
-            </content>
-        </ScrollPane>
-        <ScrollPane fx:id="CommentScroll" layoutX="371.0" layoutY="80.0" prefHeight="440.0" prefWidth="562.0">
-            <content>
-                <AnchorPane fx:id="CommentAnchor" minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="545.0" />
-            </content>
-        </ScrollPane>
-        <DatePicker fx:id="StartDate" layoutX="1027.0" layoutY="79.0" promptText="Start Date" />
-        <DatePicker fx:id="EndDate" layoutX="1027.0" layoutY="117.0" promptText="End Date" />
-        <TextArea fx:id="CommentArea" layoutX="484.0" layoutY="545.0" prefHeight="41.0" prefWidth="349.0" promptText="Enter Comment" />
-        <ScrollPane fx:id="ViewScroll" layoutX="1004.0" layoutY="444.0" prefHeight="212.0" prefWidth="237.0">
-            <content>
-                <AnchorPane fx:id="ViewAnchor" minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="220.0" />
-            </content>
-        </ScrollPane>
-        <Button fx:id="UpdateButton" layoutX="1087.0" layoutY="154.0" mnemonicParsing="false" onAction="#UpdateLikeAndComment" text="Update" />
-        <Button fx:id="Add" layoutX="852.0" layoutY="553.0" mnemonicParsing="false" onAction="#AddComment" text="          " />
-        <Label fx:id="CaptionLabel" layoutX="39.0" layoutY="341.0" text="Label" />
-        <Label fx:id="DescriptionLabel" layoutX="39.0" layoutY="444.0" text="Label" />
-        <Button fx:id="EditPost" layoutX="27.0" layoutY="307.0" mnemonicParsing="false" onAction="#UpdatePost" text="Edit Caption" />
-      <ImageView fitHeight="64.0" fitWidth="62.0" layoutX="59.0" layoutY="603.0" pickOnBounds="true" preserveRatio="true" rotate="-180.0">
+<AnchorPane fx:id="anch1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ShowPostFXML">
+   <children>
+      <ScrollPane layoutX="1013.0" layoutY="200.0" prefHeight="196.0" prefWidth="236.0" AnchorPane.bottomAnchor="354.0" AnchorPane.leftAnchor="1013.9999999999999" AnchorPane.rightAnchor="48.400000000000006">
+         <content>
+            <AnchorPane fx:id="LikeAnchor" minHeight="0.0" minWidth="0.0" prefHeight="225.0" prefWidth="219.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="CommentScroll" layoutX="381.0" layoutY="90.0" prefHeight="440.0" prefWidth="562.0" AnchorPane.bottomAnchor="220.0" AnchorPane.leftAnchor="381.0" AnchorPane.rightAnchor="356.6">
+         <content>
+            <AnchorPane fx:id="CommentAnchor" minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="545.0" />
+         </content>
+      </ScrollPane>
+      <DatePicker fx:id="StartDate" layoutX="1037.0" layoutY="89.0" promptText="Start Date" AnchorPane.bottomAnchor="635.4" AnchorPane.leftAnchor="1037.0" AnchorPane.rightAnchor="87.80000000000001" />
+      <DatePicker fx:id="EndDate" layoutX="1037.0" layoutY="127.0" promptText="End Date" AnchorPane.bottomAnchor="597.4" AnchorPane.leftAnchor="1037.0" AnchorPane.rightAnchor="87.80000000000001" />
+      <TextArea fx:id="CommentArea" layoutX="494.0" layoutY="555.0" prefHeight="41.0" prefWidth="349.0" promptText="Enter Comment" AnchorPane.bottomAnchor="153.4" AnchorPane.rightAnchor="456.4" />
+      <ScrollPane fx:id="ViewScroll" layoutX="1014.0" layoutY="454.0" prefHeight="212.0" prefWidth="237.0" AnchorPane.bottomAnchor="84.0" AnchorPane.leftAnchor="1013.9999999999999" AnchorPane.rightAnchor="48.400000000000006">
+         <content>
+            <AnchorPane fx:id="ViewAnchor" minHeight="0.0" minWidth="0.0" prefHeight="229.0" prefWidth="220.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="UpdateButton" layoutX="1097.0" layoutY="164.0" mnemonicParsing="false" onAction="#UpdateLikeAndComment" text="Update" AnchorPane.bottomAnchor="560.4" AnchorPane.rightAnchor="147.8" />
+      <Button fx:id="Add" layoutX="862.0" layoutY="563.0" mnemonicParsing="false" onAction="#AddComment" text="          " AnchorPane.bottomAnchor="161.4" AnchorPane.rightAnchor="388.4" />
+      <Label fx:id="CaptionLabel" layoutX="49.0" layoutY="351.0" text="Label" />
+      <Label fx:id="DescriptionLabel" layoutX="49.0" layoutY="454.0" text="Label" />
+      <Button fx:id="EditPost" layoutX="37.0" layoutY="317.0" mnemonicParsing="false" onAction="#UpdatePost" text="Edit Caption" AnchorPane.bottomAnchor="407.4" AnchorPane.leftAnchor="36.99999999999996" AnchorPane.rightAnchor="1182.2" />
+      <ImageView fitHeight="64.0" fitWidth="62.0" layoutX="69.0" layoutY="613.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@icon/B.png" />
          </image>
       </ImageView>
-        <Button layoutX="60.0" layoutY="610.0" mnemonicParsing="false" onAction="#Back" opacity="0.0" prefHeight="49.0" prefWidth="52.0" text="Back" />
-        <Button fx:id="RepostButton" layoutX="158.0" layoutY="307.0" mnemonicParsing="false" onAction="#RepostManage" text="          " />
-    </children>
-</Pane>
+      <Button layoutX="70.0" layoutY="620.0" mnemonicParsing="false" onAction="#Back" opacity="0.0" prefHeight="49.0" prefWidth="52.0" text="Back" />
+      <Button fx:id="RepostButton" layoutX="168.0" layoutY="317.0" mnemonicParsing="false" onAction="#RepostManage" text="          " AnchorPane.bottomAnchor="407.4" AnchorPane.rightAnchor="1082.4" />
+   </children>
+</AnchorPane>

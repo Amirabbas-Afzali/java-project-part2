@@ -31,20 +31,28 @@ import javafx.scene.text.Font;
 import static com.example.project_part2.Main.mainstage;
 
 public class PersonalHomepage implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\beautiful-pink-sunset-over-the-sea-in-spain-409-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\7.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+  //  Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\beautiful-pink-sunset-over-the-sea-in-spain-409-big.jpg");
+   // Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\7.jpg");
+   // Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style7a/them1.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style7/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+
+    @FXML
+    AnchorPane anch1;
 
     public static PersonalHomepage personalHomepage=new PersonalHomepage();
     public static User USER;
@@ -69,8 +77,6 @@ public class PersonalHomepage implements Initializable {
     TextField t1;
     @FXML
     AnchorPane tallpane,stories;
-    @FXML
-    Pane PANE;
     @FXML
     Label label1;
     Image prof;
@@ -231,8 +237,8 @@ public void FillStatics(){
         commentfield.setPrefHeight(200);
         commentfield.setPrefWidth(180);
         commentfield.setPromptText("Add a comment . . .");
-        PANE.getChildren().add(commentfield);
-        PANE.getChildren().addAll(send,cancel);
+        anch1.getChildren().add(commentfield);
+        anch1.getChildren().addAll(send,cancel);
 
         EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
             @Override
@@ -243,14 +249,14 @@ public void FillStatics(){
                         try {
                             post.addcomment(USER,commentfield.getText());
                           com=false;
-                        PANE.getChildren().removeAll(commentfield,send,cancel);
+                            anch1.getChildren().removeAll(commentfield,send,cancel);
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }}
 
                     }
                 if(event.getSource()==cancel) {
-                  PANE.getChildren().removeAll(commentfield,send,cancel);
+                    anch1.getChildren().removeAll(commentfield,send,cancel);
                     com=false;
                 }
 
@@ -284,15 +290,15 @@ public void FillStatics(){
             label22.setLayoutY(300);
             label22.setTextFill(dotcolor2);
 
-            PANE.getChildren().addAll(rep,label22);
+            anch1.getChildren().addAll(rep,label22);
         }
         else {
             but1func.setOpacity(1);
             but1func1.setOpacity(1);
             newstory.setDisable(false);
             newpost.setDisable(false);
-          if(PANE.getChildren().contains(rep)){  PANE.getChildren().remove(rep);}
-            if(PANE.getChildren().contains(label22)){  PANE.getChildren().remove(label22);}
+          if(anch1.getChildren().contains(rep)){  anch1.getChildren().remove(rep);}
+            if(anch1.getChildren().contains(label22)){  anch1.getChildren().remove(label22);}
 
         }
     }
@@ -685,17 +691,17 @@ imageView.setFitWidth(1300);
         }
     }
 //=============================
-    PANE.getChildren().add(imageView);
-    PANE.getChildren().add(imageView1);
-    PANE.getChildren().add(tempprof);
-    PANE.getChildren().add(closebut);
-    PANE.getChildren().add(backbut);
-    PANE.getChildren().add(nextbut);
-    PANE.getChildren().add(photo);
-    PANE.getChildren().add(LIKE);
-    PANE.getChildren().add(label4);
-    PANE.getChildren().addAll(butLike,butClose,butnext,butback);
-    if(ord&&label3!=null){PANE.getChildren().add(label3);}
+    anch1.getChildren().add(imageView);
+    anch1.getChildren().add(imageView1);
+    anch1.getChildren().add(tempprof);
+    anch1.getChildren().add(closebut);
+    anch1.getChildren().add(backbut);
+    anch1.getChildren().add(nextbut);
+    anch1.getChildren().add(photo);
+    anch1.getChildren().add(LIKE);
+    anch1.getChildren().add(label4);
+    anch1.getChildren().addAll(butLike,butClose,butnext,butback);
+    if(ord&&label3!=null){anch1.getChildren().add(label3);}
 
     EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
         @Override
@@ -703,8 +709,8 @@ imageView.setFitWidth(1300);
 
             if(event.getSource()==butClose){
                 index=0;
-                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
-                if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+                anch1.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                if(anch1.getChildren().contains(label3)){anch1.getChildren().remove(label3);}
 
             }
 
@@ -723,8 +729,8 @@ imageView.setFitWidth(1300);
             if(event.getSource()==butnext){
                 if(index<=userstories.size()-2){
                 index++;
-                PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
-                    if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+                    anch1.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                    if(anch1.getChildren().contains(label3)){anch1.getChildren().remove(label3);}
                     storypic(user1);
             }
             }
@@ -732,8 +738,8 @@ imageView.setFitWidth(1300);
             if(event.getSource()==butback){
                 if(index>0){
                     index--;
-                    PANE.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
-                    if(PANE.getChildren().contains(label3)){PANE.getChildren().remove(label3);}
+                    anch1.getChildren().removeAll(imageView,imageView1,tempprof,closebut,backbut,nextbut,photo,LIKE,butClose,butLike,butnext,butback,label4);
+                    if(anch1.getChildren().contains(label3)){anch1.getChildren().remove(label3);}
                     storypic(user1);
                 }
             }

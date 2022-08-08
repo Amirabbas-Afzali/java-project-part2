@@ -127,9 +127,6 @@ public class ShowTimeline {
 
         }
         Collections.sort(postcodes);
-        //for (Integer i : postcodes){
-        //    result.add(i.toString());
-        //}
         return postcodes;
     }
     public List<Post> TimeLinePosts(int n,User user){

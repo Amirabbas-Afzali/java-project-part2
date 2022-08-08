@@ -30,7 +30,7 @@ public class ShowMassageHandler {
 
     Button OptionButton=new Button(),ProfButton=new Button(),LikeButton=new Button()
             ,ReplyButton=new Button(),ForwardButton=new Button(),MoreOptionButton=new Button(),EditButton=new Button(),EditButton2=new Button();
-    ImageView imageView,LikeImage,DisLikeImage,ReplyImage,ForwardImage,MoreOptionImage;
+    ImageView imageView,LikeImage,DisLikeImage,ReplyImage,ForwardImage,MoreOptionImage,CommentImage;
     AnchorPane myPane;
     Massage massage;
     String text;
@@ -44,17 +44,17 @@ public class ShowMassageHandler {
             ReplytoRec.setFill(color);
 
         }
+        massage=_massage;
         Random rand = new Random(System.currentTimeMillis());
         ColorRec.setFill(Color.rgb(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255),0.99));
         Viewer=user;
-        Image image=new Image(Viewer.profilepicpath);
+        Image image=new Image(MAINInformation.mainInformation.users.get(massage.SenderUserName).profilepicpath);
         image=getRoundedImage(image,200);
         imageView=new ImageView(image);
         imageView.setFitWidth(40);
         imageView.setFitHeight(40);
         imageView.setTranslateX(X-47);
         imageView.setPreserveRatio(true);
-
 
         image=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\like.png");
         LikeImage=new ImageView(image);
@@ -83,7 +83,7 @@ public class ShowMassageHandler {
 
         OptionButton.setText("Options");
         String _text=_massage.massageString;
-        massage=_massage;
+
         OptionButton.setBackground(new Background(new BackgroundFill(Color.valueOf("#797EF6"),null,null)));
         OptionButton.setFont(Font.font(8));
         StringBuilder stringBuilder=new StringBuilder();
@@ -475,7 +475,7 @@ public class ShowMassageHandler {
     public void Forward(){
         ListView<String > listView=new ListView<>();
         Button button=new Button();
-        listView.setItems(FXCollections.observableArrayList(Viewer.DirectMassageCodes));
+        listView.setItems(FXCollections.observableArrayList(Viewer.getDMsList()));
         listView.setMaxWidth(150);
         listView.setMaxHeight(100);
         listView.setTranslateX(ForwardButton.getTranslateX()+30);

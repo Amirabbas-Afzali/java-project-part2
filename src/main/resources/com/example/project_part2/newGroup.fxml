@@ -9,71 +9,70 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.NewGroup">
-    <children>
-        <TextField fx:id="IDField" layoutX="402.0" layoutY="44.0" promptText="Group ID">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </TextField>
-        <CheckBox fx:id="CheckPrivate" layoutX="473.0" layoutY="148.0" mnemonicParsing="false" text="Private">
-            <font>
-                <Font name="Arial" size="21.0" />
-            </font>
-        </CheckBox>
-        <TextArea fx:id="BioArea" layoutX="390.0" layoutY="213.0" prefHeight="200.0" prefWidth="259.0" promptText="Bio">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </TextArea>
-        <ImageView fitHeight="78.0" fitWidth="70.0" layoutX="74.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@icon/B.png" />
-            </image>
-        </ImageView>
-        <Button layoutX="67.0" layoutY="553.0" mnemonicParsing="false" onAction="#Back" opacity="0.0" prefHeight="68.0" prefWidth="78.0" text="Back">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <Button fx:id="SetButton" layoutX="495.0" layoutY="492.0" mnemonicParsing="false" onAction="#EditOrCreate" text="Set">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <ScrollPane fx:id="AddScroll" layoutX="772.0" layoutY="118.0" prefHeight="200.0" prefWidth="410.0">
-            <content>
-                <AnchorPane fx:id="UserToAddAnchor" minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="394.0" />
-            </content>
-        </ScrollPane>
-        <ScrollPane fx:id="MemberScroll" layoutX="771.0" layoutY="383.0" prefHeight="203.0" prefWidth="427.0">
-            <content>
-                <AnchorPane fx:id="MembersAnchor" minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="411.0" />
-            </content>
-        </ScrollPane>
-        <Button fx:id="AddButton" layoutX="824.0" layoutY="30.0" mnemonicParsing="false" onAction="#SetUsersToAdd" text="Search" textFill="#980000">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <TextField fx:id="SearchField" layoutX="918.0" layoutY="34.0" promptText="Search User">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-        <Label fx:id="Warnings" layoutX="391.0" layoutY="436.0" text="Warnings">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
-        <ImageView fx:id="prof" fitHeight="251.0" fitWidth="248.0" layoutX="48.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="111.0" layoutY="361.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
-            <font>
-                <Font name="System Italic" size="16.0" />
-            </font>
-        </Button>
-    </children>
-</Pane>
+<AnchorPane fx:id="anch1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.NewGroup">
+   <children>
+      <TextField fx:id="IDField" layoutX="412.0" layoutY="54.0" promptText="Group ID" AnchorPane.bottomAnchor="656.0" AnchorPane.leftAnchor="412.00000000000006" AnchorPane.rightAnchor="664.8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <CheckBox fx:id="CheckPrivate" layoutX="483.0" layoutY="158.0" mnemonicParsing="false" text="Private" AnchorPane.bottomAnchor="563.2" AnchorPane.leftAnchor="483.00000000000006" AnchorPane.rightAnchor="713.8">
+         <font>
+            <Font name="Arial" size="21.0" />
+         </font>
+      </CheckBox>
+      <TextArea fx:id="BioArea" layoutX="400.0" layoutY="223.0" prefHeight="200.0" prefWidth="259.0" promptText="Bio" AnchorPane.bottomAnchor="327.0" AnchorPane.leftAnchor="400.00000000000006" AnchorPane.rightAnchor="640.8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextArea>
+      <ImageView fitHeight="78.0" fitWidth="70.0" layoutX="84.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icon/B.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="77.0" layoutY="563.0" mnemonicParsing="false" onAction="#Back" opacity="0.0" prefHeight="68.0" prefWidth="78.0" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="SetButton" layoutX="505.0" layoutY="502.0" mnemonicParsing="false" onAction="#EditOrCreate" text="Set" AnchorPane.bottomAnchor="208.0" AnchorPane.rightAnchor="745.4">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ScrollPane fx:id="AddScroll" layoutX="782.0" layoutY="128.0" prefHeight="200.0" prefWidth="410.0" AnchorPane.bottomAnchor="422.0" AnchorPane.leftAnchor="782.0000000000001" AnchorPane.rightAnchor="107.60000000000002">
+         <content>
+            <AnchorPane fx:id="UserToAddAnchor" minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="394.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="MemberScroll" layoutX="781.0" layoutY="393.0" prefHeight="203.0" prefWidth="427.0" AnchorPane.bottomAnchor="153.8" AnchorPane.leftAnchor="781.0" AnchorPane.rightAnchor="91.80000000000001">
+         <content>
+            <AnchorPane fx:id="MembersAnchor" minHeight="0.0" minWidth="0.0" prefHeight="239.0" prefWidth="411.0" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="AddButton" layoutX="834.0" layoutY="40.0" mnemonicParsing="false" onAction="#SetUsersToAdd" text="Search" textFill="#980000" AnchorPane.bottomAnchor="670.0" AnchorPane.leftAnchor="834.0" AnchorPane.rightAnchor="388.4">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <TextField fx:id="SearchField" layoutX="928.0" layoutY="44.0" promptText="Search User" AnchorPane.bottomAnchor="674.8" AnchorPane.leftAnchor="928.0000000000001" AnchorPane.rightAnchor="185.6">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label fx:id="Warnings" layoutX="401.0" layoutY="446.0" text="Warnings" AnchorPane.bottomAnchor="276.8" AnchorPane.leftAnchor="401.00000000000006" AnchorPane.rightAnchor="823.8">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="prof" fitHeight="251.0" fitWidth="248.0" layoutX="58.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="423.0" AnchorPane.leftAnchor="58.0" AnchorPane.rightAnchor="994.0" />
+      <Button layoutX="121.0" layoutY="371.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo" AnchorPane.bottomAnchor="337.4" AnchorPane.leftAnchor="120.99999999999991" AnchorPane.rightAnchor="1037.4">
+         <font>
+            <Font name="System Italic" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

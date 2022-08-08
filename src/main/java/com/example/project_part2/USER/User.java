@@ -514,6 +514,7 @@ public class User {
         }
         return result;
     }
+
     public String DMNameToCode(String input){
         if (MAINInformation.mainInformation.users.containsKey(input)){
             for (String i:DirectMassageCodes){

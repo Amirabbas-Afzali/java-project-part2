@@ -1,8 +1,4 @@
 package com.example.project_part2;
-import com.example.project_part2.MAINInformation;
-import com.example.project_part2.Main;
-import com.example.project_part2.POST.*;
-import com.example.project_part2.PersonalHomepage;
 import com.example.project_part2.USER.*;
 import com.example.project_part2.DataBaseController.*;
 import javafx.collections.FXCollections;
@@ -15,6 +11,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
@@ -36,20 +33,24 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class CreatAccount implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\polish-sea-baltic-53-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\2.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style2a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style2/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+    @FXML
+    AnchorPane anch1;
+
     public static CreatAccount creatAccount=new CreatAccount();
 
     public void start() throws SQLException {
@@ -210,8 +211,6 @@ ImageView prof,bckgr;
         list2.add("Private");list2.add("Public (default)");
         ord.setItems(FXCollections.observableList(list2));
         buschoice.setSelected(true);
-
-//\n1.Tech\n2.Cloth\n3.AD\n4.Artist\n5.Sport"
     }
 
     public void busfill(){ordchoice.setSelected(false);}

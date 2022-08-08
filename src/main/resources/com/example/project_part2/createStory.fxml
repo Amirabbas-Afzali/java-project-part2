@@ -7,38 +7,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewStory">
+<AnchorPane fx:id="anch1" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewStory">
    <children>
-      <ImageView fx:id="bckgr" fitHeight="882.0" fitWidth="1392.0" layoutX="-11.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@lake-sunset-poland-55-big.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="photo" fitHeight="299.0" fitWidth="336.0" layoutX="418.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="photo" fitHeight="299.0" fitWidth="336.0" layoutX="418.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="271.0" AnchorPane.leftAnchor="417.8" AnchorPane.rightAnchor="583.0">
          <image>
             <Image url="@icon/download-icon-upload+export+upload+upload+to+cloud+icon-1320165659391053645_256.png" />
          </image></ImageView>
-      <Button layoutX="499.0" layoutY="493.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+      <Button layoutX="499.0" layoutY="493.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo" AnchorPane.bottomAnchor="215.4" AnchorPane.leftAnchor="499.0" AnchorPane.rightAnchor="659.4">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <Button layoutX="1082.0" layoutY="654.0" mnemonicParsing="false" onAction="#Add" prefHeight="41.0" prefWidth="125.0" text="Add">
+      <Button layoutX="1082.0" layoutY="654.0" mnemonicParsing="false" onAction="#Add" prefHeight="41.0" prefWidth="125.0" text="Add" AnchorPane.bottomAnchor="54.4" AnchorPane.rightAnchor="92.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Label fx:id="label" alignment="CENTER" layoutX="155.0" layoutY="25.0" prefHeight="91.0" prefWidth="446.0" text="Add Story" textFill="WHITE">
+      <Label fx:id="label" alignment="CENTER" layoutX="155.0" layoutY="25.0" prefHeight="91.0" prefWidth="446.0" text="Add Story" textFill="WHITE" AnchorPane.bottomAnchor="633.8" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="698.6">
          <font>
             <Font name="Footlight MT Light" size="41.0" />
          </font>
       </Label>
-      <Button layoutX="85.0" layoutY="650.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back">
+      <Button layoutX="85.0" layoutY="650.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back" AnchorPane.bottomAnchor="58.4" AnchorPane.leftAnchor="84.99999999999991" AnchorPane.rightAnchor="1089.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="935.0" layoutY="655.0" mnemonicParsing="false" onAction="#Close" prefHeight="41.0" prefWidth="125.0" text="CloseFriend">
+      <Button layoutX="935.0" layoutY="655.0" mnemonicParsing="false" onAction="#Close" prefHeight="41.0" prefWidth="125.0" text="CloseFriend" AnchorPane.bottomAnchor="53.4" AnchorPane.rightAnchor="239.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>

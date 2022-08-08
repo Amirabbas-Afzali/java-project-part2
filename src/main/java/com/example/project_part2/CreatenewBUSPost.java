@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,20 +27,26 @@ import static com.example.project_part2.Main.mainstage;
 
 public class CreatenewBUSPost implements Initializable {
 
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\3.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+  //  Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg");
+ //   Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\3.jpg");
+  //  Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style3a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style3/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+    @FXML
+    AnchorPane anch1;
 
   public static   User user;
 
@@ -62,7 +69,7 @@ public String profpath;
             BusinessPost businessPost = new BusinessPost(str1, cap.getText(), des.getText(), (BusinessUser) user, new Date(),profpath);
             PostTableDBC.postTableDBC.setPost(businessPost);
             MAINInformation.mainInformation.posts.put(str1,businessPost);
-            user.posts.add(businessPost);
+           user.posts.add(businessPost);
             Main.personalpageSTART();
         }
         else {label.setText("Error !");}

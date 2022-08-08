@@ -3,34 +3,45 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="680.0" maxWidth="1280.0" minHeight="680.0" minWidth="1280.0" prefHeight="680.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ChatAndPvs">
-    <children>
-        <ScrollPane layoutX="462.0" layoutY="106.0" prefHeight="450.0" prefWidth="600.0">
-            <content>
-                <AnchorPane fx:id="MassagesAnchor" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="583.0" />
-            </content>
-        </ScrollPane>
-        <Button layoutX="39.0" layoutY="611.0" mnemonicParsing="false" onAction="#Back" text="Back" />
-        <ScrollPane layoutX="88.0" layoutY="65.0" prefHeight="495.0" prefWidth="312.0">
-            <content>
-                <AnchorPane fx:id="ChatAndPvsAnchor" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="296.0" />
-            </content>
-        </ScrollPane>
-        <Button layoutX="1121.0" layoutY="56.0" mnemonicParsing="false" onAction="#NewGroup" text="New Group" textFill="#750098">
-            <font>
-                <Font name="System Bold Italic" size="17.0" />
-            </font>
-        </Button>
-        <Button layoutX="962.0" layoutY="594.0" mnemonicParsing="false" onAction="#AddComment" text="Add" />
-        <TextArea fx:id="CommentArea" layoutX="568.0" layoutY="577.0" prefHeight="56.0" prefWidth="375.0" promptText="Massage" />
-        <Button layoutX="664.0" layoutY="37.0" mnemonicParsing="false" onAction="#EditeGroup" prefHeight="56.0" prefWidth="183.0" text="Edit And Info">
-            <font>
-                <Font name="System Bold Italic" size="22.0" />
-            </font>
-        </Button>
-    </children>
-</Pane>
+<AnchorPane fx:id="anch1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.ChatAndPvs">
+   <children>
+      <Button layoutX="1147.0" layoutY="201.0" mnemonicParsing="false" onAction="#SearchGroup" prefHeight="26.0" prefWidth="74.0" text="Search">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="searchField" layoutX="1105.0" layoutY="170.0" prefHeight="26.0" prefWidth="161.0" promptText="Search Group or new DM " />
+      <ScrollPane layoutX="472.0" layoutY="116.0" prefHeight="450.0" prefWidth="600.0" AnchorPane.bottomAnchor="183.60000000000002" AnchorPane.leftAnchor="472.0" AnchorPane.rightAnchor="228.0">
+         <content>
+            <AnchorPane fx:id="MassagesAnchor" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="583.0" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="49.0" layoutY="621.0" mnemonicParsing="false" onAction="#Back" text="Back" AnchorPane.bottomAnchor="103.4" AnchorPane.leftAnchor="48.99999999999996" AnchorPane.rightAnchor="1210.2" />
+      <ScrollPane layoutX="98.0" layoutY="75.0" prefHeight="495.0" prefWidth="312.0" AnchorPane.bottomAnchor="179.8" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="890.0">
+         <content>
+            <AnchorPane fx:id="ChatAndPvsAnchor" minHeight="0.0" minWidth="0.0" prefHeight="548.0" prefWidth="296.0" />
+         </content>
+      </ScrollPane>
+      <Button layoutX="1131.0" layoutY="66.0" mnemonicParsing="false" onAction="#NewGroup" text="New Group" textFill="#750098" AnchorPane.bottomAnchor="646.4" AnchorPane.leftAnchor="1131.0" AnchorPane.rightAnchor="57.0">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="972.0" layoutY="604.0" mnemonicParsing="false" onAction="#AddComment" text="Add" AnchorPane.bottomAnchor="120.4" AnchorPane.leftAnchor="972.0" AnchorPane.rightAnchor="289.6" />
+      <TextArea fx:id="CommentArea" layoutX="578.0" layoutY="587.0" prefHeight="56.0" prefWidth="375.0" promptText="Massage" AnchorPane.bottomAnchor="107.0" AnchorPane.leftAnchor="578.0" AnchorPane.rightAnchor="346.8" />
+      <Button fx:id="EditButton" layoutX="799.0" layoutY="47.0" mnemonicParsing="false" onAction="#EditeGroup" prefHeight="56.0" prefWidth="183.0" text="Edit And Info">
+         <font>
+            <Font name="System Bold Italic" size="22.0" />
+         </font>
+      </Button>
+      <ScrollPane layoutX="1081.0" layoutY="238.0" prefHeight="274.0" prefWidth="202.0">
+        <content>
+          <AnchorPane fx:id="SearchAnchor" minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="254.0" />
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

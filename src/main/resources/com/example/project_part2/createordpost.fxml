@@ -5,49 +5,45 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewORDPost">
+<AnchorPane fx:id="anch1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_part2.CreatenewORDPost">
    <children>
-      <ImageView fx:id="bckgr" fitHeight="871.0" fitWidth="1400.0" layoutX="-4.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@plouzane-lighthouse-in-france-near-the-sea-ocean-111-big.jpg" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="cap" layoutX="732.0" layoutY="181.0" prefHeight="264.0" prefWidth="418.0" promptText="Hello guys ...">
+      <TextArea fx:id="cap" layoutX="742.0" layoutY="191.0" prefHeight="264.0" prefWidth="418.0" promptText="Hello guys ..." AnchorPane.bottomAnchor="295.0" AnchorPane.leftAnchor="742.0000000000001" AnchorPane.rightAnchor="139.60000000000002">
          <font>
             <Font name="Gabriola" size="28.0" />
          </font>
       </TextArea>
-      <Button layoutX="1054.0" layoutY="639.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create">
+      <Button layoutX="1064.0" layoutY="649.0" mnemonicParsing="false" onAction="#Create" prefHeight="41.0" prefWidth="125.0" text="Create" AnchorPane.bottomAnchor="59.4" AnchorPane.leftAnchor="1064.0" AnchorPane.rightAnchor="110.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="898.0" layoutY="641.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back">
+      <Button layoutX="908.0" layoutY="651.0" mnemonicParsing="false" onAction="#Back" prefHeight="41.0" prefWidth="125.0" text="Back" AnchorPane.bottomAnchor="57.4" AnchorPane.leftAnchor="907.9999999999999" AnchorPane.rightAnchor="266.4">
          <font>
             <Font name="System Italic" size="19.0" />
          </font>
       </Button>
-      <Button layoutX="238.0" layoutY="477.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo">
+      <Button layoutX="248.0" layoutY="487.0" mnemonicParsing="false" onAction="#addprof" prefHeight="41.0" prefWidth="141.0" text="Choose Photo" AnchorPane.bottomAnchor="221.4" AnchorPane.leftAnchor="248.00000000000003" AnchorPane.rightAnchor="910.4">
          <font>
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <ImageView fx:id="photo" fitHeight="267.0" fitWidth="279.0" layoutX="156.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="photo" fitHeight="267.0" fitWidth="279.0" layoutX="166.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="293.0" AnchorPane.leftAnchor="165.8" AnchorPane.rightAnchor="867.0">
          <image>
             <Image url="@icon/download-icon-upload+export+upload+upload+to+cloud+icon-1320165659391053645_256.png" />
-         </image></ImageView>
-      <Label fx:id="label" alignment="CENTER" layoutX="67.0" layoutY="48.0" prefHeight="91.0" prefWidth="536.0" text="Create Ordinary Post" textFill="WHITE">
+         </image>
+      </ImageView>
+      <Label fx:id="label" alignment="CENTER" layoutX="77.0" layoutY="58.0" prefHeight="91.0" prefWidth="536.0" text="Create Ordinary Post" textFill="WHITE" AnchorPane.bottomAnchor="600.8" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="687.0">
          <font>
             <Font name="Footlight MT Light" size="41.0" />
          </font>
       </Label>
-      <Label fx:id="label1" alignment="CENTER" layoutX="669.0" layoutY="119.0" prefHeight="46.0" prefWidth="306.0" text="Post caption :" textFill="WHITE">
+      <Label fx:id="label1" alignment="CENTER" layoutX="679.0" layoutY="129.0" prefHeight="46.0" prefWidth="306.0" text="Post caption :" textFill="WHITE" AnchorPane.bottomAnchor="574.6" AnchorPane.leftAnchor="679.0" AnchorPane.rightAnchor="314.6">
          <font>
             <Font name="Footlight MT Light" size="27.0" />
          </font>
       </Label>
    </children>
-</Pane>
+</AnchorPane>

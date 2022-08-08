@@ -29,20 +29,25 @@ import java.util.ResourceBundle;
 
 
 public class Viewuser implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\31189.jpg");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\10.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+    //Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\31189.jpg");
+ //   Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\10.jpg");
+  //  Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            PANE.getStylesheets().add(getClass().getResource("Style10a/ss.css").toExternalForm());
+            PANE.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            PANE.getStylesheets().add(getClass().getResource("Style10/ss.css").toExternalForm());
+            PANE.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            PANE.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            PANE.getStyleClass().add("body");
         }
     }
+
 
     public static User ThisUser;
     public static List<Post> timelineposts;
@@ -640,7 +645,8 @@ public class Viewuser implements Initializable {
             list2.add(user.UserName);}
         Closelist.setItems(FXCollections.observableList(list2));
  //======================
-
+     // //  for(int i=0;i<timelineposts.size();i++){
+//System.out.println(timelineposts.get(i).PostCode);}
         setscrollpane(timelineposts);
     }
 

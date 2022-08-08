@@ -15,6 +15,10 @@ public class DirectMassage {
         MAINInformation.mainInformation.directmassages.put(this.Code,this);
         DircectMassageTableDBC.dircectMassageTableDBC.setDirectMassage(this);
     }
+    public DirectMassage(String User1){
+        UserNamesInChat.add(User1);
+    }
+
     public static String NewDirectMassage(String User1,String User2) throws SQLException {
         DirectMassage directMassage=new DirectMassage(User1,User2);
         MAINInformation.mainInformation.users.get(User1).addDirectMassageCode(directMassage.Code);

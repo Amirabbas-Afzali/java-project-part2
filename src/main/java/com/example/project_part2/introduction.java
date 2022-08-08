@@ -94,11 +94,23 @@ public class introduction extends  Application  {
         label3.setLayoutY(615);
         label3.setTextFill(dotcolor1);
 
+        Label label5=new Label("Special Thanks to\n              dr.Vahdat   ,   dr.Hashemi\n              and anyone who helped us (TAs , Friends , Stackoverflow & . . . )");
+        label5.setFont(Font.font("Freestyle Script",30));
+        label5.setLayoutX(240);
+        label5.setLayoutY(200);
+        label5.setTextFill(dotcolor1);
+
         Label title=new Label("OWL Messenger");
         title.setFont(Font.font("Freestyle Script",60));
         title.setLayoutX(545);
         title.setLayoutY(2);
         title.setTextFill(dotcolor1);
+
+        Label EE=new Label("EESUT");
+        EE.setFont(Font.font("Footlight MT Light",40));
+        EE.setLayoutX(1100);
+        EE.setLayoutY(50);
+        EE.setTextFill(dotcolor1);
 
         Image profgit=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\git.png");
         ImageView proffield7=new ImageView(profgit);
@@ -114,7 +126,7 @@ public class introduction extends  Application  {
         button.setOpacity(0);
 
         pane.getChildren().add(imageView);
-        pane.getChildren().addAll(label1,proffield,proffield2,label2,label3,aaa,aaa1,title,proffield7,bbb);
+        pane.getChildren().addAll(label1,proffield,proffield2,label2,label3,aaa,aaa1,title,proffield7,bbb,label5,EE);
         pane.getChildren().add(button);
 
         button.setOnAction(new EventHandler<ActionEvent>() {

@@ -26,20 +26,26 @@ import java.time.ZoneId;
 import java.util.*;
 
 public class ShowPostFXML implements Initializable {
-    Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\300033.png");
-    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\11.jpg");
-    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
+   // Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\300033.png");
+ //   Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\11.jpg");
+   // Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
-            bckgr.setImage(image1);}
+            anch1.getStylesheets().add(getClass().getResource("Style11a/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
+        }
         else if(CompletePersonalInformation.SetTheme==2){
-            bckgr.setImage(image2);
+            anch1.getStylesheets().add(getClass().getResource("Style11/ss.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
         else if(CompletePersonalInformation.SetTheme==3){
-            bckgr.setImage(image3);
+            anch1.getStylesheets().add(getClass().getResource("StyleDark/dark.css").toExternalForm());
+            anch1.getStyleClass().add("body");
         }
     }
+    @FXML
+    AnchorPane anch1;
 
     public static User Viewer;
     public static Post post;
@@ -75,9 +81,6 @@ public class ShowPostFXML implements Initializable {
     private ScrollPane LikesScroll;
 
     @FXML
-    private Pane MainPane;
-
-    @FXML
     private Label DescriptionLabel,CaptionLabel;
 
     @FXML
@@ -107,7 +110,7 @@ public class ShowPostFXML implements Initializable {
         postImage.setFitHeight(300);
         postImage.setFitWidth(300);
         postImage.setPreserveRatio(true);
-        MainPane.getChildren().add(postImage);
+        anch1.getChildren().add(postImage);
 
         SendMassage=new ImageView(new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\icon\\SendMassage.png"));
         SendMassage.setTranslateX(850);
@@ -115,7 +118,7 @@ public class ShowPostFXML implements Initializable {
         SendMassage.setFitHeight(40);
         SendMassage.setFitWidth(40);
         SendMassage.setPreserveRatio(true);
-        MainPane.getChildren().add(SendMassage);
+        anch1.getChildren().add(SendMassage);
         Add.setBackground(null);
         if (post.RepostersList.contains(Viewer.UserName)||post.PosterName.equals(Viewer.UserName)){
             RepostButton.setText("Un Repost");
@@ -177,8 +180,8 @@ public class ShowPostFXML implements Initializable {
         EditCaption.setTranslateY(355);
         EditCaption.setTranslateX(230);
         EditCaption.setText("Edit");
-        MainPane.getChildren().add(EditCaption);
-        MainPane.getChildren().add(EditArea);
+        anch1.getChildren().add(EditCaption);
+        anch1.getChildren().add(EditArea);
     }
     void EditCaption(){
         if (EditArea.getText()!=null&&!"".equals(EditArea.getText())){
@@ -188,8 +191,8 @@ public class ShowPostFXML implements Initializable {
                 e.printStackTrace();
             }
         }
-        MainPane.getChildren().remove(EditArea);
-        MainPane.getChildren().remove(EditCaption);
+        anch1.getChildren().remove(EditArea);
+        anch1.getChildren().remove(EditCaption);
         SetLabels();
     }
     void UpdateComment(){
