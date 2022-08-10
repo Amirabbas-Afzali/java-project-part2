@@ -12,7 +12,7 @@ also MySQL databases and CSS are used in the program.
 
 In the first phase of this program, interesting statistical algorithms and artificial intelligence have been used for the Post and Explore section.
 
-This program is written in about 20 thousand lines.
+This program is written in about 15 thousand lines.
 
 
 
