@@ -29,9 +29,6 @@ import java.util.ResourceBundle;
 import static com.example.project_part2.Main.mainstage;
 
 public class CompletePersonalInformation implements Initializable {
- //   Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\blue-sea-water-and-beach-from-birds-eye-view-for-background-119-medium.jpg");
-//    Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\1.jpg");
-//    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
 
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
@@ -54,8 +51,6 @@ public class CompletePersonalInformation implements Initializable {
     public static User user;
     @FXML
     ImageView prof;
-    @FXML
-     ImageView bckgr;
     @FXML
     Label ordorbus,label12;
     @FXML

@@ -73,7 +73,6 @@ public class Main extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 1300, 750);
         mainstage.setTitle("OWL");
         mainstage.setScene(scene);
-        // mainstage.show();
     }
 
     public static void ChatAndPvsStart(User user) throws IOException,SQLException{

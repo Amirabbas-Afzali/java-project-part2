@@ -63,7 +63,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="Warnings" layoutX="401.0" layoutY="446.0" text="Warnings" AnchorPane.bottomAnchor="276.8" AnchorPane.leftAnchor="401.00000000000006" AnchorPane.rightAnchor="823.8">
+      <Label fx:id="Warnings" layoutX="401.0" layoutY="446.0" prefHeight="27.0" prefWidth="223.0" text="Warnings" AnchorPane.bottomAnchor="277.0">
          <font>
             <Font size="18.0" />
          </font>

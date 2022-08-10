@@ -139,7 +139,11 @@ public class ShowPostFXML implements Initializable {
         UpdateLikes();
         UpdateComment();
         if (PostKind){
-            ((BusinessPost)post).addView(Viewer.UserName);
+            try {
+                ((BusinessPost)post).addView(Viewer.UserName);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
             UpdateViews();
         }
         else {
@@ -249,6 +253,7 @@ public class ShowPostFXML implements Initializable {
         double X=5,Y=5;
         for (String i:post.LikedList){
             if (MAINInformation.mainInformation.likeHandleMap.get(i).ShowLikeHandle2(DateImport,LocalToDate(StartDate.getValue()),LocalToDate(EndDate.getValue()),true,true)){
+            System.out.println("Ooooooooo");
                 ViewedUsers.add(new PreShowUser(MAINInformation.mainInformation.users.get(
                         MAINInformation.mainInformation.likeHandleMap.get(i).LikerUserName
                 ),X,Y,ViewAnchor));

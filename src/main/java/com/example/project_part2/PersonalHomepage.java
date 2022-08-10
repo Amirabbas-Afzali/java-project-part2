@@ -305,6 +305,7 @@ public void FillStatics(){
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        PersonalHomepage.timelineposts=ShowTimeline.showTimeline.TimeLinePosts(10,PersonalHomepage.USER);
         SETThEME();
         tallpane.getChildren().clear();
         stories.getChildren().clear();
@@ -451,7 +452,6 @@ public void FillStatics(){
                     }
                 if(event.getSource()==buttonslike[i])
                 {
-                    System.out.println(i);
                     if(!posts.get(i).UserNameLiked(USER.UserName)){
                         try {
                             posts.get(i).LikedList.add(LikeHandle.NewLikeHandles(USER.UserName,posts.get(i).PostCode,false));
@@ -511,7 +511,7 @@ public void FillStatics(){
 
     public void setscrollpaneStory(List<User> users){
         int a=users.size();
-        stories.setPrefWidth(50*a);
+        stories.setPrefWidth(100*a);
         int i=0;
         for (User user:users){
            if(checkisClose(user)) {
@@ -788,6 +788,7 @@ public void exit(){
                       else {
                           CreatenewORDPost.user=USER;
                           Main.CreateORDpostSTART();}
+     //   setscrollpane(USER.posts);
     }
     public void myinfo() throws IOException {
         CompletePersonalInformation.user=USER;
@@ -798,13 +799,6 @@ public void exit(){
         Main.AddStorySTART();
     }
     public void sugg() throws IOException {
-
-     //   Suggestions.searchedposts = USER.posts;
-     /*   List<User> tem=new ArrayList<>();
-        for (User user : USER.FollowingMap.values()){
-            tem.add(user);
-    }*/
-        //Suggestions.syggestedUsers=tem;
         Suggestions.USER=USER;
         Main.suggestSTART();
     }

@@ -53,8 +53,6 @@ public class PasswordRecovery implements Initializable {
 
     public void start(){
 
-
-
         boolean flag1=true,flag2=true,endprogram=false;
         String City,usename="",password="",country,birthdate;
 
@@ -80,6 +78,7 @@ public class PasswordRecovery implements Initializable {
 
         }
     }
+
     public boolean checkinfo(User user, String city, String country, Date birth){
         if (user.City==null){
             System.out.println("You don't have enough info for recovery");

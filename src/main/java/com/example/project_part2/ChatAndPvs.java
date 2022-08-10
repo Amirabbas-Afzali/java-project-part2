@@ -199,6 +199,7 @@ public class ChatAndPvs implements Initializable {
             // post.addcomment(Viewer,CommentArea.getText().replaceAll("\n"," "));
         }
         UpdateComment();
+        CommentArea.setText("");
     }
 
     //----------------------------------------------

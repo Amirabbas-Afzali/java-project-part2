@@ -282,6 +282,9 @@ public class BusinessPost extends Post{
         PostTableDBC.postTableDBC.EditorDeletePost(this,false);
     }
 
+    public void addView(String Username) throws SQLException {
+    this.LikedList.add(LikeHandle.NewLikeHandles(Username,"-2",true));
+    }
     /////////////////////////////////////////////////////////////
 
     public void LoadViewersUserNames(){}
@@ -290,6 +293,6 @@ public class BusinessPost extends Post{
     //public void setBuisnessType(String input){}
     //public BuisnessType getBuisnessType(){return buisnessType;}
     public static void BuisnessNewPost(){}
-    public void addView(String Username){}
+
     public String getViewersOrigin(){return "CITY";}
 }

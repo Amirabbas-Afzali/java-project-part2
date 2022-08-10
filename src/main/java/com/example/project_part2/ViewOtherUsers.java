@@ -29,10 +29,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ViewOtherUsers implements Initializable {
- //   Image image1=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\31189.jpg");
-  //  Image image2=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\theme2\\10.jpg");
-//    Image image3=new Image("C:\\Users\\TUF\\Desktop\\java project\\Project_part2\\src\\main\\resources\\com\\example\\project_part2\\dark.jpg");
-
     public void SETThEME(){
         if(CompletePersonalInformation.SetTheme==1){
             PANE.getStylesheets().add(getClass().getResource("Style10a/ss.css").toExternalForm());
@@ -108,7 +104,55 @@ public class ViewOtherUsers implements Initializable {
             massag.setDisable(false);
         }
 
-        List<User> wer=new ArrayList<>();
+        if(ThisUser.Kind){
+            List<User> wer=new ArrayList<>();
+            for (User user : ThisUser.FollowerMap.values()){
+                wer.add(user);
+            }
+            List<User> wing=new ArrayList<>();
+            for (User user : ThisUser.FollowingMap.values()){
+                wing.add(user);
+            }
+            System.out.println(ThisUser.FollowersList);
+            System.out.println(ThisUser.FollowingsList);
+            setFollowers(wer);
+            setFollowings(wing);
+        }
+        else {
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    List<User> wer=new ArrayList<>();
+                    for (User user : ThisUser.FollowerMap.values()){
+                        wer.add(user);
+                    }
+                    List<User> wing=new ArrayList<>();
+                    for (User user : ThisUser.FollowingMap.values()){
+                        wing.add(user);
+                    }
+                    System.out.println(ThisUser.FollowersList);
+                    System.out.println(ThisUser.FollowingsList);
+                    setFollowers(wer);
+                    setFollowings(wing);
+                }
+            }
+            else {
+                List<User> wer=new ArrayList<>();
+                for (User user : ThisUser.FollowerMap.values()){
+                    wer.add(user);
+                }
+                List<User> wing=new ArrayList<>();
+                for (User user : ThisUser.FollowingMap.values()){
+                    wing.add(user);
+                }
+                System.out.println(ThisUser.FollowersList);
+                System.out.println(ThisUser.FollowingsList);
+                setFollowers(wer);
+                setFollowings(wing);
+            }
+        }
+
+     /*   List<User> wer=new ArrayList<>();
         for (User user : ThisUser.FollowerMap.values()){
             wer.add(user);
         }
@@ -119,7 +163,7 @@ public class ViewOtherUsers implements Initializable {
         System.out.println(ThisUser.FollowersList);
         System.out.println(ThisUser.FollowingsList);
         setFollowers(wer);
-        setFollowings(wing);
+        setFollowings(wing);*/
     }
 
     public void addclose() throws SQLException {
@@ -136,27 +180,91 @@ public class ViewOtherUsers implements Initializable {
     }
 
     public void followuser() throws SQLException {
-        if(!PersonalHomepage.USER.FollowingMap.containsValue(ThisUser)) {
-            PersonalHomepage.USER.setFollow(ThisUser);
-            answer.setText("Followed");
-            addfollowbut.setText("Unfollow");
+        if(ThisUser.Kind){
+            if(!PersonalHomepage.USER.FollowingMap.containsValue(ThisUser)) {
+                PersonalHomepage.USER.setFollow(ThisUser);
+                answer.setText("Followed");
+                addfollowbut.setText("Unfollow");
+            }
+            else {
+                PersonalHomepage.USER.setUnFollow(ThisUser);
+                answer.setText("Unfollowed");
+                addfollowbut.setText("Follow");
+            }
+            List<User> wer=new ArrayList<>();
+            for (User user : ThisUser.FollowerMap.values()){
+                wer.add(user);
+            }
+            List<User> wing=new ArrayList<>();
+            for (User user : ThisUser.FollowingMap.values()){
+                wing.add(user);
+            }
+            setFollowers(wer);
+            setFollowings(wing);
+
         }
         else {
-            PersonalHomepage.USER.setUnFollow(ThisUser);
-            answer.setText("Unfollowed");
-            addfollowbut.setText("Follow");
-        }
+            OrdinaryUser ordinaryUser=(OrdinaryUser) ThisUser;
+            if(ordinaryUser.Private){
+                if(ThisUser.FollowerMap.containsKey(PersonalHomepage.USER.UserName)){
+                    if(!PersonalHomepage.USER.FollowingMap.containsValue(ThisUser)) {
+                        PersonalHomepage.USER.setFollow(ThisUser);
+                        answer.setText("Followed");
+                        addfollowbut.setText("Unfollow");
+                    }
+                    else {
+                        PersonalHomepage.USER.setUnFollow(ThisUser);
+                        answer.setText("Unfollowed");
+                        addfollowbut.setText("Follow");
+                    }
+                    List<User> wer=new ArrayList<>();
+                    for (User user : ThisUser.FollowerMap.values()){
+                        wer.add(user);
+                    }
+                    List<User> wing=new ArrayList<>();
+                    for (User user : ThisUser.FollowingMap.values()){
+                        wing.add(user);
+                    }
+                    setFollowers(wer);
+                    setFollowings(wing);
+                }
+                else {
+                    if(!ThisUser.RequestMap.containsValue(PersonalHomepage.USER)) {
+                        PersonalHomepage.USER.setRequest(ThisUser);
+                        answer.setText("Requested !");
+                        addfollowbut.setText("Requested");
+                    }
+                    else {
+                        ThisUser.setDeleteRequest(PersonalHomepage.USER);
+                        answer.setText("");
+                        addfollowbut.setText("Follow");
+                    }
+                }
+            }
 
-        List<User> wer=new ArrayList<>();
-        for (User user : ThisUser.FollowerMap.values()){
-            wer.add(user);
+            else {
+                if(!PersonalHomepage.USER.FollowingMap.containsValue(ThisUser)) {
+                    PersonalHomepage.USER.setFollow(ThisUser);
+                    answer.setText("Followed");
+                    addfollowbut.setText("Unfollow");
+                }
+                else {
+                    PersonalHomepage.USER.setUnFollow(ThisUser);
+                    answer.setText("Unfollowed");
+                    addfollowbut.setText("Follow");
+                }
+                List<User> wer=new ArrayList<>();
+                for (User user : ThisUser.FollowerMap.values()){
+                    wer.add(user);
+                }
+                List<User> wing=new ArrayList<>();
+                for (User user : ThisUser.FollowingMap.values()){
+                    wing.add(user);
+                }
+                setFollowers(wer);
+                setFollowings(wing);
+            }
         }
-        List<User> wing=new ArrayList<>();
-        for (User user : ThisUser.FollowingMap.values()){
-            wing.add(user);
-        }
-        setFollowers(wer);
-        setFollowings(wing);
 
     }
 
@@ -650,16 +758,27 @@ public class ViewOtherUsers implements Initializable {
 //============================
         if(PersonalHomepage.USER.BlockedMap.containsValue(ThisUser)){
             addblockbut.setText("Unblock");
+            addClosebut.setText("Add to CloseList");addClosebut.setDisable(true);
+            addfollowbut.setText("Follow");addfollowbut.setDisable(true);
+            massag.setDisable(true);
         }
         else {
             addblockbut.setText("Block");
+            addClosebut.setText("Add to CloseList");addClosebut.setDisable(false);
+            addfollowbut.setText("Follow");addfollowbut.setDisable(false);
+            massag.setDisable(false);
+
         }
 //==============================
         if(PersonalHomepage.USER.FollowingMap.containsValue(ThisUser)){
             addfollowbut.setText("Unfollow");
         }
         else {
-            addfollowbut.setText("Follow");
+            if(!ThisUser.RequestMap.containsValue(PersonalHomepage.USER)){
+            addfollowbut.setText("Follow");}
+            else {
+                addfollowbut.setText("Requested");
+            }
         }
         //===========================
         answer.setText(" ");

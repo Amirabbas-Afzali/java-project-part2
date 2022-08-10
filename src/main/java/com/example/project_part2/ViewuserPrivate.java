@@ -677,7 +677,7 @@ public class ViewuserPrivate implements Initializable {
         tallpanfollowings.getChildren().clear();
         if(suguser!=null){
             int i=0;
-            tallpanfollowings.setPrefHeight(suguser.size()*70);
+            tallpanfollowings.setPrefHeight(suguser.size()*70+50);
             for(User user:suguser){
                 PreShowUser usertemp=new PreShowUser(user,10,70*i+10,tallpanfollowings);
                 i++;
@@ -688,7 +688,7 @@ public class ViewuserPrivate implements Initializable {
         tallpanfollowers.getChildren().clear();
         if(suguser!=null){
             int i=0;
-            tallpanfollowers.setPrefHeight(suguser.size()*70);
+            tallpanfollowers.setPrefHeight(suguser.size()*70+50);
             for(User user:suguser){
                 PreShowUser usertemp=new PreShowUser(user,10,70*i+10,tallpanfollowers);
                 i++;

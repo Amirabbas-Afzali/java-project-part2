@@ -61,17 +61,17 @@
          </image>
       </ImageView>
       <Button fx:id="getuser" layoutX="1200.0" layoutY="154.0" mnemonicParsing="false" onAction="#getuser" opacity="0.0" prefHeight="41.0" prefWidth="52.0" text="Button" AnchorPane.bottomAnchor="554.4" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="48.0" />
+      <ImageView fx:id="searchpost1" fitHeight="68.0" fitWidth="54.0" layoutX="665.0" layoutY="79.40000000000018" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="616.5999999999998" AnchorPane.leftAnchor="665.0" AnchorPane.rightAnchor="581.0">
+         <image>
+            <Image url="@icon/search.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="searchpost" fitHeight="68.0" fitWidth="54.0" layoutX="659.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="548.0" AnchorPane.leftAnchor="658.6" AnchorPane.rightAnchor="587.0">
          <image>
             <Image url="@icon/search.png" />
          </image>
       </ImageView>
-      <Button fx:id="getuser1" layoutX="660.0" layoutY="149.0" mnemonicParsing="false" onAction="#getpost" opacity="0.0" prefHeight="51.0" prefWidth="52.0" text="Button" AnchorPane.bottomAnchor="611.8" AnchorPane.leftAnchor="642.0" AnchorPane.rightAnchor="606.0" />
-      <ImageView fx:id="searchpost1" fitHeight="68.0" fitWidth="54.0" layoutX="639.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="609.0" AnchorPane.leftAnchor="658.6" AnchorPane.rightAnchor="587.4">
-         <image>
-            <Image url="@icon/search.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="getuser11" layoutX="642.0" layoutY="87.0" mnemonicParsing="false" onAction="#getpost" opacity="0.0" prefHeight="51.0" prefWidth="52.0" text="Button" AnchorPane.bottomAnchor="611.8" AnchorPane.leftAnchor="642.0" AnchorPane.rightAnchor="606.0" />
+      <Button fx:id="getuser1" layoutX="672.0" layoutY="81.00000000000004" mnemonicParsing="false" onAction="#getpost" opacity="0.0" prefHeight="51.0" prefWidth="52.0" text="Button" AnchorPane.bottomAnchor="617.8" AnchorPane.leftAnchor="672.0" AnchorPane.rightAnchor="576.0" />
+      <Button fx:id="getuser11" layoutX="663.0" layoutY="147.0" mnemonicParsing="false" onAction="#getpost" opacity="0.0" prefHeight="51.0" prefWidth="52.0" text="Button" AnchorPane.bottomAnchor="551.8" AnchorPane.leftAnchor="663.0" AnchorPane.rightAnchor="585.0" />
    </children>
 </AnchorPane>

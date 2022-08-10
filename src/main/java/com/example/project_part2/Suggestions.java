@@ -48,8 +48,6 @@ static User USER;
     @FXML
     AnchorPane tallpane,tallpaneuser;
     @FXML
-    Pane PANE;
-    @FXML
     CheckBox hash,bus;
     @FXML
     TextField post,user;
@@ -192,26 +190,9 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
                             }
                         }
                         if (event.getSource() == buttonslike[i]) {
-                            System.out.println(i);
-                            if (!posts.get(i).LikedList.contains(USER.UserName)) {
-                                posts.get(i).LikedList.add(USER.UserName);
-                                USER.LikedPostCodes.add(posts.get(i).PostCode);
+                            if(!posts.get(i).UserNameLiked(USER.UserName)){
                                 try {
-                                    UserTableDBC.userTableDBC.EditorDeleteUser(USER, false);
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                try {
-                                    PostTableDBC.postTableDBC.EditorDeletePost(posts.get(i), false);
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                posts.get(i).LikedList.remove(USER.UserName);
-                                USER.LikedPostCodes.remove(posts.get(i).PostCode);
-
-                                try {
-                                    UserTableDBC.userTableDBC.EditorDeleteUser(USER,false);
+                                    posts.get(i).LikedList.add(LikeHandle.NewLikeHandles(USER.UserName,posts.get(i).PostCode,false));
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
@@ -220,7 +201,21 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-
+                            }
+                            else {
+                                try {
+                                    String LikeCode="";
+                                    for (String j:posts.get(i).LikedList){
+                                        if (MAINInformation.mainInformation.likeHandleMap.get(j).LikerUserName.equals(USER.UserName)){
+                                            LikeCode=j;
+                                            USER.addLikedPostCode(LikeCode,false);
+                                        }
+                                    }
+                                    posts.get(i).addLikeOrRemove(LikeCode,false);
+                                }
+                                catch (Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                             refresh(posts);
                         }
@@ -254,8 +249,8 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
         commentfield.setPrefHeight(200);
         commentfield.setPrefWidth(180);
         commentfield.setPromptText("Add a comment . . .");
-        PANE.getChildren().add(commentfield);
-        PANE.getChildren().addAll(send,cancel);
+        anch1.getChildren().add(commentfield);
+        anch1.getChildren().addAll(send,cancel);
 
         EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>() {
             @Override
@@ -266,14 +261,14 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
                         try {
                             post.addcomment(USER,commentfield.getText());
                             com=false;
-                            PANE.getChildren().removeAll(commentfield,send,cancel);
+                            anch1.getChildren().removeAll(commentfield,send,cancel);
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }}
 
                 }
                 if(event.getSource()==cancel) {
-                    PANE.getChildren().removeAll(commentfield,send,cancel);
+                    anch1.getChildren().removeAll(commentfield,send,cancel);
                     com=false;
                 }
 
@@ -293,13 +288,13 @@ List<PreShowUser> preShowUsers=new ArrayList<>();
         boolean liked;
         int i=0;
         for(Post posttemp:posts){
-            if(posttemp.LikedList.contains(USER.UserName)){liked=true;}
+            if(posttemp.UserNameLiked(USER.UserName)){liked=true;}
             else {liked=false;}
             if(!posttemp.Kind){
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption);}
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption);}
             else {
                 BusinessPost businessPost=(BusinessPost) posttemp;
-                labels[i].setText("Likes : "+posttemp.LikedList.size()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
+                labels[i].setText("Likes : "+posttemp.getNumberOfLikes()+"\n\nCaption :  "+posttemp.Caption+"\n\nDescription : "+businessPost.description);
             }
 
             tallpane.getChildren().remove(buttonslike[i]);
