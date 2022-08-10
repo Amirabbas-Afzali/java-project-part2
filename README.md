@@ -10,7 +10,7 @@ The implementation of this project has been done in two parts, in the first part
 
 also MySQL databases and CSS are used in the program.
 
-In the first phase of this program, interesting statistical algorithms and artificial intelligence have been used for the Post and Explore section.
+In the first phase of this program, interesting statistical algorithms and artificial intelligence have been used for the suggest Post and Explore section.
 
 This program is written in about 15 thousand lines.
 
